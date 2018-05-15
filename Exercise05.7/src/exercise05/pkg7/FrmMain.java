@@ -10,7 +10,7 @@ package exercise05.pkg7;
  * @author 501958452
  */
 public class FrmMain extends javax.swing.JFrame {
-
+    FrmFindInventoryLocation frmFindInventoryLocation;
     /**
      * Creates new form FrmMain
      */
@@ -30,10 +30,10 @@ public class FrmMain extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        mnuStockItem = new javax.swing.JMenu();
         mnuStockItemFind = new javax.swing.JMenuItem();
         mnuStockItemAdd = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        mnuInventoryLocation = new javax.swing.JMenu();
         mnuInventoryLocationFind = new javax.swing.JMenuItem();
         mnuInventoryLocationAdd = new javax.swing.JMenuItem();
 
@@ -45,39 +45,58 @@ public class FrmMain extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 1024, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 579, Short.MAX_VALUE)
+            .addGap(0, 747, Short.MAX_VALUE)
         );
 
         getContentPane().add(jDesktopPane1, java.awt.BorderLayout.CENTER);
 
-        jMenu1.setText("Stock Item");
+        mnuStockItem.setText("Stock Item");
 
         mnuStockItemFind.setText("Find");
-        jMenu1.add(mnuStockItemFind);
+        mnuStockItem.add(mnuStockItemFind);
 
         mnuStockItemAdd.setText("Add");
-        jMenu1.add(mnuStockItemAdd);
+        mnuStockItem.add(mnuStockItemAdd);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(mnuStockItem);
 
-        jMenu2.setText("Inventory Location");
+        mnuInventoryLocation.setText("Inventory Location");
 
         mnuInventoryLocationFind.setText("Find");
-        jMenu2.add(mnuInventoryLocationFind);
+        mnuInventoryLocationFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuInventoryLocationFindActionPerformed(evt);
+            }
+        });
+        mnuInventoryLocation.add(mnuInventoryLocationFind);
 
         mnuInventoryLocationAdd.setText("Add");
-        jMenu2.add(mnuInventoryLocationAdd);
+        mnuInventoryLocation.add(mnuInventoryLocationAdd);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(mnuInventoryLocation);
 
         setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mnuInventoryLocationFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInventoryLocationFindActionPerformed
+        // TODO add your handling code here:
+        if (frmFindInventoryLocation == null || frmFindInventoryLocation.isClosed())
+        {
+            frmFindInventoryLocation = new FrmFindInventoryLocation();
+            jDesktopPane1.add(frmFindInventoryLocation);
+          
+        }
+        frmFindInventoryLocation.setVisible(true);
+        frmFindInventoryLocation.setClosable(true);
+        System.out.println(frmFindInventoryLocation.getMaximumSize());
+   //     frmFindInventoryLocation.setSize(frmFindInventoryLocation.getMaximumSize());
+    }//GEN-LAST:event_mnuInventoryLocationFindActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,12 +135,12 @@ public class FrmMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenu mnuInventoryLocation;
     private javax.swing.JMenuItem mnuInventoryLocationAdd;
     private javax.swing.JMenuItem mnuInventoryLocationFind;
+    private javax.swing.JMenu mnuStockItem;
     private javax.swing.JMenuItem mnuStockItemAdd;
     private javax.swing.JMenuItem mnuStockItemFind;
     // End of variables declaration//GEN-END:variables
