@@ -56,8 +56,6 @@ public class InventoryLocationCollection {
     {
         try
         {
-        
-            
             FileOutputStream fos = new FileOutputStream("iventoryStore.dat");
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(iventoryStore);

@@ -10,14 +10,20 @@ package exercise05.pkg7;
  * @author 501958452
  */
 public class FrmFindInventoryLocation extends javax.swing.JInternalFrame {
-    
+    InventoryLocationCollection inventoryCollection;
     /**
      * Creates new form FrmFindInventoryLocation
      */
     public FrmFindInventoryLocation() {
         initComponents();
+        inventoryCollection = new InventoryLocationCollection();
+        PopulateTable();
     }
-
+    private void PopulateTable()
+    {
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -11,6 +11,7 @@ package exercise05.pkg7;
  */
 public class FrmMain extends javax.swing.JFrame {
     FrmFindInventoryLocation frmFindInventoryLocation;
+    FrmInventoryLocationEdit frmInventoryLocationEdit;
     /**
      * Creates new form FrmMain
      */
@@ -75,6 +76,11 @@ public class FrmMain extends javax.swing.JFrame {
         mnuInventoryLocation.add(mnuInventoryLocationFind);
 
         mnuInventoryLocationAdd.setText("Add");
+        mnuInventoryLocationAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuInventoryLocationAddActionPerformed(evt);
+            }
+        });
         mnuInventoryLocation.add(mnuInventoryLocationAdd);
 
         jMenuBar1.add(mnuInventoryLocation);
@@ -85,7 +91,6 @@ public class FrmMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuInventoryLocationFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInventoryLocationFindActionPerformed
-        // TODO add your handling code here:
         if (frmFindInventoryLocation == null || frmFindInventoryLocation.isClosed())
         {
             frmFindInventoryLocation = new FrmFindInventoryLocation();
@@ -97,6 +102,17 @@ public class FrmMain extends javax.swing.JFrame {
         System.out.println(frmFindInventoryLocation.getMaximumSize());
    //     frmFindInventoryLocation.setSize(frmFindInventoryLocation.getMaximumSize());
     }//GEN-LAST:event_mnuInventoryLocationFindActionPerformed
+
+    private void mnuInventoryLocationAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInventoryLocationAddActionPerformed
+       if (frmInventoryLocationEdit == null || frmInventoryLocationEdit.isClosed())
+        {
+            frmInventoryLocationEdit = new FrmInventoryLocationEdit(0);
+            jDesktopPane1.add(frmInventoryLocationEdit);
+        }
+        frmInventoryLocationEdit.setVisible(true);
+        frmInventoryLocationEdit.setClosable(true);
+
+    }//GEN-LAST:event_mnuInventoryLocationAddActionPerformed
 
     /**
      * @param args the command line arguments
