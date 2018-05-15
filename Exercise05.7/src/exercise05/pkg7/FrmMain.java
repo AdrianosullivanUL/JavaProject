@@ -37,6 +37,8 @@ public class FrmMain extends javax.swing.JFrame {
         mnuInventoryLocation = new javax.swing.JMenu();
         mnuInventoryLocationFind = new javax.swing.JMenuItem();
         mnuInventoryLocationAdd = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
 
@@ -85,6 +87,23 @@ public class FrmMain extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuInventoryLocation);
 
+        jMenu1.setText("Help");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem1.setText("Create Inventory Location Test Data");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -113,6 +132,16 @@ public class FrmMain extends javax.swing.JFrame {
         frmInventoryLocationEdit.setClosable(true);
 
     }//GEN-LAST:event_mnuInventoryLocationAddActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        InventoryLocationTestData inventoryLocationTestData = new InventoryLocationTestData();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,7 +180,9 @@ public class FrmMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenu mnuInventoryLocation;
     private javax.swing.JMenuItem mnuInventoryLocationAdd;

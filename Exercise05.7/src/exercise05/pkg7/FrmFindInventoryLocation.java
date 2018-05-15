@@ -5,12 +5,16 @@
  */
 package exercise05.pkg7;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 501958452
  */
 public class FrmFindInventoryLocation extends javax.swing.JInternalFrame {
+
     InventoryLocationCollection inventoryCollection;
+
     /**
      * Creates new form FrmFindInventoryLocation
      */
@@ -19,11 +23,20 @@ public class FrmFindInventoryLocation extends javax.swing.JInternalFrame {
         inventoryCollection = new InventoryLocationCollection();
         PopulateTable();
     }
-    private void PopulateTable()
-    {
-        
+
+    private void PopulateTable() {
+        while (inventoryCollection.moveToNextInventortLocation()) {
+            InventoryLocation inventortLoation = inventoryCollection.getCurrentInventoryLocation();
+            DefaultTableModel model = (DefaultTableModel) tblInventoryLocation.getModel();
+            model.addRow(new Object[]{inventortLoation.getSection(),
+                                      inventortLoation.getAisle(), 
+                                      inventortLoation.getRack(), 
+                                      inventortLoation.getShelf(), 
+                                      "", 
+                                      0});
+        }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,7 +47,7 @@ public class FrmFindInventoryLocation extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblInventoryLocation = new javax.swing.JTable();
         txtSection = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -47,7 +60,7 @@ public class FrmFindInventoryLocation extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         btnEditSelectedLocation = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblInventoryLocation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -66,7 +79,7 @@ public class FrmFindInventoryLocation extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblInventoryLocation);
 
         jLabel1.setText("Section");
 
@@ -132,9 +145,7 @@ public class FrmFindInventoryLocation extends javax.swing.JInternalFrame {
                                     .addComponent(txtRack, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtStockItem, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnApplyFilter)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnApplyFilter))
                         .addGap(151, 151, 151)
                         .addComponent(btnEditSelectedLocation)))
                 .addContainerGap())
@@ -190,7 +201,7 @@ public class FrmFindInventoryLocation extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblInventoryLocation;
     private javax.swing.JTextField txtAisle;
     private javax.swing.JTextField txtRack;
     private javax.swing.JTextField txtSection;
