@@ -80,7 +80,7 @@ public class InventoryLocationCollection {
         } else {
             returnId = 1;
         }
-        return 1;
+        return returnId;
     }
 
     void addInventoryLocation(InventoryLocation inventoryLocation) {

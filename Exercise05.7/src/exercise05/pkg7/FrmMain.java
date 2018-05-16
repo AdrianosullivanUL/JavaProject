@@ -12,6 +12,8 @@ package exercise05.pkg7;
 public class FrmMain extends javax.swing.JFrame {
     FrmFindInventoryLocation frmFindInventoryLocation;
     FrmInventoryLocationEdit frmInventoryLocationEdit;
+    FrmStockItemEdit frmStockItemEdit;
+    FrmFindStockItem frmFindStockItem;
     /**
      * Creates new form FrmMain
      */
@@ -60,9 +62,19 @@ public class FrmMain extends javax.swing.JFrame {
         mnuStockItem.setText("Stock Item");
 
         mnuStockItemFind.setText("Find");
+        mnuStockItemFind.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuStockItemFindActionPerformed(evt);
+            }
+        });
         mnuStockItem.add(mnuStockItemFind);
 
         mnuStockItemAdd.setText("Add");
+        mnuStockItemAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuStockItemAddActionPerformed(evt);
+            }
+        });
         mnuStockItem.add(mnuStockItemAdd);
 
         jMenuBar1.add(mnuStockItem);
@@ -133,14 +145,34 @@ public class FrmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuInventoryLocationAddActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-        // TODO add your handling code here:
-        
-        
+      
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         InventoryLocationTestData inventoryLocationTestData = new InventoryLocationTestData();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void mnuStockItemAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuStockItemAddActionPerformed
+        // TODO add your handling code here:
+         if (frmStockItemEdit == null || frmStockItemEdit.isClosed())
+        {
+            frmStockItemEdit = new FrmStockItemEdit(0);
+            jDesktopPane1.add(frmStockItemEdit);
+        }
+        frmStockItemEdit.setVisible(true);
+        frmStockItemEdit.setClosable(true);
+    }//GEN-LAST:event_mnuStockItemAddActionPerformed
+
+    private void mnuStockItemFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuStockItemFindActionPerformed
+        // TODO add your handling code here:
+        if (frmFindStockItem == null || frmFindStockItem.isClosed())
+        {
+            frmFindStockItem = new FrmFindStockItem();
+            jDesktopPane1.add(frmFindStockItem);
+        }
+        frmFindStockItem.setVisible(true);
+        frmFindStockItem.setClosable(true);
+    }//GEN-LAST:event_mnuStockItemFindActionPerformed
 
     /**
      * @param args the command line arguments
