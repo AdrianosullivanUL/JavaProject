@@ -5,12 +5,14 @@
  */
 package exercise05.pkg7;
 
+import java.io.Serializable;
+
 /**
  * [Class Title Here]
  *
  * @author Adrian O'Sullivan Student ID 16230124 Last Modified [dd/mm/yyyy]
  */
-class InventoryLocation {
+class InventoryLocation implements Serializable {
 
     private int inventoryLocationId;
     private int section;

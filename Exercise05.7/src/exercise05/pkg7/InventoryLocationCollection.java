@@ -5,6 +5,7 @@
  */
 package exercise05.pkg7;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -20,20 +21,29 @@ import java.util.List;
  * @author Adrian O'Sullivan Student ID 16230124 Last Modified [dd/mm/yyyy]
  */
 public class InventoryLocationCollection {
+
     private List<InventoryLocation> inventoryStore;
     private int currentEntryIndex = 0;
+
+    public InventoryLocationCollection() throws ApplicationException {
+        try {
+            loadInventoryCollection();
+        } catch (ApplicationException ex) {
+            throw ex;
+        }
+    }
 
     public void loadInventoryCollection()
             throws ApplicationException {
         try {
-            FileInputStream fis = new FileInputStream("iventoryStore.dat");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            List<InventoryLocation> inventoryStore = (List<InventoryLocation>) ois.readObject();
-            ois.close();
+            FileInputStream fileInputStream = new FileInputStream("inventoryStore.dat");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            inventoryStore = (List<InventoryLocation>) objectInputStream.readObject();
+            objectInputStream.close();
 
         } catch (FileNotFoundException ex1) {
             // First time run or file has been deleted, create a new empty collection
-                inventoryStore = new ArrayList<InventoryLocation>();
+            inventoryStore = new ArrayList<InventoryLocation>();
         } catch (IOException ex2) {
             throw new ApplicationException("I/O error loading the inventoryStore.dat file");
 
@@ -43,13 +53,14 @@ public class InventoryLocationCollection {
 
         }
     }
-     void saveInventoryCollection()
+
+    void saveInventoryCollection()
             throws ApplicationException {
         try {
-            FileOutputStream fos = new FileOutputStream("inventoryStore.dat");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(inventoryStore);
-            oos.close();
+            FileOutputStream fileOutputStream = new FileOutputStream("inventoryStore.dat");
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(inventoryStore);
+            objectOutputStream.close();
         } catch (FileNotFoundException ex1) {
             throw new ApplicationException("File inventoryStore.dat not found");
         } catch (IOException ex2) {
@@ -70,32 +81,34 @@ public class InventoryLocationCollection {
         }
         return 1;
     }
-    void addInventoryLocation(InventoryLocation inventoryLocation) 
-    {
-        inventoryStore.add(inventoryLocation);   
+
+    void addInventoryLocation(InventoryLocation inventoryLocation) {
+        inventoryStore.add(inventoryLocation);
     }
-    InventoryLocation getCurrentInventoryLocation()
-    {
+
+    InventoryLocation getCurrentInventoryLocation() {
         return inventoryStore.get(currentEntryIndex);
     }
-    boolean moveToNextInventortLocation()
-    {
+
+    boolean moveToNextInventortLocation() {
         boolean returnValue = true;
-    
-        if (inventoryStore != null && currentEntryIndex < (inventoryStore.size() - 1))
+
+        if (inventoryStore != null && currentEntryIndex < (inventoryStore.size() - 1)) {
             currentEntryIndex++;
-        else
+        } else {
             returnValue = false;
+        }
         return returnValue;
     }
-    boolean moveToPreviousInventortLocation()
-    {
+
+    boolean moveToPreviousInventortLocation() {
         boolean returnValue = true;
-    
-        if (inventoryStore != null && currentEntryIndex > 0)
+
+        if (inventoryStore != null && currentEntryIndex > 0) {
             currentEntryIndex--;
-        else
+        } else {
             returnValue = false;
+        }
         return returnValue;
     }
 }
