@@ -5,6 +5,7 @@
  */
 package exercise05.pkg7;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,14 +21,27 @@ public class FrmFindInventoryLocation extends javax.swing.JInternalFrame {
      */
     public FrmFindInventoryLocation() {
         initComponents();
+        try 
+        {
         inventoryCollection = new InventoryLocationCollection();
+             
         PopulateTable();
+        }
+        catch (ApplicationException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void PopulateTable() {
-        while (inventoryCollection.moveToNextInventortLocation()) {
+        tblInventoryLocation.removeAll();
+        DefaultTableModel model = (DefaultTableModel) tblInventoryLocation.getModel();
+        for (int i = model.getRowCount() -1 ; i >= 0 ; i--)    
+        {
+            model.removeRow(i);
+        }
+        while (inventoryCollection.moveToNextInventoryLocation()) {
             InventoryLocation inventortLoation = inventoryCollection.getCurrentInventoryLocation();
-            DefaultTableModel model = (DefaultTableModel) tblInventoryLocation.getModel();
             model.addRow(new Object[]{inventortLoation.getSection(),
                                       inventortLoation.getAisle(), 
                                       inventortLoation.getRack(), 

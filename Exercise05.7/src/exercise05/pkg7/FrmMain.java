@@ -118,7 +118,6 @@ public class FrmMain extends javax.swing.JFrame {
         }
         frmFindInventoryLocation.setVisible(true);
         frmFindInventoryLocation.setClosable(true);
-        System.out.println(frmFindInventoryLocation.getMaximumSize());
    //     frmFindInventoryLocation.setSize(frmFindInventoryLocation.getMaximumSize());
     }//GEN-LAST:event_mnuInventoryLocationFindActionPerformed
 

@@ -23,7 +23,7 @@ import java.util.List;
 public class InventoryLocationCollection {
 
     private List<InventoryLocation> inventoryStore;
-    private int currentEntryIndex = 0;
+    private int currentEntryIndex = -1;
 
     public InventoryLocationCollection() throws ApplicationException {
         try {
@@ -40,6 +40,7 @@ public class InventoryLocationCollection {
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             inventoryStore = (List<InventoryLocation>) objectInputStream.readObject();
             objectInputStream.close();
+            currentEntryIndex = -1;
 
         } catch (FileNotFoundException ex1) {
             // First time run or file has been deleted, create a new empty collection
@@ -87,10 +88,13 @@ public class InventoryLocationCollection {
     }
 
     InventoryLocation getCurrentInventoryLocation() {
-        return inventoryStore.get(currentEntryIndex);
+        if (currentEntryIndex > -1 && currentEntryIndex <= inventoryStore.size() -1)
+            return inventoryStore.get(currentEntryIndex);
+        else
+            return null;
     }
 
-    boolean moveToNextInventortLocation() {
+    boolean moveToNextInventoryLocation() {
         boolean returnValue = true;
 
         if (inventoryStore != null && currentEntryIndex < (inventoryStore.size() - 1)) {
@@ -98,6 +102,7 @@ public class InventoryLocationCollection {
         } else {
             returnValue = false;
         }
+        System.out.println("Current Inv loc " + currentEntryIndex);
         return returnValue;
     }
 
