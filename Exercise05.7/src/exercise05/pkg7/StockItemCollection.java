@@ -24,7 +24,7 @@ public class StockItemCollection {
     
  public StockItemCollection() throws ApplicationException {
         try {
-            loadStockItemCollection();
+            loadStockCollection();
         } catch (ApplicationException ex) {
             throw ex;
         }

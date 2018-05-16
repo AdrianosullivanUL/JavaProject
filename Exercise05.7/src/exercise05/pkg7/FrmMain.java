@@ -10,10 +10,10 @@ package exercise05.pkg7;
  * @author 501958452
  */
 public class FrmMain extends javax.swing.JFrame {
-    FrmFindInventoryLocation frmFindInventoryLocation;
+    FrmInventoryLocationFind frmFindInventoryLocation;
     FrmInventoryLocationEdit frmInventoryLocationEdit;
     FrmStockItemEdit frmStockItemEdit;
-    FrmFindStockItem frmFindStockItem;
+    FrmStockItemFind frmFindStockItem;
     /**
      * Creates new form FrmMain
      */
@@ -124,7 +124,7 @@ public class FrmMain extends javax.swing.JFrame {
     private void mnuInventoryLocationFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInventoryLocationFindActionPerformed
         if (frmFindInventoryLocation == null || frmFindInventoryLocation.isClosed())
         {
-            frmFindInventoryLocation = new FrmFindInventoryLocation();
+            frmFindInventoryLocation = new FrmInventoryLocationFind();
             jDesktopPane1.add(frmFindInventoryLocation);
           
         }
@@ -167,7 +167,7 @@ public class FrmMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (frmFindStockItem == null || frmFindStockItem.isClosed())
         {
-            frmFindStockItem = new FrmFindStockItem();
+            frmFindStockItem = new FrmStockItemFind();
             jDesktopPane1.add(frmFindStockItem);
         }
         frmFindStockItem.setVisible(true);

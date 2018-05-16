@@ -9,12 +9,12 @@ package exercise05.pkg7;
  *
  * @author 501834813
  */
-public class FrmFindStockItem extends javax.swing.JInternalFrame {
+public class FrmStockItemFind extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmFindStockItem
      */
-    public FrmFindStockItem() {
+    public FrmStockItemFind() {
         initComponents();
     }
 

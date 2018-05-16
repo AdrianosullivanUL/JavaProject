@@ -5,7 +5,6 @@
  */
 package exercise05.pkg7;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -13,6 +12,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -116,4 +117,18 @@ public class InventoryLocationCollection {
         }
         return returnValue;
     }
+    void sortBy(String sortKey)
+    {
+        if (sortKey == "Section")
+            Collections.sort(inventoryStore, new InventoryLocationSectionComparator());
+    }
+
+    
+    public class InventoryLocationSectionComparator implements Comparator<InventoryLocation> {
+    public int compare(InventoryLocation self, InventoryLocation other) {
+        // I'm assuming your Employee.id is an Integer not an int.
+        // If you'd like to use int, create an Integer before calling compareTo.
+        return Integer.valueOf(self.getSection()).compareTo(other.getSection());
+    }
+}
 }

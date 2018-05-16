@@ -5,6 +5,7 @@
  */
 package exercise05.pkg7;
 
+import java.awt.event.ItemEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,14 +13,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author 501958452
  */
-public class FrmFindInventoryLocation extends javax.swing.JInternalFrame {
+public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
 
     InventoryLocationCollection inventoryCollection;
 
     /**
      * Creates new form FrmFindInventoryLocation
      */
-    public FrmFindInventoryLocation() {
+    public FrmInventoryLocationFind() {
         initComponents();
         try 
         {
@@ -40,6 +41,7 @@ public class FrmFindInventoryLocation extends javax.swing.JInternalFrame {
         {
             model.removeRow(i);
         }
+
         while (inventoryCollection.moveToNextInventoryLocation()) {
             InventoryLocation inventortLoation = inventoryCollection.getCurrentInventoryLocation();
             model.addRow(new Object[]{inventortLoation.getSection(),
@@ -73,6 +75,9 @@ public class FrmFindInventoryLocation extends javax.swing.JInternalFrame {
         btnApplyFilter = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnEditSelectedLocation = new javax.swing.JButton();
+        btnDeleteSelectedLocation = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        cmbSort = new javax.swing.JComboBox<>();
 
         tblInventoryLocation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -126,6 +131,17 @@ public class FrmFindInventoryLocation extends javax.swing.JInternalFrame {
             }
         });
 
+        btnDeleteSelectedLocation.setText("Delete Selected Item");
+
+        jLabel6.setText("Sort By");
+
+        cmbSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entry Sequence (default)", "Section", "Stock Item" }));
+        cmbSort.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbSortItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -158,16 +174,28 @@ public class FrmFindInventoryLocation extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtRack, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtStockItem, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(btnApplyFilter))
-                        .addGap(151, 151, 151)
-                        .addComponent(btnEditSelectedLocation)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnApplyFilter)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnDeleteSelectedLocation)
+                                .addGap(71, 71, 71)))
+                        .addComponent(btnEditSelectedLocation))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmbSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(cmbSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
                 .addComponent(jLabel5)
@@ -186,8 +214,9 @@ public class FrmFindInventoryLocation extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnApplyFilter)
-                    .addComponent(btnEditSelectedLocation))
-                .addContainerGap(13, Short.MAX_VALUE))
+                    .addComponent(btnEditSelectedLocation)
+                    .addComponent(btnDeleteSelectedLocation))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -205,15 +234,28 @@ public class FrmFindInventoryLocation extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditSelectedLocationActionPerformed
 
+    private void cmbSortItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSortItemStateChanged
+        // TODO add your handling code here:
+        if (evt.getStateChange() == ItemEvent.SELECTED)
+        {
+            String sortColumn = cmbSort.getSelectedItem().toString();
+            inventoryCollection.sortBy(sortColumn);
+            PopulateTable();
+                    }
+    }//GEN-LAST:event_cmbSortItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApplyFilter;
+    private javax.swing.JButton btnDeleteSelectedLocation;
     private javax.swing.JButton btnEditSelectedLocation;
+    private javax.swing.JComboBox<String> cmbSort;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblInventoryLocation;
     private javax.swing.JTextField txtAisle;
