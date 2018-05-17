@@ -210,10 +210,10 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
                     inventoryLocation.setRack(rack);
                     inventoryLocation.setShelf(shelf);
                     inventoryLocation.setQuantity(quantity);
-                    inventoryCollection.saveInventoryCollection();
+                    inventoryCollection.saveInventoryCollection(inventoryLocationId);
                     JOptionPane.showMessageDialog(null, "Change Saved", "Sucess", JOptionPane.INFORMATION_MESSAGE);
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Invalid entry: " + ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
                 } catch (ApplicationException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
                 }

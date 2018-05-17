@@ -56,9 +56,12 @@ public class InventoryLocationCollection {
         }
     }
 
-    void saveInventoryCollection()
+    void saveInventoryCollection(int updatedInventoryLocationId)
             throws ApplicationException {
         try {
+            if (updatedInventoryLocationId != 0) {
+                validateUpdates(updatedInventoryLocationId);
+            }
             FileOutputStream fileOutputStream = new FileOutputStream("inventoryStore.dat");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(inventoryStore);
@@ -84,7 +87,43 @@ public class InventoryLocationCollection {
         return returnId;
     }
 
-    void addInventoryLocation(InventoryLocation inventoryLocation) {
+    void addInventoryLocation(InventoryLocation inventoryLocation)
+            throws ApplicationException {
+        for (InventoryLocation existingInventoryLocation : inventoryStore) {
+            if (checkForDuplicateLocation(existingInventoryLocation, inventoryLocation)) {
+                throw new ApplicationException("Cannot add this entry, location already exists");
+            }
+        }
+        if (inventoryLocation.getQuantity() < 0) {
+            throw new ApplicationException("Quantity cannot be negative");
+        }
+        inventoryStore.add(inventoryLocation);
+    }
+
+    private void validateUpdates(int updateInventoryLocationId)
+            throws ApplicationException {
+        
+        InventoryLocation inventoryLocation = null;
+        for (InventoryLocation findInventoryLocation : inventoryStore)
+        {
+            if (findInventoryLocation.getInventoryLocationId() == updateInventoryLocationId)
+            {
+                inventoryLocation = findInventoryLocation;
+                break;
+            }
+        }
+        if (inventoryLocation == null)
+            throw new ApplicationException("Problem validating updates, cannot find inventory location id " + updateInventoryLocationId);
+
+        for (InventoryLocation existingInventoryLocation : inventoryStore) {
+            if (existingInventoryLocation.getInventoryLocationId() != inventoryLocation.getInventoryLocationId()
+                    && checkForDuplicateLocation(existingInventoryLocation, inventoryLocation)) {
+                throw new ApplicationException("Cannot update this entry, location already exists elsewhere");
+            }
+        }
+        if (inventoryLocation.getQuantity() < 0) {
+            throw new ApplicationException("Quantity cannot be negative");
+        }
         inventoryStore.add(inventoryLocation);
     }
 
@@ -123,6 +162,17 @@ public class InventoryLocationCollection {
         return returnValue;
     }
 
+    private boolean checkForDuplicateLocation(InventoryLocation existing, InventoryLocation updated) {
+        boolean result = false;
+        if (existing.getSection() == updated.getSection()
+                && existing.getAisle() == updated.getAisle()
+                && existing.getRack() == updated.getRack()
+                && existing.getShelf() == updated.getShelf()) {
+            result = true;
+        }
+        return result;
+    }
+
     void sortBy(String sortKey) {
         if (sortKey == "Section") {
             Collections.sort(inventoryStore, new InventoryLocationSectionComparator());
@@ -135,6 +185,7 @@ public class InventoryLocationCollection {
     }
 
     class InventoryLocationSectionComparator implements Comparator<InventoryLocation> {
+
         public int compare(InventoryLocation self, InventoryLocation other) {
 
             return Integer.valueOf(self.getSection()).compareTo(other.getSection());
@@ -142,6 +193,7 @@ public class InventoryLocationCollection {
     }
 
     class InventoryLocationIdComparator implements Comparator<InventoryLocation> {
+
         public int compare(InventoryLocation self, InventoryLocation other) {
             return Integer.valueOf(self.getInventoryLocationId()).compareTo(other.getInventoryLocationId());
         }

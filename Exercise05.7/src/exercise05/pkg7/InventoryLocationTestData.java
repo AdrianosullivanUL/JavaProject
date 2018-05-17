@@ -32,7 +32,7 @@ public class InventoryLocationTestData {
             inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 4, 1, 9, 30));
             inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 4, 2, 10, 31));
             inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 4, 3, 11, 32));
-            inventoryCollection.saveInventoryCollection();
+            inventoryCollection.saveInventoryCollection(0);
             JOptionPane.showMessageDialog(null, "Test Inventory Locations created", "Sucess", JOptionPane.INFORMATION_MESSAGE);
         } catch (ApplicationException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
