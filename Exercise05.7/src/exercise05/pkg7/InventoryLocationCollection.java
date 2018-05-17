@@ -89,11 +89,11 @@ public class InventoryLocationCollection {
     }
 
     InventoryLocation getCurrentInventoryLocation() {
+        InventoryLocation inventoryLocation = null;
         if (currentEntryIndex > -1 && currentEntryIndex <= inventoryStore.size() - 1) {
-            return inventoryStore.get(currentEntryIndex);
-        } else {
-            return null;
+            inventoryLocation = inventoryStore.get(currentEntryIndex);
         }
+        return inventoryLocation;
     }
 
     void moveToHeadLocation() {
