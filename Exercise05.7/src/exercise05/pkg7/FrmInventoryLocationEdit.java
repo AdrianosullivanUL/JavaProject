@@ -21,17 +21,17 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
      */
     public FrmInventoryLocationEdit(int inventoryLocationId) {
         initComponents();
-        
+
         // Load the Inventory Collection
         try {
             inventoryCollection = new InventoryLocationCollection();
         } catch (ApplicationException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
         }
-        
+
         // Store the location id
         this.inventoryLocationId = inventoryLocationId;
-        
+
         // Decide on Add or Edit form presentation, 0 is add
         if (inventoryLocationId == 0) {
             this.title = "Add new Inventory Location";
@@ -43,18 +43,16 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
 
     private void PopulateFormFields() {
 
-        while (inventoryCollection.moveToNextInventoryLocation())
-        {
-            if (inventoryCollection.getCurrentInventoryLocation().getInventoryLocationId() == inventoryLocationId)
-            {
+        while (inventoryCollection.moveToNextInventoryLocation()) {
+            if (inventoryCollection.getCurrentInventoryLocation().getInventoryLocationId() == inventoryLocationId) {
                 this.txtSection.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getSection()));
                 this.txtAisle.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getAisle()));
                 this.txtRack.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getRack()));
                 this.txtShelf.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getShelf()));
-                this.txtQuantity.setText(Double.toString(inventoryCollection.getCurrentInventoryLocation().getQuantity()));
-                
+                this.txtQuantity.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getQuantity()));
             }
         }
+
     }
 
     /**
@@ -196,12 +194,31 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtAisleActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
-        inventoryCollection.getCurrentInventoryLocation().setSection(Integer.getInteger(this.txtSection.getText()));
-        inventoryCollection.getCurrentInventoryLocation().setAisle(Integer.getInteger(this.txtAisle.getText()));
-        inventoryCollection.getCurrentInventoryLocation().setRack(Integer.getInteger(this.txtRack.getText()));
-        inventoryCollection.getCurrentInventoryLocation().setShelf(Integer.getInteger(this.txtShelf.getText()));
-        inventoryCollection.getCurrentInventoryLocation().setQuantity(Integer.getInteger(this.txtQuantity.getText()));
+        inventoryCollection.moveToHeadLocation();
+        while (inventoryCollection.moveToNextInventoryLocation()) {
+            InventoryLocation inventoryLocation = inventoryCollection.getCurrentInventoryLocation();
+            if (inventoryLocation.getInventoryLocationId() == inventoryLocationId) {
+                try {
+                    int section = Integer.parseInt(this.txtSection.getText());
+                    int aisle = Integer.parseInt(this.txtAisle.getText());
+                    int rack = Integer.parseInt(this.txtRack.getText());
+                    int shelf = Integer.parseInt(this.txtShelf.getText());
+                    int quantity = Integer.parseInt(this.txtQuantity.getText());
+
+                    inventoryLocation.setSection(section);
+                    inventoryLocation.setAisle(aisle);
+                    inventoryLocation.setRack(rack);
+                    inventoryLocation.setShelf(shelf);
+                    inventoryLocation.setQuantity(quantity);
+                    inventoryCollection.saveInventoryCollection(inventoryLocationId);
+                    JOptionPane.showMessageDialog(null, "Change Saved", "Sucess", JOptionPane.INFORMATION_MESSAGE);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Invalid entry: " + ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
+                } catch (ApplicationException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
 

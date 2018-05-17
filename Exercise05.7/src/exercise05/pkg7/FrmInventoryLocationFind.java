@@ -42,13 +42,14 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
         }
 
         while (inventoryCollection.moveToNextInventoryLocation()) {
-            InventoryLocation inventortLoation = inventoryCollection.getCurrentInventoryLocation();
-            model.addRow(new Object[]{inventortLoation.getSection(),
-                inventortLoation.getAisle(),
-                inventortLoation.getRack(),
-                inventortLoation.getShelf(),
+            InventoryLocation inventoryLocation = inventoryCollection.getCurrentInventoryLocation();
+            model.addRow(new Object[]{inventoryLocation.getSection(),
+                inventoryLocation.getAisle(),
+                inventoryLocation.getRack(),
+                inventoryLocation.getShelf(),
                 "",
-                0});
+                0,
+            inventoryLocation.getInventoryLocationId()});
         }
     }
 
@@ -80,21 +81,28 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
 
         tblInventoryLocation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Section", "Aisle", "Rack", "Shelf", "StockItem", "Quantity"
+                "Section", "Aisle", "Rack", "Shelf", "StockItem", "Quantity", "Id"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tblInventoryLocation.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -238,7 +246,7 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int column = 0;
         int row = tblInventoryLocation.getSelectedRow();
-        String selectedId = tblInventoryLocation.getModel().getValueAt(row, 0).toString();
+        String selectedId = tblInventoryLocation.getModel().getValueAt(row, 6).toString();
         int selectedInventoryLocationId = Integer.parseInt(selectedId);
         
         FrmMain frmMain = (FrmMain)this.getTopLevelAncestor();

@@ -20,7 +20,7 @@ class InventoryLocation implements Serializable {
     private int rack;
     private int shelf;
     private int stockItemId;
-    private double quantity;
+    private int quantity;
 
     public InventoryLocation(int inventoryLocationId, int section, int aisle, int rack, int shelf) {
         this.inventoryLocationId = inventoryLocationId;
@@ -30,7 +30,7 @@ class InventoryLocation implements Serializable {
         this.shelf = shelf;
     }
 
-    public InventoryLocation(int inventoryLocationId, int section, int aisle, int rack, int shelf, int stockItemId, double quantity) {
+    public InventoryLocation(int inventoryLocationId, int section, int aisle, int rack, int shelf, int stockItemId, int quantity) {
         this.inventoryLocationId = inventoryLocationId;
         this.section = section;
         this.aisle = aisle;
@@ -88,23 +88,11 @@ class InventoryLocation implements Serializable {
         this.stockItemId = stockItemId;
     }
 
-    public double getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-//    public boolean equals(InventoryLocation inventoryLocation) {
-//        if (inventoryLocation.getSection() == getSection()
-//                && inventoryLocation.getAisle() == getAisle()
-//                && inventoryLocation.getRack() == getRack()
-//                && inventoryLocation.getShelf() == getShelf()) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
-
 }
