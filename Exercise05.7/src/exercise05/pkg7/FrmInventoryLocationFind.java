@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
 
     InventoryLocationCollection inventoryCollection;
+    StockItemCollection stockCollection;
 
     /**
      * Creates new form FrmFindInventoryLocation
@@ -27,6 +28,7 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
         initComponents();
         try {
             inventoryCollection = new InventoryLocationCollection();
+            stockCollection = new StockItemCollection();
 
             PopulateTable();
         } catch (ApplicationException ex) {
@@ -43,13 +45,25 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
 
         while (inventoryCollection.moveToNextInventoryLocation()) {
             InventoryLocation inventoryLocation = inventoryCollection.getCurrentInventoryLocation();
+            String stockItemKey = "";
+            if (inventoryLocation.getStockItemId() != 0) {
+                stockCollection.moveToHeadLocation();
+                while (stockCollection.moveToNextStockItem()) {
+                    StockItem stockItem = stockCollection.getCurrentStockItem();
+                    if (stockItem.getStockItemId() == inventoryCollection.getCurrentInventoryLocation().getStockItemId()) {
+                        stockItemKey = stockItem.getPartNumber() + " - " + stockItem.getName();
+                        break;
+                    }
+                }
+            }
+
             model.addRow(new Object[]{inventoryLocation.getSection(),
                 inventoryLocation.getAisle(),
                 inventoryLocation.getRack(),
                 inventoryLocation.getShelf(),
-                "",
+                stockItemKey,
                 0,
-            inventoryLocation.getInventoryLocationId()});
+                inventoryLocation.getInventoryLocationId()});
         }
     }
 
@@ -248,13 +262,11 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
         int row = tblInventoryLocation.getSelectedRow();
         String selectedId = tblInventoryLocation.getModel().getValueAt(row, 6).toString();
         int selectedInventoryLocationId = Integer.parseInt(selectedId);
-        
-        FrmMain frmMain = (FrmMain)this.getTopLevelAncestor();
+
+        FrmMain frmMain = (FrmMain) this.getTopLevelAncestor();
         frmMain.EditInventoryLocation(selectedInventoryLocationId);
-        
 
 
-       
     }//GEN-LAST:event_btnEditSelectedLocationActionPerformed
 
     private void cmbSortItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSortItemStateChanged

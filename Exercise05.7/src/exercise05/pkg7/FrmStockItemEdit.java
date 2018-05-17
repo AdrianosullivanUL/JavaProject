@@ -173,6 +173,7 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
                     stockItem.setUnitPrice(unitPrice);
                     stockItemCollection.saveStockItem(stockItemId);
                     JOptionPane.showMessageDialog(null, "Change Saved", "Sucess", JOptionPane.INFORMATION_MESSAGE);
+                    break;
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Invalid entry: " + ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
                 } catch (ApplicationException ex) {

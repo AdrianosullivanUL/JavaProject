@@ -5,6 +5,7 @@
  */
 package exercise05.pkg7;
 
+import java.util.HashSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +16,7 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
 
     private int inventoryLocationId;
     InventoryLocationCollection inventoryCollection;
+    StockItemCollection stockCollection;
 
     /**
      * Creates new form FrmInventoryLocationEdit
@@ -25,6 +27,7 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
         // Load the Inventory Collection
         try {
             inventoryCollection = new InventoryLocationCollection();
+            stockCollection = new StockItemCollection();
         } catch (ApplicationException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
         }
@@ -42,7 +45,19 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
     }
 
     private void PopulateFormFields() {
+        PopulateStockItemDropdownList();
+        PoplulateInventoryLocationFields();
+    }
 
+    private void PopulateStockItemDropdownList() {
+        cmbStockItem.addItem("");
+        while (stockCollection.moveToNextStockItem()) {
+            StockItem stockItem = stockCollection.getCurrentStockItem();
+            cmbStockItem.addItem(stockItem.getPartNumber() + " - " + stockItem.getName());
+        }
+    }
+
+    private void PoplulateInventoryLocationFields() {
         while (inventoryCollection.moveToNextInventoryLocation()) {
             if (inventoryCollection.getCurrentInventoryLocation().getInventoryLocationId() == inventoryLocationId) {
                 this.txtSection.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getSection()));
@@ -50,9 +65,20 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
                 this.txtRack.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getRack()));
                 this.txtShelf.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getShelf()));
                 this.txtQuantity.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getQuantity()));
+                stockCollection.moveToHeadLocation();
+                while (stockCollection.moveToNextStockItem()) {
+                    StockItem stockItem = stockCollection.getCurrentStockItem();
+                    if (stockItem.getStockItemId() == inventoryCollection.getCurrentInventoryLocation().getStockItemId()) {
+                        for (int i = 0; i < cmbStockItem.getItemCount() - 1; i++) {
+                            if (cmbStockItem.getItemAt(i) == stockItem.getPartNumber() + " - " + stockItem.getName()) {
+                                cmbStockItem.setSelectedIndex(i);
+                                break;
+                            }
+                        }
+                    }
+                }
             }
         }
-
     }
 
     /**
@@ -90,7 +116,6 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Quantity");
 
-        cmbStockItem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbStockItem.setMinimumSize(new java.awt.Dimension(150, 20));
         cmbStockItem.setPreferredSize(new java.awt.Dimension(150, 25));
 
@@ -209,9 +234,13 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
                     inventoryLocation.setAisle(aisle);
                     inventoryLocation.setRack(rack);
                     inventoryLocation.setShelf(shelf);
+                    int selectedStockItemId = getSelectedStockItem();
+                    inventoryLocation.setStockItemId(selectedStockItemId);
+                    
                     inventoryLocation.setQuantity(quantity);
                     inventoryCollection.saveInventoryCollection(inventoryLocationId);
                     JOptionPane.showMessageDialog(null, "Change Saved", "Sucess", JOptionPane.INFORMATION_MESSAGE);
+                    break;
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Invalid entry: " + ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
                 } catch (ApplicationException ex) {
@@ -220,7 +249,20 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
+    private int getSelectedStockItem() {
 
+        stockCollection.moveToHeadLocation();
+        while (stockCollection.moveToNextStockItem()) {
+            StockItem stockItem = stockCollection.getCurrentStockItem();
+            String stockItemKey = stockItem.getPartNumber() + " - " + stockItem.getName();
+            String comboKey = cmbStockItem.getSelectedItem().toString();
+            if (stockItemKey.equals(comboKey)) {
+                return stockItem.getStockItemId();
+            }
+        }
+        return 0;
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;

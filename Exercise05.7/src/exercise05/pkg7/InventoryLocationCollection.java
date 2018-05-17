@@ -106,7 +106,7 @@ public class InventoryLocationCollection {
         InventoryLocation inventoryLocation = null;
         for (InventoryLocation findInventoryLocation : inventoryStore)
         {
-            if (findInventoryLocation.getInventoryLocationId() == updateInventoryLocationId)
+            if (Integer.compare(updateInventoryLocationId, findInventoryLocation.getInventoryLocationId()) == 0)
             {
                 inventoryLocation = findInventoryLocation;
                 break;
@@ -147,7 +147,6 @@ public class InventoryLocationCollection {
         } else {
             returnValue = false;
         }
-        System.out.println("Current Inv loc " + currentEntryIndex);
         return returnValue;
     }
 
