@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -50,6 +51,8 @@ public class StockItemCollection {
 
         }
     }
+ 
+ 
  void saveStockCollection()
             throws ApplicationException {
         try {
@@ -107,5 +110,24 @@ public class StockItemCollection {
         }
         return returnValue;
     }
+    void BubbleSort(){
+        StockItem temp;
+        if (stockStore.size()>1) // check if the number of orders is larger than 1
+        {
+            for (int x=0; x<stockStore.size(); x++) // bubble sort outer loop
+            {
+                for (int i=0; i < stockStore.size()-i; i++) {
+                    if (stockStore.get(i).getPartNumber() > stockStore.get(i+1).getPartNumber())
+                      {
+                        temp = stockStore.get(i);
+                        stockStore.set(i,stockStore.get(i+1) );
+                        stockStore.set(i+1, temp);
+                    }
+                }
+            }
+        }
+
+    }
 }
+
 

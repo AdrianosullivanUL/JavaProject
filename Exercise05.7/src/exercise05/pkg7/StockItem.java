@@ -11,12 +11,15 @@ package exercise05.pkg7;
  */
 public class StockItem {
 private int StockItemId;
+private int PartNumber;
 private  String Name;
 private String Description;
 private double UnitPrice;
 
-    public StockItem(int StockItemId, String Name, String Description, double UnitPrice) {
+
+    public StockItem(int StockItemId, int PartNunber, String Name, String Description, double UnitPrice) {
         this.StockItemId = StockItemId;
+        this.PartNumber = PartNunber;
         this.Name = Name;
         this.Description = Description;
         this.UnitPrice = UnitPrice;
@@ -29,6 +32,15 @@ private double UnitPrice;
     public void setStockItemId(int StockItemId) {
         this.StockItemId = StockItemId;
     }
+
+    public int getPartNumber() {
+        return PartNumber;
+    }
+
+    public void setPartNumber(int PartNumber) {
+        this.PartNumber = PartNumber;
+    }
+    
 
     public String getName() {
         return Name;

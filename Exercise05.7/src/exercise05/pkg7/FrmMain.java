@@ -14,6 +14,7 @@ public class FrmMain extends javax.swing.JFrame {
     FrmInventoryLocationEdit frmInventoryLocationEdit;
     FrmStockItemEdit frmStockItemEdit;
     FrmStockItemFind frmFindStockItem;
+    
     /**
      * Creates new form FrmMain
      */
@@ -41,6 +42,7 @@ public class FrmMain extends javax.swing.JFrame {
         mnuInventoryLocationAdd = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        mnuCreateTestStock = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
 
@@ -114,6 +116,14 @@ public class FrmMain extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        mnuCreateTestStock.setText("Creat Stock Item Test Data");
+        mnuCreateTestStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuCreateTestStockActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuCreateTestStock);
+
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -174,6 +184,11 @@ public class FrmMain extends javax.swing.JFrame {
         frmFindStockItem.setClosable(true);
     }//GEN-LAST:event_mnuStockItemFindActionPerformed
 
+    private void mnuCreateTestStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCreateTestStockActionPerformed
+        // TODO add your handling code here:
+         StockItemTestData stockItemTestData = new StockItemTestData();
+    }//GEN-LAST:event_mnuCreateTestStockActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -215,6 +230,7 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem mnuCreateTestStock;
     private javax.swing.JMenu mnuInventoryLocation;
     private javax.swing.JMenuItem mnuInventoryLocationAdd;
     private javax.swing.JMenuItem mnuInventoryLocationFind;
