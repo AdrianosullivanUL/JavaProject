@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package exercise05.pkg7;
+import java.io.Serializable;
 
 /**
  *
  * @author 501834813
  */
-public class StockItem {
+public class StockItem implements Serializable{
 private int StockItemId;
 private int PartNumber;
 private  String Name;

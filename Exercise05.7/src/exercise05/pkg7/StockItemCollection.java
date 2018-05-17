@@ -87,8 +87,15 @@ public class StockItemCollection {
         if (currentEntryIndex > -1 && currentEntryIndex <= stockStore.size() -1)
             return stockStore.get(currentEntryIndex);
         else
+        {
             return null;
+        }
     }
+ 
+ void moveToHeadLocation() {
+        currentEntryIndex = -1;
+ }
+ 
  boolean moveToNextStockItem() {
         boolean returnValue = true;
 
