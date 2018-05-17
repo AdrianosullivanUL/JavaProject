@@ -95,7 +95,6 @@ public class StockItemCollection {
         if (stockItem.getUnitPrice()< 0) {
             throw new ApplicationException("Nothing in this world is Free");
         }
-        stockStore.add(stockItem);
     }
 
     private boolean checkForDuplicateStock(StockItem existing, StockItem updated) {

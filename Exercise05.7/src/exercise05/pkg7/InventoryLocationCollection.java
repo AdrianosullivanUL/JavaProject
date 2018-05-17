@@ -87,6 +87,10 @@ public class InventoryLocationCollection {
         return returnId;
     }
 
+    int size() {
+        return inventoryStore.size();
+    }
+
     void addInventoryLocation(InventoryLocation inventoryLocation)
             throws ApplicationException {
         for (InventoryLocation existingInventoryLocation : inventoryStore) {
@@ -102,18 +106,17 @@ public class InventoryLocationCollection {
 
     private void validateUpdates(int updateInventoryLocationId)
             throws ApplicationException {
-        
+
         InventoryLocation inventoryLocation = null;
-        for (InventoryLocation findInventoryLocation : inventoryStore)
-        {
-            if (Integer.compare(updateInventoryLocationId, findInventoryLocation.getInventoryLocationId()) == 0)
-            {
+        for (InventoryLocation findInventoryLocation : inventoryStore) {
+            if (Integer.compare(updateInventoryLocationId, findInventoryLocation.getInventoryLocationId()) == 0) {
                 inventoryLocation = findInventoryLocation;
                 break;
             }
         }
-        if (inventoryLocation == null)
+        if (inventoryLocation == null) {
             throw new ApplicationException("Problem validating updates, cannot find inventory location id " + updateInventoryLocationId);
+        }
 
         for (InventoryLocation existingInventoryLocation : inventoryStore) {
             if (existingInventoryLocation.getInventoryLocationId() != inventoryLocation.getInventoryLocationId()
@@ -124,7 +127,6 @@ public class InventoryLocationCollection {
         if (inventoryLocation.getQuantity() < 0) {
             throw new ApplicationException("Quantity cannot be negative");
         }
-        inventoryStore.add(inventoryLocation);
     }
 
     InventoryLocation getCurrentInventoryLocation() {

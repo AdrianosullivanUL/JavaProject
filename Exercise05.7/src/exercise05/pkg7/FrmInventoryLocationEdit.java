@@ -17,6 +17,7 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
     private int inventoryLocationId;
     InventoryLocationCollection inventoryCollection;
     StockItemCollection stockCollection;
+    InventoryLocation editInventoryLocation;
 
     /**
      * Creates new form FrmInventoryLocationEdit
@@ -38,10 +39,18 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
         // Decide on Add or Edit form presentation, 0 is add
         if (inventoryLocationId == 0) {
             this.title = "Add new Inventory Location";
+            editInventoryLocation = new InventoryLocation(0, 0, 0, 0, 0);
         } else {
+            // Get the entry to edit
+            while (inventoryCollection.moveToNextInventoryLocation()) {
+                if (inventoryCollection.getCurrentInventoryLocation().getInventoryLocationId() == inventoryLocationId) {
+                    editInventoryLocation = inventoryCollection.getCurrentInventoryLocation();
+                }
+            }
             this.title = "Edit Inventory Location Id: " + inventoryLocationId;
-            PopulateFormFields();
+
         }
+        PopulateFormFields();
     }
 
     private void PopulateFormFields() {
@@ -51,6 +60,7 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
 
     private void PopulateStockItemDropdownList() {
         cmbStockItem.addItem("");
+        stockCollection.moveToHeadLocation();
         while (stockCollection.moveToNextStockItem()) {
             StockItem stockItem = stockCollection.getCurrentStockItem();
             cmbStockItem.addItem(stockItem.getPartNumber() + " - " + stockItem.getName());
@@ -58,26 +68,26 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
     }
 
     private void PoplulateInventoryLocationFields() {
-        while (inventoryCollection.moveToNextInventoryLocation()) {
-            if (inventoryCollection.getCurrentInventoryLocation().getInventoryLocationId() == inventoryLocationId) {
-                this.txtSection.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getSection()));
-                this.txtAisle.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getAisle()));
-                this.txtRack.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getRack()));
-                this.txtShelf.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getShelf()));
-                this.txtQuantity.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getQuantity()));
-                stockCollection.moveToHeadLocation();
-                while (stockCollection.moveToNextStockItem()) {
-                    StockItem stockItem = stockCollection.getCurrentStockItem();
-                    if (stockItem.getStockItemId() == inventoryCollection.getCurrentInventoryLocation().getStockItemId()) {
-                        for (int i = 0; i < cmbStockItem.getItemCount() - 1; i++) {
-                            if (cmbStockItem.getItemAt(i) == stockItem.getPartNumber() + " - " + stockItem.getName()) {
-                                cmbStockItem.setSelectedIndex(i);
-                                break;
-                            }
-                        }
+
+        this.txtSection.setText(Integer.toString(editInventoryLocation.getSection()));
+        this.txtAisle.setText(Integer.toString(editInventoryLocation.getAisle()));
+        this.txtRack.setText(Integer.toString(editInventoryLocation.getRack()));
+        this.txtShelf.setText(Integer.toString(editInventoryLocation.getShelf()));
+        this.txtQuantity.setText(Integer.toString(editInventoryLocation.getQuantity()));
+        
+        
+        // Popupate the dropdown list for stock item
+        while (stockCollection.moveToNextStockItem()) {
+            StockItem stockItem = stockCollection.getCurrentStockItem();
+            if (stockItem.getStockItemId() == editInventoryLocation.getStockItemId()) {
+                for (int i = 0; i < cmbStockItem.getItemCount() - 1; i++) {
+                    if (cmbStockItem.getItemAt(i).equals(stockItem.getPartNumber() + " - " + stockItem.getName())) {
+                        cmbStockItem.setSelectedIndex(i);
+                        break;
                     }
                 }
             }
+
         }
     }
 
@@ -219,34 +229,34 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtAisleActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        inventoryCollection.moveToHeadLocation();
-        while (inventoryCollection.moveToNextInventoryLocation()) {
-            InventoryLocation inventoryLocation = inventoryCollection.getCurrentInventoryLocation();
-            if (inventoryLocation.getInventoryLocationId() == inventoryLocationId) {
-                try {
-                    int section = Integer.parseInt(this.txtSection.getText());
-                    int aisle = Integer.parseInt(this.txtAisle.getText());
-                    int rack = Integer.parseInt(this.txtRack.getText());
-                    int shelf = Integer.parseInt(this.txtShelf.getText());
-                    int quantity = Integer.parseInt(this.txtQuantity.getText());
+        try {
+            int section = Integer.parseInt(this.txtSection.getText());
+            int aisle = Integer.parseInt(this.txtAisle.getText());
+            int rack = Integer.parseInt(this.txtRack.getText());
+            int shelf = Integer.parseInt(this.txtShelf.getText());
+            int quantity = Integer.parseInt(this.txtQuantity.getText());
 
-                    inventoryLocation.setSection(section);
-                    inventoryLocation.setAisle(aisle);
-                    inventoryLocation.setRack(rack);
-                    inventoryLocation.setShelf(shelf);
-                    int selectedStockItemId = getSelectedStockItem();
-                    inventoryLocation.setStockItemId(selectedStockItemId);
-                    
-                    inventoryLocation.setQuantity(quantity);
-                    inventoryCollection.saveInventoryCollection(inventoryLocationId);
-                    JOptionPane.showMessageDialog(null, "Change Saved", "Sucess", JOptionPane.INFORMATION_MESSAGE);
-                    break;
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Invalid entry: " + ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
-                } catch (ApplicationException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
-                }
+            editInventoryLocation.setSection(section);
+            editInventoryLocation.setAisle(aisle);
+            editInventoryLocation.setRack(rack);
+            editInventoryLocation.setShelf(shelf);
+            int selectedStockItemId = getSelectedStockItem();
+            editInventoryLocation.setStockItemId(selectedStockItemId);
+
+            editInventoryLocation.setQuantity(quantity);
+
+            // If adding a new entry, put it into the collection
+            if (inventoryLocationId == 0) {
+                editInventoryLocation.setInventoryLocationId(inventoryCollection.getNextID());
+                inventoryCollection.addInventoryLocation(editInventoryLocation);
             }
+            inventoryCollection.saveInventoryCollection(inventoryLocationId);
+
+            JOptionPane.showMessageDialog(null, "Change Saved", "Sucess", JOptionPane.INFORMATION_MESSAGE);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Invalid entry: " + ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
+        } catch (ApplicationException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
     private int getSelectedStockItem() {
