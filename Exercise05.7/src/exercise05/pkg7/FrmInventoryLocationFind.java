@@ -37,12 +37,11 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
     }
 
     private void PopulateTable() {
-        tblInventoryLocation.removeAll();
         DefaultTableModel model = (DefaultTableModel) tblInventoryLocation.getModel();
         for (int i = model.getRowCount() - 1; i >= 0; i--) {
             model.removeRow(i);
         }
-
+        inventoryCollection.moveToHeadLocation();
         while (inventoryCollection.moveToNextInventoryLocation()) {
             InventoryLocation inventoryLocation = inventoryCollection.getCurrentInventoryLocation();
             String stockItemKey = "";
@@ -158,6 +157,11 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
         });
 
         btnDeleteSelectedLocation.setText("Delete Selected Item");
+        btnDeleteSelectedLocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteSelectedLocationActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Sort By");
 
@@ -281,6 +285,27 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
     private void tblInventoryLocationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblInventoryLocationMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tblInventoryLocationMouseClicked
+
+    private void btnDeleteSelectedLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteSelectedLocationActionPerformed
+        // TODO add your handling code here:
+        int response = JOptionPane.showConfirmDialog(null, "Are you sure you wish to delete this location?", "Confirm",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            int column = 0;
+            int row = tblInventoryLocation.getSelectedRow();
+            String selectedId = tblInventoryLocation.getModel().getValueAt(row, 6).toString();
+            int selectedInventoryLocationId = Integer.parseInt(selectedId);
+            try {
+                inventoryCollection.deleteInventoryLocation(selectedInventoryLocationId);
+                inventoryCollection.saveInventoryCollection(0);
+                PopulateTable();
+                JOptionPane.showMessageDialog(null, "Entry Deleted", "Sucess", JOptionPane.INFORMATION_MESSAGE);
+            } catch (ApplicationException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+    }//GEN-LAST:event_btnDeleteSelectedLocationActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -129,6 +129,19 @@ public class InventoryLocationCollection {
         }
     }
 
+    void deleteInventoryLocation(int inventoryLocationId) throws ApplicationException {
+        boolean deleted = true;
+        for (int i = 0; i <= inventoryStore.size() - 1; i++) {
+            if (Integer.compare(inventoryLocationId, inventoryStore.get(i).getInventoryLocationId()) == 0) {
+                inventoryStore.remove(i);
+                deleted = true;
+            }
+            if (deleted == false) {
+                throw new ApplicationException("Entry not deleted");
+            }
+        }
+    }
+
     InventoryLocation getCurrentInventoryLocation() {
         InventoryLocation inventoryLocation = null;
         if (currentEntryIndex > -1 && currentEntryIndex <= inventoryStore.size() - 1) {
@@ -182,6 +195,7 @@ public class InventoryLocationCollection {
         if (sortKey == "Entry Sequence (default)") {
             Collections.sort(inventoryStore, new InventoryLocationIdComparator());
             moveToHeadLocation();
+
         }
     }
 
