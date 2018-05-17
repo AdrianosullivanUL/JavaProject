@@ -12,11 +12,11 @@ import javax.swing.JOptionPane;
  *
  * @author Adrian O'Sullivan Student ID 16230124 Last Modified [dd/mm/yyyy]
  */
-public class InventoryLocationTestData {
+public class InventoryLocationCreateSampleData {
 
     private InventoryLocationCollection inventoryCollection;
 
-    public InventoryLocationTestData() {
+    public InventoryLocationCreateSampleData() {
         try {
             inventoryCollection = new InventoryLocationCollection();
             inventoryCollection.loadInventoryCollection();

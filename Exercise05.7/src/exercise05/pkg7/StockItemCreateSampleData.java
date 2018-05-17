@@ -11,10 +11,10 @@ import javax.swing.JOptionPane;
  *
  * @author 501834813
  */
-public class StockItemTestData {
+public class StockItemCreateSampleData {
     private StockItemCollection stockCollection;
 
-    public StockItemTestData() {
+    public StockItemCreateSampleData() {
     try {
             stockCollection = new StockItemCollection();
             stockCollection.loadStockCollection();

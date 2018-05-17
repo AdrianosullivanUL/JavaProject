@@ -133,6 +133,9 @@ public class FrmMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuInventoryLocationFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInventoryLocationFindActionPerformed
+        FindInventoryLocation();
+    }//GEN-LAST:event_mnuInventoryLocationFindActionPerformed
+    public void FindInventoryLocation() {
         if (frmFindInventoryLocation == null || frmFindInventoryLocation.isClosed()) {
             frmFindInventoryLocation = new FrmInventoryLocationFind();
             jDesktopPane1.add(frmFindInventoryLocation);
@@ -140,8 +143,7 @@ public class FrmMain extends javax.swing.JFrame {
         }
         frmFindInventoryLocation.setVisible(true);
         frmFindInventoryLocation.setClosable(true);
-        //     frmFindInventoryLocation.setSize(frmFindInventoryLocation.getMaximumSize());
-    }//GEN-LAST:event_mnuInventoryLocationFindActionPerformed
+    }
 
     private void mnuInventoryLocationAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInventoryLocationAddActionPerformed
         if (frmInventoryLocationEdit == null || frmInventoryLocationEdit.isClosed()) {
@@ -158,7 +160,7 @@ public class FrmMain extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        InventoryLocationTestData inventoryLocationTestData = new InventoryLocationTestData();
+        InventoryLocationCreateSampleData inventoryLocationTestData = new InventoryLocationCreateSampleData();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void mnuStockItemAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuStockItemAddActionPerformed
@@ -183,34 +185,36 @@ public class FrmMain extends javax.swing.JFrame {
 
     private void mnuCreateTestStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCreateTestStockActionPerformed
         // TODO add your handling code here:
-        StockItemTestData stockItemTestData = new StockItemTestData();
+        StockItemCreateSampleData stockItemTestData = new StockItemCreateSampleData();
     }//GEN-LAST:event_mnuCreateTestStockActionPerformed
     void EditInventoryLocation(int inventoryLocationId) {
-    // Close the Find form
-    frmFindInventoryLocation.dispose();
-    
-    // Present the Edit form
+        // Close the Find form
+        frmFindInventoryLocation.dispose();
+
+        // Present the Edit form
         if (frmInventoryLocationEdit == null || frmInventoryLocationEdit.isClosed()) {
             frmInventoryLocationEdit = new FrmInventoryLocationEdit(inventoryLocationId);
             jDesktopPane1.add(frmInventoryLocationEdit);
         }
         frmInventoryLocationEdit.setVisible(true);
         frmInventoryLocationEdit.setClosable(true);
-        
+
     }
-void EditStockItem(int stockItemId) {
-    // Close the Find form
-    frmFindStockItem.dispose();
-    
-    // Present the Edit form
+
+    void EditStockItem(int stockItemId) {
+        // Close the Find form
+        frmFindStockItem.dispose();
+
+        // Present the Edit form
         if (frmStockItemEdit == null || frmStockItemEdit.isClosed()) {
             frmStockItemEdit = new FrmStockItemEdit(stockItemId);
             jDesktopPane1.add(frmStockItemEdit);
         }
         frmStockItemEdit.setVisible(true);
         frmStockItemEdit.setClosable(true);
-        
+
     }
+
     /**
      * @param args the command line arguments
      */
