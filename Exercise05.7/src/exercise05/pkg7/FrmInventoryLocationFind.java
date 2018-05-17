@@ -5,7 +5,10 @@
  */
 package exercise05.pkg7;
 
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.event.ItemEvent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,14 +25,11 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
      */
     public FrmInventoryLocationFind() {
         initComponents();
-        try 
-        {
-        inventoryCollection = new InventoryLocationCollection();
-             
-        PopulateTable();
-        }
-        catch (ApplicationException ex)
-        {
+        try {
+            inventoryCollection = new InventoryLocationCollection();
+
+            PopulateTable();
+        } catch (ApplicationException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -37,19 +37,18 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
     private void PopulateTable() {
         tblInventoryLocation.removeAll();
         DefaultTableModel model = (DefaultTableModel) tblInventoryLocation.getModel();
-        for (int i = model.getRowCount() -1 ; i >= 0 ; i--)    
-        {
+        for (int i = model.getRowCount() - 1; i >= 0; i--) {
             model.removeRow(i);
         }
 
         while (inventoryCollection.moveToNextInventoryLocation()) {
             InventoryLocation inventortLoation = inventoryCollection.getCurrentInventoryLocation();
             model.addRow(new Object[]{inventortLoation.getSection(),
-                                      inventortLoation.getAisle(), 
-                                      inventortLoation.getRack(), 
-                                      inventortLoation.getShelf(), 
-                                      "", 
-                                      0});
+                inventortLoation.getAisle(),
+                inventortLoation.getRack(),
+                inventortLoation.getShelf(),
+                "",
+                0});
         }
     }
 
@@ -98,6 +97,11 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
+        tblInventoryLocation.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblInventoryLocationMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblInventoryLocation);
 
         jLabel1.setText("Section");
@@ -135,7 +139,7 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Sort By");
 
-        cmbSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entry Sequence (default)", "Section", "Stock Item" }));
+        cmbSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Entry Sequence (default)", "Section", " " }));
         cmbSort.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbSortItemStateChanged(evt);
@@ -232,17 +236,39 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
 
     private void btnEditSelectedLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditSelectedLocationActionPerformed
         // TODO add your handling code here:
+        int column = 0;
+        int row = tblInventoryLocation.getSelectedRow();
+        String selectedId = tblInventoryLocation.getModel().getValueAt(row, 0).toString();
+        int selectedInventoryLocationId = Integer.parseInt(selectedId);
+        
+        JFrame mainFrame = (JFrame)this.getTopLevelAncestor();
+        FrmInventoryLocationEdit frmInventoryLocationEdit = new FrmInventoryLocationEdit(selectedInventoryLocationId);
+
+        Component[] comps = mainFrame.getComponents();
+
+    for (Component comp : comps) {
+      if (comp instanceof Container) {
+          for 
+        String x = "";
+      }
+    }
+        mainFrame.add(frmInventoryLocationEdit);
+        frmInventoryLocationEdit.setVisible(true);
+        frmInventoryLocationEdit.setClosable(true);        
     }//GEN-LAST:event_btnEditSelectedLocationActionPerformed
 
     private void cmbSortItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSortItemStateChanged
         // TODO add your handling code here:
-        if (evt.getStateChange() == ItemEvent.SELECTED)
-        {
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
             String sortColumn = cmbSort.getSelectedItem().toString();
             inventoryCollection.sortBy(sortColumn);
             PopulateTable();
-                    }
+        }
     }//GEN-LAST:event_cmbSortItemStateChanged
+
+    private void tblInventoryLocationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblInventoryLocationMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblInventoryLocationMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

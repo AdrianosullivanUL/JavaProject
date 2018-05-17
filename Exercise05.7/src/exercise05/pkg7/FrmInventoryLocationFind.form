@@ -171,6 +171,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblInventoryLocationMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -242,7 +245,7 @@
           <StringArray count="3">
             <StringItem index="0" value="Entry Sequence (default)"/>
             <StringItem index="1" value="Section"/>
-            <StringItem index="2" value="Stock Item"/>
+            <StringItem index="2" value=" "/>
           </StringArray>
         </Property>
       </Properties>
