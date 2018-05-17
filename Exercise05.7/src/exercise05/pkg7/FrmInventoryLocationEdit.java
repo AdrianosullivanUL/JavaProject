@@ -5,6 +5,8 @@
  */
 package exercise05.pkg7;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 501958452
@@ -12,13 +14,25 @@ package exercise05.pkg7;
 public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
 
     private int inventoryLocationId;
+    InventoryLocationCollection inventoryCollection;
 
     /**
      * Creates new form FrmInventoryLocationEdit
      */
-    public FrmInventoryLocationEdit(int InventoryLocationId) {
+    public FrmInventoryLocationEdit(int inventoryLocationId) {
         initComponents();
+        
+        // Load the Inventory Collection
+        try {
+            inventoryCollection = new InventoryLocationCollection();
+        } catch (ApplicationException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        // Store the location id
         this.inventoryLocationId = inventoryLocationId;
+        
+        // Decide on Add or Edit form presentation, 0 is add
         if (inventoryLocationId == 0) {
             this.title = "Add new Inventory Location";
         } else {
@@ -29,6 +43,18 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
 
     private void PopulateFormFields() {
 
+        while (inventoryCollection.moveToNextInventoryLocation())
+        {
+            if (inventoryCollection.getCurrentInventoryLocation().getInventoryLocationId() == inventoryLocationId)
+            {
+                this.txtSection.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getSection()));
+                this.txtAisle.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getAisle()));
+                this.txtRack.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getRack()));
+                this.txtShelf.setText(Integer.toString(inventoryCollection.getCurrentInventoryLocation().getShelf()));
+                this.txtQuantity.setText(Double.toString(inventoryCollection.getCurrentInventoryLocation().getQuantity()));
+                
+            }
+        }
     }
 
     /**
@@ -46,13 +72,13 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbStockItem = new javax.swing.JComboBox<>();
         txtSection = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtAisle = new javax.swing.JTextField();
+        txtRack = new javax.swing.JTextField();
+        txtShelf = new javax.swing.JTextField();
+        txtQuantity = new javax.swing.JTextField();
+        btnSave = new javax.swing.JButton();
 
         jLabel1.setText("Section");
 
@@ -66,19 +92,42 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Quantity");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbStockItem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbStockItem.setMinimumSize(new java.awt.Dimension(150, 20));
+        cmbStockItem.setPreferredSize(new java.awt.Dimension(150, 25));
 
         txtSection.setText("jTextField1");
+        txtSection.setMinimumSize(new java.awt.Dimension(100, 25));
+        txtSection.setPreferredSize(new java.awt.Dimension(100, 25));
+        txtSection.setRequestFocusEnabled(false);
 
-        jTextField2.setText("jTextField2");
+        txtAisle.setText("jTextField2");
+        txtAisle.setMinimumSize(new java.awt.Dimension(100, 25));
+        txtAisle.setPreferredSize(new java.awt.Dimension(100, 25));
+        txtAisle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAisleActionPerformed(evt);
+            }
+        });
 
-        jTextField3.setText("jTextField3");
+        txtRack.setText("jTextField3");
+        txtRack.setMinimumSize(new java.awt.Dimension(100, 25));
+        txtRack.setPreferredSize(new java.awt.Dimension(100, 25));
 
-        jTextField4.setText("jTextField4");
+        txtShelf.setText("jTextField4");
+        txtShelf.setMinimumSize(new java.awt.Dimension(100, 25));
+        txtShelf.setPreferredSize(new java.awt.Dimension(100, 25));
 
-        jTextField5.setText("jTextField5");
+        txtQuantity.setText("jTextField5");
+        txtQuantity.setMinimumSize(new java.awt.Dimension(100, 25));
+        txtQuantity.setPreferredSize(new java.awt.Dimension(100, 25));
 
-        jButton1.setText("Save");
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,16 +144,16 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbStockItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(402, Short.MAX_VALUE))
+                    .addComponent(txtAisle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtShelf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(311, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnSave)
                 .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
@@ -117,45 +166,58 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAisle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtShelf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbStockItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                    .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(btnSave)
                 .addGap(28, 28, 28))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtAisleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAisleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAisleActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        inventoryCollection.getCurrentInventoryLocation().setSection(Integer.getInteger(this.txtSection.getText()));
+        inventoryCollection.getCurrentInventoryLocation().setAisle(Integer.getInteger(this.txtAisle.getText()));
+        inventoryCollection.getCurrentInventoryLocation().setRack(Integer.getInteger(this.txtRack.getText()));
+        inventoryCollection.getCurrentInventoryLocation().setShelf(Integer.getInteger(this.txtShelf.getText()));
+        inventoryCollection.getCurrentInventoryLocation().setQuantity(Integer.getInteger(this.txtQuantity.getText()));
+    }//GEN-LAST:event_btnSaveActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JComboBox<String> cmbStockItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField txtAisle;
+    private javax.swing.JTextField txtQuantity;
+    private javax.swing.JTextField txtRack;
     private javax.swing.JTextField txtSection;
+    private javax.swing.JTextField txtShelf;
     // End of variables declaration//GEN-END:variables
 }

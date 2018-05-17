@@ -241,20 +241,12 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
         String selectedId = tblInventoryLocation.getModel().getValueAt(row, 0).toString();
         int selectedInventoryLocationId = Integer.parseInt(selectedId);
         
-        JFrame mainFrame = (JFrame)this.getTopLevelAncestor();
-        FrmInventoryLocationEdit frmInventoryLocationEdit = new FrmInventoryLocationEdit(selectedInventoryLocationId);
+        FrmMain frmMain = (FrmMain)this.getTopLevelAncestor();
+        frmMain.EditInventoryLocation(selectedInventoryLocationId);
+        
 
-        Component[] comps = mainFrame.getComponents();
 
-    for (Component comp : comps) {
-      if (comp instanceof Container) {
-          for 
-        String x = "";
-      }
-    }
-        mainFrame.add(frmInventoryLocationEdit);
-        frmInventoryLocationEdit.setVisible(true);
-        frmInventoryLocationEdit.setClosable(true);        
+       
     }//GEN-LAST:event_btnEditSelectedLocationActionPerformed
 
     private void cmbSortItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSortItemStateChanged
