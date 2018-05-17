@@ -96,7 +96,18 @@ public class StockItemCollection {
             throw new ApplicationException("Nothing in this world is Free");
         }
     }
-
+    void deleteStockItem(int stockItemId) throws ApplicationException {
+        boolean deleted = true;
+        for (int i = 0; i <= stockStore.size() - 1; i++) {
+            if (Integer.compare(stockItemId, stockStore.get(i).getStockItemId()) == 0) {
+                stockStore.remove(i);
+                deleted = true;
+            }
+            if (deleted == false) {
+                throw new ApplicationException("Entry not deleted");
+            }
+        }
+    }
     private boolean checkForDuplicateStock(StockItem existing, StockItem updated) {
         boolean result = false;
         if (existing.getPartNumber() == updated.getPartNumber()) {
@@ -161,7 +172,7 @@ public class StockItemCollection {
         {
             for (int x=0; x<stockStore.size(); x++) // bubble sort outer loop
             {
-                for (int i=0; i < stockStore.size()-i; i++) {
+                for (int i=0; i <= stockStore.size()-i; i++) {
                     if (stockStore.get(i).getPartNumber() > stockStore.get(i+1).getPartNumber())
                       {
                         temp = stockStore.get(i);

@@ -15,12 +15,14 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
 
     private int stockItemId;
     StockItemCollection stockItemCollection;
+    StockItem editStockItem;
+
     /**
      * Creates new form FrmStockItemEdit
      */
     public FrmStockItemEdit(int stockItemId) {
         initComponents();
-        
+
         try {
             stockItemCollection = new StockItemCollection();
         } catch (ApplicationException ex) {
@@ -33,22 +35,26 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
         // Decide on Add or Edit form presentation, 0 is add
         if (stockItemId == 0) {
             this.title = "Add new Inventory Location";
+            editStockItem = new StockItem(0, 0, " ", " ", 0.0);
         } else {
             this.title = "Edit Inventory Location Id: " + stockItemId;
-            PopulateFormFields();
-        }
-    }
-    private void PopulateFormFields() {
+            while (stockItemCollection.moveToNextStockItem()) {
+                if (stockItemCollection.getCurrentStockItem().getStockItemId() == stockItemId) {
+                    editStockItem = stockItemCollection.getCurrentStockItem();
+                }
 
-        while (stockItemCollection.moveToNextStockItem()) {
-            if (stockItemCollection.getCurrentStockItem().getStockItemId()== stockItemId) {
-                this.txtPartNumber.setText(Integer.toString(stockItemCollection.getCurrentStockItem().getPartNumber()));
-                this.txtStockName.setText(stockItemCollection.getCurrentStockItem().getName());
-                this.txtDescription.setText(stockItemCollection.getCurrentStockItem().getDescription());
-                this.txtUnitPrice.setText(Double.toString(stockItemCollection.getCurrentStockItem().getUnitPrice()));
-                
             }
+
         }
+        PopulateFormFields();
+    }
+
+    private void PopulateFormFields() {
+        this.txtPartNumber.setText(Integer.toString(editStockItem.getPartNumber()));
+        this.txtStockName.setText(editStockItem.getName());
+        this.txtDescription.setText(editStockItem.getDescription());
+        this.txtUnitPrice.setText(Double.toString(editStockItem.getUnitPrice()));
+
     }
 
     /**
@@ -72,19 +78,16 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Stock Name");
 
-        txtStockName.setText("jTextField1");
         txtStockName.setMinimumSize(new java.awt.Dimension(150, 25));
         txtStockName.setPreferredSize(new java.awt.Dimension(150, 25));
 
         jLabel2.setText("Description");
 
-        txtDescription.setText("jTextField2");
         txtDescription.setMinimumSize(new java.awt.Dimension(150, 25));
         txtDescription.setPreferredSize(new java.awt.Dimension(150, 25));
 
         jLabel3.setText("Unit Price $");
 
-        txtUnitPrice.setText("jTextField3");
         txtUnitPrice.setMinimumSize(new java.awt.Dimension(100, 25));
         txtUnitPrice.setPreferredSize(new java.awt.Dimension(100, 25));
 
@@ -98,7 +101,6 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Part Number");
 
-        txtPartNumber.setText("jTextField1");
         txtPartNumber.setMinimumSize(new java.awt.Dimension(150, 25));
         txtPartNumber.setPreferredSize(new java.awt.Dimension(150, 25));
 
@@ -120,8 +122,9 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtUnitPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtStockName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPartNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtStockName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtPartNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -157,30 +160,31 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
 
     private void BtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSaveActionPerformed
         // TODO add your handling code here:
-        stockItemCollection.moveToHeadLocation();
-        while (stockItemCollection.moveToNextStockItem()) {
-            StockItem stockItem = stockItemCollection.getCurrentStockItem();
-            if (stockItem.getStockItemId() == stockItemId) {
-                try {
-                    int partNumber = Integer.parseInt(this.txtPartNumber.getText());
-                    String stockName = this.txtStockName.getText();
-                    String description = this.txtDescription.getText();
-                    double unitPrice = Double.parseDouble(this.txtUnitPrice.getText());
-                    
-                    stockItem.setPartNumber(partNumber);
-                    stockItem.setName(stockName);
-                    stockItem.setDescription(description);
-                    stockItem.setUnitPrice(unitPrice);
-                    stockItemCollection.saveStockItem(stockItemId);
-                    JOptionPane.showMessageDialog(null, "Change Saved", "Sucess", JOptionPane.INFORMATION_MESSAGE);
-                    break;
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Invalid entry: " + ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
-                } catch (ApplicationException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
-                }
+        try {
+            int partNumber = Integer.parseInt(this.txtPartNumber.getText());
+            String stockName = this.txtStockName.getText();
+            String description = this.txtDescription.getText();
+            double unitPrice = Double.parseDouble(this.txtUnitPrice.getText());
+
+            editStockItem.setPartNumber(partNumber);
+            editStockItem.setName(stockName);
+            editStockItem.setDescription(description);
+            editStockItem.setUnitPrice(unitPrice);
+                   // If adding a new entry, put it into the collection
+            if (stockItemId == 0) {
+                editStockItem.setStockItemId(stockItemCollection.getNextID());
+                stockItemCollection.addStockItem(editStockItem);
             }
+            stockItemCollection.saveStockItem(stockItemId);
+            JOptionPane.showMessageDialog(null, "Change Saved", "Sucess", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Invalid entry: " + ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
+        } catch (ApplicationException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
         }
+
+
     }//GEN-LAST:event_BtnSaveActionPerformed
 
 

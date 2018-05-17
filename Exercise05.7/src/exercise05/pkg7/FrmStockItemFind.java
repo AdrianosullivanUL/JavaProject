@@ -36,7 +36,7 @@ StockItemCollection stockCollection;
         {
             model.removeRow(i);
         }
-
+        stockCollection.moveToHeadLocation();
         while (stockCollection.moveToNextStockItem()) {
             StockItem stockItem = stockCollection.getCurrentStockItem();
             model.addRow(new Object[]{stockItem.getPartNumber(),
@@ -60,7 +60,8 @@ StockItemCollection stockCollection;
         jScrollPane1 = new javax.swing.JScrollPane();
         tblStockItem = new javax.swing.JTable();
         btnEdit = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnSort = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         tblStockItem.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,6 +91,7 @@ StockItemCollection stockCollection;
         });
         jScrollPane1.setViewportView(tblStockItem);
 
+        btnEdit.setBackground(new java.awt.Color(255, 153, 102));
         btnEdit.setText("EDIT");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,10 +99,19 @@ StockItemCollection stockCollection;
             }
         });
 
-        jButton1.setText("Sort By Part Number");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSort.setBackground(new java.awt.Color(102, 102, 255));
+        btnSort.setText("Sort By Part Number");
+        btnSort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSortActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setBackground(new java.awt.Color(255, 51, 51));
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
             }
         });
 
@@ -110,34 +121,39 @@ StockItemCollection stockCollection;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(76, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnEdit)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(50, 50, 50))))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addComponent(btnDelete)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEdit)
+                .addGap(134, 134, 134)
+                .addComponent(btnSort)
+                .addGap(67, 67, 67))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEdit)
-                    .addComponent(jButton1))
+                    .addComponent(btnSort)
+                    .addComponent(btnDelete))
                 .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortActionPerformed
                 // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+            stockCollection.BubbleSort();
+            PopulateTable();
+            
+    }//GEN-LAST:event_btnSortActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
@@ -151,10 +167,31 @@ StockItemCollection stockCollection;
         
     }//GEN-LAST:event_btnEditActionPerformed
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+              int response = JOptionPane.showConfirmDialog(null, "Are you sure you wish to delete this Stock Item?", "Confirm",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            int column = 0;
+            int row = tblStockItem.getSelectedRow();
+            String selectedId = tblStockItem.getModel().getValueAt(row, 4).toString();
+            int selectedStockItemId = Integer.parseInt(selectedId);
+            try {
+                stockCollection.deleteStockItem(selectedStockItemId);
+                stockCollection.saveStockItem(0);
+                PopulateTable();
+                JOptionPane.showMessageDialog(null, "Entry Deleted", "Sucess", JOptionPane.INFORMATION_MESSAGE);
+            } catch (ApplicationException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSort;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblStockItem;
     // End of variables declaration//GEN-END:variables
