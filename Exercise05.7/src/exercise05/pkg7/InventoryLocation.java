@@ -96,4 +96,15 @@ class InventoryLocation implements Serializable {
         this.quantity = quantity;
     }
 
+//    public boolean equals(InventoryLocation inventoryLocation) {
+//        if (inventoryLocation.getSection() == getSection()
+//                && inventoryLocation.getAisle() == getAisle()
+//                && inventoryLocation.getRack() == getRack()
+//                && inventoryLocation.getShelf() == getShelf()) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
+
 }

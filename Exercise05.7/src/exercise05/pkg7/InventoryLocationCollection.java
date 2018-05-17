@@ -89,10 +89,15 @@ public class InventoryLocationCollection {
     }
 
     InventoryLocation getCurrentInventoryLocation() {
-        if (currentEntryIndex > -1 && currentEntryIndex <= inventoryStore.size() -1)
+        if (currentEntryIndex > -1 && currentEntryIndex <= inventoryStore.size() - 1) {
             return inventoryStore.get(currentEntryIndex);
-        else
+        } else {
             return null;
+        }
+    }
+
+    void moveToHeadLocation() {
+        currentEntryIndex = -1;
     }
 
     boolean moveToNextInventoryLocation() {
@@ -117,18 +122,28 @@ public class InventoryLocationCollection {
         }
         return returnValue;
     }
-    void sortBy(String sortKey)
-    {
-        if (sortKey == "Section")
+
+    void sortBy(String sortKey) {
+        if (sortKey == "Section") {
             Collections.sort(inventoryStore, new InventoryLocationSectionComparator());
+            moveToHeadLocation();
+        }
+        if (sortKey == "Entry Sequence (default)") {
+            Collections.sort(inventoryStore, new InventoryLocationIdComparator());
+            moveToHeadLocation();
+        }
     }
 
-    
-    public class InventoryLocationSectionComparator implements Comparator<InventoryLocation> {
-    public int compare(InventoryLocation self, InventoryLocation other) {
-        // I'm assuming your Employee.id is an Integer not an int.
-        // If you'd like to use int, create an Integer before calling compareTo.
-        return Integer.valueOf(self.getSection()).compareTo(other.getSection());
+    class InventoryLocationSectionComparator implements Comparator<InventoryLocation> {
+        public int compare(InventoryLocation self, InventoryLocation other) {
+
+            return Integer.valueOf(self.getSection()).compareTo(other.getSection());
+        }
     }
-}
+
+    class InventoryLocationIdComparator implements Comparator<InventoryLocation> {
+        public int compare(InventoryLocation self, InventoryLocation other) {
+            return Integer.valueOf(self.getInventoryLocationId()).compareTo(other.getInventoryLocationId());
+        }
+    }
 }
