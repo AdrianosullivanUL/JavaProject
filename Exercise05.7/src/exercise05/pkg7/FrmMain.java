@@ -198,7 +198,19 @@ public class FrmMain extends javax.swing.JFrame {
         frmInventoryLocationEdit.setClosable(true);
         
     }
-
+void EditStockItem(int stockItemId) {
+    // Close the Find form
+    frmFindStockItem.dispose();
+    
+    // Present the Edit form
+        if (frmStockItemEdit == null || frmStockItemEdit.isClosed()) {
+            frmStockItemEdit = new FrmStockItemEdit(stockItemId);
+            jDesktopPane1.add(frmStockItemEdit);
+        }
+        frmStockItemEdit.setVisible(true);
+        frmStockItemEdit.setClosable(true);
+        
+    }
     /**
      * @param args the command line arguments
      */

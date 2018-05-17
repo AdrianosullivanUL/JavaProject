@@ -53,9 +53,11 @@ public class StockItemCollection {
     }
  
  
- void saveStockCollection()
-            throws ApplicationException {
+   void saveStockItem(int updatedStockItemId)throws ApplicationException {
         try {
+            if (updatedStockItemId != 0) {
+                validateUpdates(updatedStockItemId);
+            }
             FileOutputStream fileOutputStream = new FileOutputStream("stockStore.dat");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(stockStore);
@@ -69,6 +71,41 @@ public class StockItemCollection {
 
         }
     }
+   private void validateUpdates(int updateStockItemId)
+            throws ApplicationException {
+        
+        StockItem stockItem = null;
+        for (StockItem findStockItem : stockStore)
+        {
+            if (findStockItem.getStockItemId() == updateStockItemId)
+            {
+                stockItem = findStockItem;
+                break;
+            }
+        }
+        if (stockItem == null)
+            throw new ApplicationException("Problem validating updates, cannot find Stock Item Id " + updateStockItemId);
+
+        for (StockItem existingStockItem : stockStore) {
+            if (existingStockItem.getStockItemId() != stockItem.getStockItemId()
+                    && checkForDuplicateStock(existingStockItem, stockItem)) {
+                throw new ApplicationException("Cannot update this entry, Stock Item already exists");
+            }
+        }
+        if (stockItem.getUnitPrice()< 0) {
+            throw new ApplicationException("Nothing in this world is Free");
+        }
+        stockStore.add(stockItem);
+    }
+
+    private boolean checkForDuplicateStock(StockItem existing, StockItem updated) {
+        boolean result = false;
+        if (existing.getPartNumber() == updated.getPartNumber()) {
+            result = true;
+        }
+        return result;
+    }
+    
  int getNextID() {
         int returnId = 0;
         if (stockStore != null && stockStore.size() > 0) {
@@ -117,6 +154,8 @@ public class StockItemCollection {
         }
         return returnValue;
     }
+  
+    
     void BubbleSort(){
         StockItem temp;
         if (stockStore.size()>1) // check if the number of orders is larger than 1

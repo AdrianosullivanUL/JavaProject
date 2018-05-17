@@ -5,17 +5,50 @@
  */
 package exercise05.pkg7;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 501834813
  */
 public class FrmStockItemEdit extends javax.swing.JInternalFrame {
 
+    private int stockItemId;
+    StockItemCollection stockItemCollection;
     /**
      * Creates new form FrmStockItemEdit
      */
-    public FrmStockItemEdit(int StockItemId) {
+    public FrmStockItemEdit(int stockItemId) {
         initComponents();
+        
+        try {
+            stockItemCollection = new StockItemCollection();
+        } catch (ApplicationException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
+        }
+
+        // Store the location id
+        this.stockItemId = stockItemId;
+
+        // Decide on Add or Edit form presentation, 0 is add
+        if (stockItemId == 0) {
+            this.title = "Add new Inventory Location";
+        } else {
+            this.title = "Edit Inventory Location Id: " + stockItemId;
+            PopulateFormFields();
+        }
+    }
+    private void PopulateFormFields() {
+
+        while (stockItemCollection.moveToNextStockItem()) {
+            if (stockItemCollection.getCurrentStockItem().getStockItemId()== stockItemId) {
+                this.txtPartNumber.setText(Integer.toString(stockItemCollection.getCurrentStockItem().getPartNumber()));
+                this.txtStockName.setText(stockItemCollection.getCurrentStockItem().getName());
+                this.txtDescription.setText(stockItemCollection.getCurrentStockItem().getDescription());
+                this.txtUnitPrice.setText(Double.toString(stockItemCollection.getCurrentStockItem().getUnitPrice()));
+                
+            }
+        }
     }
 
     /**
@@ -40,21 +73,34 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
         jLabel1.setText("Stock Name");
 
         txtStockName.setText("jTextField1");
+        txtStockName.setMinimumSize(new java.awt.Dimension(150, 25));
+        txtStockName.setPreferredSize(new java.awt.Dimension(150, 25));
 
         jLabel2.setText("Description");
 
         txtDescription.setText("jTextField2");
+        txtDescription.setMinimumSize(new java.awt.Dimension(150, 25));
+        txtDescription.setPreferredSize(new java.awt.Dimension(150, 25));
 
         jLabel3.setText("Unit Price $");
 
         txtUnitPrice.setText("jTextField3");
+        txtUnitPrice.setMinimumSize(new java.awt.Dimension(100, 25));
+        txtUnitPrice.setPreferredSize(new java.awt.Dimension(100, 25));
 
         BtnSave.setBackground(new java.awt.Color(153, 255, 153));
         BtnSave.setText("SAVE");
+        BtnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSaveActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Part Number");
 
         txtPartNumber.setText("jTextField1");
+        txtPartNumber.setMinimumSize(new java.awt.Dimension(150, 25));
+        txtPartNumber.setPreferredSize(new java.awt.Dimension(150, 25));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,6 +154,33 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSaveActionPerformed
+        // TODO add your handling code here:
+        stockItemCollection.moveToHeadLocation();
+        while (stockItemCollection.moveToNextStockItem()) {
+            StockItem stockItem = stockItemCollection.getCurrentStockItem();
+            if (stockItem.getStockItemId() == stockItemId) {
+                try {
+                    int partNumber = Integer.parseInt(this.txtPartNumber.getText());
+                    String stockName = this.txtStockName.getText();
+                    String description = this.txtDescription.getText();
+                    double unitPrice = Double.parseDouble(this.txtUnitPrice.getText());
+                    
+                    stockItem.setPartNumber(partNumber);
+                    stockItem.setName(stockName);
+                    stockItem.setDescription(description);
+                    stockItem.setUnitPrice(unitPrice);
+                    stockItemCollection.saveStockItem(stockItemId);
+                    JOptionPane.showMessageDialog(null, "Change Saved", "Sucess", JOptionPane.INFORMATION_MESSAGE);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Invalid entry: " + ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
+                } catch (ApplicationException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_BtnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
