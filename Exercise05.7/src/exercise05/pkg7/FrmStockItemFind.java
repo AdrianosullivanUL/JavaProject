@@ -9,45 +9,45 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * Class for Form to allow user to findall Stock Items
- * @author Mary Cronin
+ * Class for Form to allow user to find all Stock Items
+ *
+ * @author Mary Cronin 0510661
  */
 public class FrmStockItemFind extends javax.swing.JInternalFrame {
-StockItemCollection stockCollection;
+
+    StockItemCollection stockCollection;
+
     /**
      * Creates new form FrmFindStockItem
      */
     public FrmStockItemFind() {
         initComponents();
-        try 
-        {
-        stockCollection = new StockItemCollection();
-             
-        PopulateTable();
-        }
-        catch (ApplicationException ex)
-        {
+        try {
+            stockCollection = new StockItemCollection();
+
+            PopulateTable();
+        } catch (ApplicationException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
         }
     }
+
     /**
      * Method to Populate table with stockItem details
      */
     private void PopulateTable() {
         DefaultTableModel model = (DefaultTableModel) tblStockItem.getModel();
-        for (int i = model.getRowCount() -1 ; i >= 0 ; i--)    
-        {
+        for (int i = model.getRowCount() - 1; i >= 0; i--) {
             model.removeRow(i);
         }
         stockCollection.moveToHeadLocation();
         while (stockCollection.moveToNextStockItem()) {
             StockItem stockItem = stockCollection.getCurrentStockItem();
             model.addRow(new Object[]{stockItem.getPartNumber(),
-                                      stockItem.getName(),
-                                      stockItem.getDescription(),
-                                      stockItem.getUnitPrice(),
-                                      stockItem.getStockItemId()
-                                      });
+                stockItem.getName(),
+                stockItem.getDescription(),
+                stockItem.getUnitPrice(),
+                stockItem.getStockItemId()
+            });
         }
     }
 
@@ -152,26 +152,45 @@ StockItemCollection stockCollection;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortActionPerformed
-                // TODO add your handling code here:
-            stockCollection.BubbleSort();
-            PopulateTable();
-            
+        // TODO add your handling code here:
+        stockCollection.BubbleSort();
+        PopulateTable();
+
     }//GEN-LAST:event_btnSortActionPerformed
 
+    /**
+     *
+     * @param evt
+     */
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-        int column = 0;
-        int row = tblStockItem.getSelectedRow();
-        String selectedId = tblStockItem.getModel().getValueAt(row, 4).toString();
-        int selectedStockItemId = Integer.parseInt(selectedId);
-        
-        FrmMain frmMain = (FrmMain)this.getTopLevelAncestor();
-        frmMain.EditStockItem(selectedStockItemId);
-        
+        {
+            int selectedStockItemId = 0;
+            try {
+                int row = tblStockItem.getSelectedRow();
+                
+                String selectedId = tblStockItem.getModel().getValueAt(row, 4).toString();
+                selectedStockItemId = Integer.parseInt(selectedId);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "You must select a row first", "Problem", JOptionPane.ERROR_MESSAGE);
+                return;
+            } catch (ArrayIndexOutOfBoundsException ex) {
+                JOptionPane.showMessageDialog(null, "You must select a row first", "Problem", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            int row = tblStockItem.getSelectedRow();
+            String selectedId = tblStockItem.getModel().getValueAt(row, 4).toString();
+            selectedStockItemId = Integer.parseInt(selectedId);
+
+            FrmMain frmMain = (FrmMain) this.getTopLevelAncestor();
+            frmMain.EditStockItem(selectedStockItemId);
+
+        }
+
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-              int response = JOptionPane.showConfirmDialog(null, "Are you sure you wish to delete this Stock Item?", "Confirm",
+        int response = JOptionPane.showConfirmDialog(null, "Are you sure you wish to delete this Stock Item?", "Confirm",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (response == JOptionPane.YES_OPTION) {
             int column = 0;
