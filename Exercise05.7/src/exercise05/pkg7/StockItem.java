@@ -8,10 +8,9 @@ package exercise05.pkg7;
 import java.io.Serializable;
 
 /**
- * Class to represent an a Stock Item which will nake up the Stock Item
- * Collection Each Stock Item has the following information saved against it:
- * StockItemID- Unique Identifier, PartNumber - Stock Part Number- this is used
- * for sorting PartName, Part Description, Unit Price
+ * Class to represent a StockItem, Each Stock Item has the following information
+ * saved against it: StockItemID- Unique Identifier, PartNumber - Stock Part
+ * Number- this is used for sorting PartName, Part Description, Unit Price
  *
  *
  * @author Mary Cronin

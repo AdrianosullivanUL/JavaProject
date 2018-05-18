@@ -191,6 +191,9 @@ public class InventoryLocationCollection {
     public void moveToHeadLocation() {
         currentEntryIndex = -1;
     }
+        public void moveToTailLocation() {
+        currentEntryIndex = inventoryStore.size(); // Note: forced to be 1 greater than the index location
+    }
 /**
  * Move to the next inventory location, supports iterating through each item in the list
  * @return true if the next location exists, false if the end of the list 
@@ -209,7 +212,7 @@ public class InventoryLocationCollection {
  * Move to the previous inventory location, supports iterating through each item in the list
  * @return true if the previous location exists, false if the end of the list
  */
-    boolean moveToPreviousInventortLocation() {
+    boolean moveToPreviousInventoryLocation() {
         boolean returnValue = true;
 
         if (inventoryStore != null && currentEntryIndex > 0) {

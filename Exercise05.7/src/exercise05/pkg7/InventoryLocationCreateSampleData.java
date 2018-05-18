@@ -20,6 +20,15 @@ public class InventoryLocationCreateSampleData {
         try {
             inventoryCollection = new InventoryLocationCollection();
             inventoryCollection.loadInventoryCollection();
+            
+            // Delete all existing entries
+            inventoryCollection.moveToTailLocation();
+            while (inventoryCollection.moveToPreviousInventoryLocation())
+            {
+                inventoryCollection.deleteInventoryLocation(inventoryCollection.getCurrentInventoryLocation().getInventoryLocationId());
+            }
+            
+            // Load a new set of sample entries
             inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 5, 1, 1, 21));
             inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 1, 2, 2, 22));
             inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 1, 3, 2, 23));
@@ -33,7 +42,7 @@ public class InventoryLocationCreateSampleData {
             inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 4, 2, 10, 31));
             inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 4, 3, 11, 32));
             inventoryCollection.saveInventoryCollection(0);
-            JOptionPane.showMessageDialog(null, "Test Inventory Locations created", "Sucess", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, inventoryCollection.size() + " sample Inventory Locations created", "Sucess", JOptionPane.INFORMATION_MESSAGE);
         } catch (ApplicationException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
         }
