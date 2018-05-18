@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Class for StockItemCollection array based container called stockStore for StockItems
- * @author 501834813
+ * @author Mary Cronin 0510661
  */
 public class StockItemCollection {
 

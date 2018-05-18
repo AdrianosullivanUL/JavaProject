@@ -8,8 +8,8 @@ package exercise05.pkg7;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author 501834813
+ * Form to allow users to ADD to a StockItem to StockItemCollection
+ * @author Mary Cronin 0510661
  */
 public class FrmStockItemEdit extends javax.swing.JInternalFrame {
 
@@ -19,6 +19,7 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmStockItemEdit
+     * 
      */
     public FrmStockItemEdit(int stockItemId) {
         initComponents();
@@ -34,10 +35,10 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
 
         // Decide on Add or Edit form presentation, 0 is add
         if (stockItemId == 0) {
-            this.title = "Add new Inventory Location";
+            this.title = "Add new Stock Imen";
             editStockItem = new StockItem(0, 0, " ", " ", 0.0);
         } else {
-            this.title = "Edit Inventory Location Id: " + stockItemId;
+            this.title = "Edit Stock Item  Id: " + stockItemId;
             while (stockItemCollection.moveToNextStockItem()) {
                 if (stockItemCollection.getCurrentStockItem().getStockItemId() == stockItemId) {
                     editStockItem = stockItemCollection.getCurrentStockItem();
@@ -49,6 +50,9 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
         PopulateFormFields();
     }
 
+    /**
+     * Method to populate stockItem with entries made into form
+     */
     private void PopulateFormFields() {
         this.txtPartNumber.setText(Integer.toString(editStockItem.getPartNumber()));
         this.txtStockName.setText(editStockItem.getName());
@@ -78,16 +82,22 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Stock Name");
 
+        txtStockName.setText("jTextField1");
+        txtStockName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtStockName.setMinimumSize(new java.awt.Dimension(150, 25));
         txtStockName.setPreferredSize(new java.awt.Dimension(150, 25));
 
         jLabel2.setText("Description");
 
+        txtDescription.setText("jTextField2");
+        txtDescription.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtDescription.setMinimumSize(new java.awt.Dimension(150, 25));
         txtDescription.setPreferredSize(new java.awt.Dimension(150, 25));
 
         jLabel3.setText("Unit Price $");
 
+        txtUnitPrice.setText("jTextField3");
+        txtUnitPrice.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtUnitPrice.setMinimumSize(new java.awt.Dimension(100, 25));
         txtUnitPrice.setPreferredSize(new java.awt.Dimension(100, 25));
 
@@ -101,6 +111,8 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Part Number");
 
+        txtPartNumber.setText("jTextField1");
+        txtPartNumber.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtPartNumber.setMinimumSize(new java.awt.Dimension(150, 25));
         txtPartNumber.setPreferredSize(new java.awt.Dimension(150, 25));
 
@@ -114,17 +126,17 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
                     .addComponent(BtnSave)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel1)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel3))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)))
                         .addGap(96, 96, 96)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
                             .addComponent(txtUnitPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtStockName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtPartNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(txtStockName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtPartNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -134,30 +146,33 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPartNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtStockName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel2)
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnSave)
-                        .addGap(30, 30, 30))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtStockName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(23, 23, 23)
-                        .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(txtUnitPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(128, 128, 128))))
+                        .addGap(128, 128, 128))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                        .addComponent(BtnSave)
+                        .addGap(30, 30, 30))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Method to Save stock item entered in form
+     * @param evt 
+     */
     private void BtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSaveActionPerformed
         // TODO add your handling code here:
         try {
@@ -177,6 +192,12 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
             }
             stockItemCollection.saveStockItem(stockItemId);
             JOptionPane.showMessageDialog(null, "Change Saved", "Sucess", JOptionPane.INFORMATION_MESSAGE);
+            if (stockItemId > 0) {
+                // return to the Inventory Find screen
+                FrmMain frmMain = (FrmMain) this.getTopLevelAncestor();
+                frmMain.FindStockItem();
+                this.dispose();
+            }
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Invalid entry: " + ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);

@@ -174,6 +174,15 @@ public class FrmMain extends javax.swing.JFrame {
         frmFindInventoryLocation.setVisible(true);
         frmFindInventoryLocation.setClosable(true);
     }
+    public void FindStockItem() {
+        if (frmFindStockItem == null || frmFindStockItem.isClosed()) {
+            frmFindStockItem = new FrmStockItemFind();
+            jDesktopPane1.add(frmFindStockItem);
+
+        }
+        frmFindStockItem.setVisible(true);
+        frmFindStockItem.setClosable(true);
+    }
 
     /**
      * Handle event Inventory Location Add menu option
