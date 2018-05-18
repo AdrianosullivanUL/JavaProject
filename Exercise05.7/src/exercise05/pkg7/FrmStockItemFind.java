@@ -9,8 +9,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author 501834813
+ * Class for Form to allow user to findall Stock Items
+ * @author Mary Cronin
  */
 public class FrmStockItemFind extends javax.swing.JInternalFrame {
 StockItemCollection stockCollection;
@@ -30,6 +30,9 @@ StockItemCollection stockCollection;
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
         }
     }
+    /**
+     * Method to Populate table with stockItem details
+     */
     private void PopulateTable() {
         DefaultTableModel model = (DefaultTableModel) tblStockItem.getModel();
         for (int i = model.getRowCount() -1 ; i >= 0 ; i--)    
