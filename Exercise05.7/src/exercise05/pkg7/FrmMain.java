@@ -5,9 +5,12 @@
  */
 package exercise05.pkg7;
 
+import javax.swing.JOptionPane;
+
 /**
+ * Multi Document Interface Container form for this application
  *
- * @author 501958452
+ * @author Adrian O'Sullivan Student ID 16230124 Last Modified 17/05/2017
  */
 public class FrmMain extends javax.swing.JFrame {
 
@@ -15,6 +18,7 @@ public class FrmMain extends javax.swing.JFrame {
     FrmInventoryLocationEdit frmInventoryLocationEdit;
     FrmStockItemEdit frmStockItemEdit;
     FrmStockItemFind frmFindStockItem;
+    FrmReadMe frmReadMe;
 
     /**
      * Creates new form FrmMain
@@ -41,9 +45,10 @@ public class FrmMain extends javax.swing.JFrame {
         mnuInventoryLocation = new javax.swing.JMenu();
         mnuInventoryLocationFind = new javax.swing.JMenuItem();
         mnuInventoryLocationAdd = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        mnuCreateTestStock = new javax.swing.JMenuItem();
+        mnuCreateInventorySampleData = new javax.swing.JMenu();
+        mnuCreateSampleLocationData = new javax.swing.JMenuItem();
+        mnuCreateSampleStockData = new javax.swing.JMenuItem();
+        mnuReadMe = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
 
@@ -102,39 +107,62 @@ public class FrmMain extends javax.swing.JFrame {
 
         jMenuBar1.add(mnuInventoryLocation);
 
-        jMenu1.setText("Help");
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+        mnuCreateInventorySampleData.setText("Help");
+        mnuCreateInventorySampleData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
+                mnuCreateInventorySampleDataActionPerformed(evt);
             }
         });
 
-        jMenuItem1.setText("Create Inventory Location Test Data");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mnuCreateSampleLocationData.setText("Create Inventory Location Sample Data");
+        mnuCreateSampleLocationData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mnuCreateSampleLocationDataActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        mnuCreateInventorySampleData.add(mnuCreateSampleLocationData);
 
-        mnuCreateTestStock.setText("Creat Stock Item Test Data");
-        mnuCreateTestStock.addActionListener(new java.awt.event.ActionListener() {
+        mnuCreateSampleStockData.setText("Creat Stock Item Sample Data");
+        mnuCreateSampleStockData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuCreateTestStockActionPerformed(evt);
+                mnuCreateSampleStockDataActionPerformed(evt);
             }
         });
-        jMenu1.add(mnuCreateTestStock);
+        mnuCreateInventorySampleData.add(mnuCreateSampleStockData);
 
-        jMenuBar1.add(jMenu1);
+        mnuReadMe.setText("Read me");
+        mnuReadMe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuReadMeActionPerformed(evt);
+            }
+        });
+        mnuCreateInventorySampleData.add(mnuReadMe);
+
+        jMenuBar1.add(mnuCreateInventorySampleData);
 
         setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Handle event Inventory Location Find menu option
+     *
+     * @param evt event action
+     */
     private void mnuInventoryLocationFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInventoryLocationFindActionPerformed
+        // check and see if any other forms are open
+        int frmCount = jDesktopPane1.getComponentCount();
+        if (frmCount > 0) 
+        {
+            JOptionPane.showMessageDialog(null, "This application supports only one active form, you must close all open forms first", "Problem", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         FindInventoryLocation();
     }//GEN-LAST:event_mnuInventoryLocationFindActionPerformed
+   /**
+    * Present the Find Inventory Location screen
+    */
     public void FindInventoryLocation() {
         if (frmFindInventoryLocation == null || frmFindInventoryLocation.isClosed()) {
             frmFindInventoryLocation = new FrmInventoryLocationFind();
@@ -145,26 +173,54 @@ public class FrmMain extends javax.swing.JFrame {
         frmFindInventoryLocation.setClosable(true);
     }
 
+    /**
+     * Handle event Inventory Location Add menu option
+     *
+     * @param evt event action
+     */
     private void mnuInventoryLocationAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInventoryLocationAddActionPerformed
+        // check and see if any other forms are open
+        int frmCount = jDesktopPane1.getComponentCount();
+        if (frmCount > 0) 
+        {
+            JOptionPane.showMessageDialog(null, "This application supports only one active form, you must close all open forms first", "Problem", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         if (frmInventoryLocationEdit == null || frmInventoryLocationEdit.isClosed()) {
             frmInventoryLocationEdit = new FrmInventoryLocationEdit(0);
             jDesktopPane1.add(frmInventoryLocationEdit);
         }
         frmInventoryLocationEdit.setVisible(true);
         frmInventoryLocationEdit.setClosable(true);
-
     }//GEN-LAST:event_mnuInventoryLocationAddActionPerformed
 
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+    private void mnuCreateInventorySampleDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCreateInventorySampleDataActionPerformed
 
-    }//GEN-LAST:event_jMenu1ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mnuCreateInventorySampleDataActionPerformed
+    /**
+     * Handle event Create Sample Location Data
+     *
+     * @param evt event action
+     */
+    private void mnuCreateSampleLocationDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCreateSampleLocationDataActionPerformed
         InventoryLocationCreateSampleData inventoryLocationTestData = new InventoryLocationCreateSampleData();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
+    }//GEN-LAST:event_mnuCreateSampleLocationDataActionPerformed
+    /**
+     * Handle event Add Stock Item
+     *
+     * @param evt event action
+     */
     private void mnuStockItemAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuStockItemAddActionPerformed
-        // TODO add your handling code here:
+        // check and see if any other forms are open
+        int frmCount = jDesktopPane1.getComponentCount();
+        if (frmCount > 0) 
+        {
+            JOptionPane.showMessageDialog(null, "This application supports only one active form, you must close all open forms first", "Problem", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        
         if (frmStockItemEdit == null || frmStockItemEdit.isClosed()) {
             frmStockItemEdit = new FrmStockItemEdit(0);
             jDesktopPane1.add(frmStockItemEdit);
@@ -172,9 +228,18 @@ public class FrmMain extends javax.swing.JFrame {
         frmStockItemEdit.setVisible(true);
         frmStockItemEdit.setClosable(true);
     }//GEN-LAST:event_mnuStockItemAddActionPerformed
-
+    /**
+     * Handle event Add Stock Item
+     *
+     * @param evt event action
+     */
     private void mnuStockItemFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuStockItemFindActionPerformed
-        // TODO add your handling code here:
+        int frmCount = jDesktopPane1.getComponentCount();
+        if (frmCount > 0) 
+        {
+            JOptionPane.showMessageDialog(null, "This application supports only one active form, you must close all open forms first", "Problem", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         if (frmFindStockItem == null || frmFindStockItem.isClosed()) {
             frmFindStockItem = new FrmStockItemFind();
             jDesktopPane1.add(frmFindStockItem);
@@ -183,10 +248,24 @@ public class FrmMain extends javax.swing.JFrame {
         frmFindStockItem.setClosable(true);
     }//GEN-LAST:event_mnuStockItemFindActionPerformed
 
-    private void mnuCreateTestStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCreateTestStockActionPerformed
-        // TODO add your handling code here:
+    /**
+     * Handle event Create Sample Stock Data
+     *
+     * @param evt event action
+     */
+    private void mnuCreateSampleStockDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCreateSampleStockDataActionPerformed
         StockItemCreateSampleData stockItemTestData = new StockItemCreateSampleData();
-    }//GEN-LAST:event_mnuCreateTestStockActionPerformed
+    }//GEN-LAST:event_mnuCreateSampleStockDataActionPerformed
+
+    private void mnuReadMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuReadMeActionPerformed
+        if (frmReadMe == null || frmReadMe.isClosed()) {
+            frmReadMe = new FrmReadMe();
+            jDesktopPane1.add(frmReadMe);
+        }
+        frmReadMe.setVisible(true);
+        frmReadMe.setClosable(true); 
+        
+    }//GEN-LAST:event_mnuReadMeActionPerformed
     void EditInventoryLocation(int inventoryLocationId) {
         // Close the Find form
         frmFindInventoryLocation.dispose();
@@ -201,6 +280,11 @@ public class FrmMain extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Present the edit stock item screen
+     *
+     * @param stockItemId
+     */
     void EditStockItem(int stockItemId) {
         // Close the Find form
         frmFindStockItem.dispose();
@@ -252,14 +336,15 @@ public class FrmMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem mnuCreateTestStock;
+    private javax.swing.JMenu mnuCreateInventorySampleData;
+    private javax.swing.JMenuItem mnuCreateSampleLocationData;
+    private javax.swing.JMenuItem mnuCreateSampleStockData;
     private javax.swing.JMenu mnuInventoryLocation;
     private javax.swing.JMenuItem mnuInventoryLocationAdd;
     private javax.swing.JMenuItem mnuInventoryLocationFind;
+    private javax.swing.JMenuItem mnuReadMe;
     private javax.swing.JMenu mnuStockItem;
     private javax.swing.JMenuItem mnuStockItemAdd;
     private javax.swing.JMenuItem mnuStockItemFind;

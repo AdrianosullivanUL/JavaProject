@@ -55,28 +55,36 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="mnuCreateInventorySampleData">
           <Properties>
             <Property name="text" type="java.lang.String" value="Help"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuCreateInventorySampleDataActionPerformed"/>
           </Events>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="mnuCreateSampleLocationData">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Create Inventory Location Test Data"/>
+                <Property name="text" type="java.lang.String" value="Create Inventory Location Sample Data"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuCreateSampleLocationDataActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="mnuCreateTestStock">
+            <MenuItem class="javax.swing.JMenuItem" name="mnuCreateSampleStockData">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Creat Stock Item Test Data"/>
+                <Property name="text" type="java.lang.String" value="Creat Stock Item Sample Data"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuCreateTestStockActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuCreateSampleStockDataActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuReadMe">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Read me"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuReadMeActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

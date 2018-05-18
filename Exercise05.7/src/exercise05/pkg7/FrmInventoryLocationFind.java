@@ -13,8 +13,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Form to allow user to find all Inventory Locations
  *
- * @author 501958452
+ * @author Adrian O'Sullivan Student ID 16230124 Last Modified 17/05/2017
  */
 public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
 
@@ -35,7 +36,9 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+/**
+ * 
+ */
     private void PopulateTable() {
         DefaultTableModel model = (DefaultTableModel) tblInventoryLocation.getModel();
         for (int i = model.getRowCount() - 1; i >= 0; i--) {

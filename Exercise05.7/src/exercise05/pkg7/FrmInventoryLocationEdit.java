@@ -9,8 +9,9 @@ import java.util.HashSet;
 import javax.swing.JOptionPane;
 
 /**
+ * Form to allow user to add/edit an Inventory Location
  *
- * @author 501958452
+ * @author Adrian O'Sullivan Student ID 16230124 Last Modified 17/05/2017
  */
 public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
 
@@ -52,12 +53,16 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
         }
         PopulateFormFields();
     }
-
+/**
+ * Populate the form fields with the Inventory Item being added/edited
+ */
     private void PopulateFormFields() {
         PopulateStockItemDropdownList();
         PoplulateInventoryLocationFields();
     }
-
+/**
+ * Populate the stock item dropdown list
+ */
     private void PopulateStockItemDropdownList() {
         cmbStockItem.addItem("");
         stockCollection.moveToHeadLocation();
@@ -66,9 +71,10 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
             cmbStockItem.addItem(stockItem.getPartNumber() + " - " + stockItem.getName());
         }
     }
-
+/**
+ * Populate the Inventory Location fields from the entry being edited
+ */
     private void PoplulateInventoryLocationFields() {
-
         this.txtSection.setText(Integer.toString(editInventoryLocation.getSection()));
         this.txtAisle.setText(Integer.toString(editInventoryLocation.getAisle()));
         this.txtRack.setText(Integer.toString(editInventoryLocation.getRack()));
@@ -240,7 +246,10 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
     private void txtAisleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAisleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAisleActionPerformed
-
+/**
+ * Handle the save request, if successful this stores the change and presents the find screen
+ * @param evt event action
+ */
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         try {
             int section = Integer.parseInt(this.txtSection.getText());
@@ -280,13 +289,20 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
-
+/**
+ * Handle cancel request,return to the find screen
+ * @param evt event action
+ */
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // return to the Inventory Find screen
         FrmMain frmMain = (FrmMain) this.getTopLevelAncestor();
         frmMain.FindInventoryLocation();
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
+    /**
+     * Get the selected stock item id
+     * @return selected stock item id
+     */
     private int getSelectedStockItem() {
 
         stockCollection.moveToHeadLocation();
