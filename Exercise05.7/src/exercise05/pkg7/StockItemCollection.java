@@ -1,7 +1,59 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Formal Specification
+---------------------------------
+1 Task Formulation
+Implement a class that can store a collection of Stock Items and persist
+these to a file on the computers disk. This will include methods to traverse the 
+list, add, delete, update and sort entries along with a save method to persist
+the data to a disk file.
+
+2 Specification
+Constructor which retrieves the list from a file store
+   Input: N/A, Output: N/A
+Method to allow user save changes made to the list
+   Input: Updated Stock Item Identifier, Output: N/A
+Method to allow user to delete a stock item
+   Input: Stock Item Identifier to Delete, Output: N/A
+Method to allow user get the next Stock Item ID available
+   Input: N/A, Output Next available ID
+Method to retrieve the current Stock Item as the user traverses the list
+   Input: N/A, Output Current Stock Item
+Method to traverse up and down through the list 
+   Input: N/A, Output Move result (true/false)
+
+3 Problem Solving
+Problem has been solved using a combination of techniques which include:
+   a) A class to represent each Stock Item   
+   b) An array list to store a collection of Stock Items
+   c) Logic to stream the collection to a file store
+   d) A bubble sort algorithm to sort the list
+
+4 Top Down Construction
+Constructor which retrieves the list from a file store
+   Open the file and stream its content to an internal buffer
+   Convert the internal butter to the collection list
+   If the file does not exist, create an empty list
+Method to allow user save changes made to the list
+   Validate the inputs 
+        Insure no duplicated Part Numbers
+        If an update request has been received then make sure the entry exists
+        Price must be greater than zero
+   Output the list to the file location
+
+Method to allow user to delete a stock item
+   
+Method to allow user get the next Stock Item ID available
+   
+Method to retrieve the current Stock Item as the user traverses the list
+   
+Method to traverse up and down through the list 
+   
+
+5 Bottom-Up Verification
+6 Coding
+7 Testing
+
+
  */
 package exercise05.pkg7;
 
@@ -68,7 +120,7 @@ public class StockItemCollection {
      * @param updatedStockItemId, stock Id is applied to all entries using validate method
      * @throws ApplicationException to handle file not found and I/O exceptions 
      */
-    void saveStockItem(int updatedStockItemId) throws ApplicationException {
+    public void saveStockItem(int updatedStockItemId) throws ApplicationException {
         try {
             if (updatedStockItemId != 0) {
                 validateUpdates(updatedStockItemId);
@@ -123,7 +175,7 @@ public class StockItemCollection {
      * @throws ApplicationException if delete is unsuccessful
      */
     
-    void deleteStockItem(int stockItemId) throws ApplicationException {
+    public void deleteStockItem(int stockItemId) throws ApplicationException {
         boolean deleted = true;
         for (int i = 0; i <= stockStore.size() - 1; i++) {
             if (Integer.compare(stockItemId, stockStore.get(i).getStockItemId()) == 0) {
@@ -154,7 +206,7 @@ public class StockItemCollection {
      * Method to return ID of stockItem from stock store
      * @return StockID
      */
-    int getNextID() {
+    public int getNextID() {
         int returnId = 0;
         if (stockStore != null && stockStore.size() > 0) {
             StockItem stockItem = stockStore.get(stockStore.size() - 1);
@@ -170,15 +222,15 @@ public class StockItemCollection {
      * Assign return value to stockItem for adding
      * @param stockItem StockItem 
      */
-    void addStockItem(StockItem stockItem) {
+    public void addStockItem(StockItem stockItem) {
         stockStore.add(stockItem);
     }
 
     /**
      * Method to Return current StockItem info
-     * @return current ctock Item
+     * @return current stock Item
      */
-    StockItem getCurrentStockItem() {
+    public StockItem getCurrentStockItem() {
         if (currentEntryIndex > -1 && currentEntryIndex <= stockStore.size() - 1) {
             return stockStore.get(currentEntryIndex);
         } else {
@@ -189,14 +241,14 @@ public class StockItemCollection {
     /**
      * More to head of List where index =-1
      */
-    void moveToHeadLocation() {
+    public void moveToHeadLocation() {
         currentEntryIndex = -1;
     }
 
     /**
      * More to Tail of List where index size of StockStore ArrayList
      */
-    void moveToTailLocation() {
+    public void moveToTailLocation() {
         currentEntryIndex = stockStore.size(); // force index beyond last entry
     }
 
@@ -204,7 +256,7 @@ public class StockItemCollection {
      * Method to return size of arraylist
      * @return Size of stockStore ArrayList
      */
-    int size() {
+    public int size() {
         return stockStore.size();
     }
 
@@ -212,7 +264,7 @@ public class StockItemCollection {
      * Method to indicate movement to next stock item was a success
      * @return ReturnValue true if it moves, false if not
      */
-    boolean moveToNextStockItem() {
+    public boolean moveToNextStockItem() {
         boolean returnValue = true;
 
         if (stockStore != null && currentEntryIndex < (stockStore.size() - 1)) {
@@ -227,7 +279,7 @@ public class StockItemCollection {
      * Method to indicate movement to next stock item was a success
      * @return ReturnValue true if it moves, false if not
      */
-    boolean moveToPreviousStockItem() {
+    public boolean moveToPreviousStockItem() {
         boolean returnValue = true;
 
         if (stockStore != null && currentEntryIndex > 0) {
@@ -244,7 +296,7 @@ public class StockItemCollection {
      * are in the wrong order.
      * 
      */
-    void BubbleSort() {
+    public void BubbleSort() {
         StockItem temp;
         try {
             int storeSize = stockStore.size();

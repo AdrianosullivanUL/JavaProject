@@ -1,7 +1,64 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Formal Specification
+---------------------------------
+1 Task Formulation
+Implement a class that can store a collection of Inventory Locations and persist
+these to a file on the computers disk. This will include methods to traverse the 
+list, add, delete, update and sort entries along with a save method to persist
+the data to a disk file.
+
+2 Specification
+Constructor which retrieves the list from a file store
+   Input: N/A, Output: N/A
+Method to allow user save changes made to the list
+   Input: Updated Inventory Location Identifier, Output: N/A
+Method to allow user to delete a Inventory Location
+   Input: Inventory Location Identifier to Delete, Output: N/A
+Method to allow user get the next Inventory Location ID available
+   Input: N/A, Output: Next available ID
+Method to retrieve the current Inventory Location as the user traverses the list
+   Input: N/A, Output: Current Inventory Location
+Method to traverse up and down through the list 
+   Input: N/A, Output: Move result (true/false)
+Method to Sort the list by more than one attribute
+   Input: N/A, Output: (indirectly the sorted list)
+
+3 Problem Solving
+Problem has been solved using a combination of techniques which include:
+   a) A class to represent each Stock Item   
+   b) An array list to store a collection of Inventory Location
+   c) Logic to stream the collection to a file store
+   d) A sort algorithm to sort the list by more than one attribute
+
+4 Top Down Construction
+Constructor which retrieves the list from a file store
+   Open the file and stream its content to an internal buffer
+   Convert the internal butter to the collection list
+   If the file does not exist, create an empty list
+Method to allow user save changes made to the list
+   Validate the inputs 
+        Insure no duplicated Part Numbers
+        If an update request has been received then make sure the entry exists
+        Price must be greater than zero
+   Output the list to the file location
+
+Method to allow user to delete a stock item
+   
+Method to allow user get the next Stock Item ID available
+   
+Method to retrieve the current Stock Item as the user traverses the list
+   
+Method to traverse up and down through the list 
+   
+
+5 Bottom-Up Verification
+6 Coding
+See coding in this class
+
+7 Testing
+See InventoryLocation Test harness class
+
+
  */
 package exercise05.pkg7;
 
@@ -154,5 +211,17 @@ class InventoryLocation implements Serializable {
  */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+    
+    public String toString()
+    {
+        return 
+        "id " + inventoryLocationId
+        + " section " + section
+        + " aisle " +         aisle
+        + " rack " + rack
+        + " shelf " + shelf
+        + " stockid " + stockItemId
+        + " qty " + quantity;
     }
 }
