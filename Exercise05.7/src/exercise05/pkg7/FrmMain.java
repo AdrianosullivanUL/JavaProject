@@ -25,6 +25,8 @@ public class FrmMain extends javax.swing.JFrame {
      */
     public FrmMain() {
         initComponents();
+        PresentReadMe();
+        this.setTitle("Simple Stock Management System (SSMS)");
     }
 
     /**
@@ -256,8 +258,17 @@ public class FrmMain extends javax.swing.JFrame {
     private void mnuCreateSampleStockDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCreateSampleStockDataActionPerformed
         StockItemCreateSampleData stockItemTestData = new StockItemCreateSampleData();
     }//GEN-LAST:event_mnuCreateSampleStockDataActionPerformed
-
+/**
+ * Present process request for read me form
+ * @param evt event action
+ */
     private void mnuReadMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuReadMeActionPerformed
+        PresentReadMe();
+    }
+    /**
+     * Present the read me form
+     */
+    private void PresentReadMe() {
         if (frmReadMe == null || frmReadMe.isClosed()) {
             frmReadMe = new FrmReadMe();
             jDesktopPane1.add(frmReadMe);
@@ -266,6 +277,10 @@ public class FrmMain extends javax.swing.JFrame {
         frmReadMe.setClosable(true); 
         
     }//GEN-LAST:event_mnuReadMeActionPerformed
+    /**
+     * Present the Edit Inventory Location edit form
+     * @param inventoryLocationId 
+     */
     void EditInventoryLocation(int inventoryLocationId) {
         // Close the Find form
         frmFindInventoryLocation.dispose();

@@ -16,6 +16,17 @@ public class FrmReadMe extends javax.swing.JInternalFrame {
      */
     public FrmReadMe() {
         initComponents();
+        lblText.setText("<html><h1>Introduction</h1><br>" 
+                + "This application is designed to support stock control for a small warehouse or shop." 
+                + " <br>It is designed as a single user solution with data stored locally in files.<br>" 
+                + "The system has two main modules, a Stock Item module to manage the items that are being" 
+                + " controlled and an Inventory Location Module to manage the <br> locations in a simple " 
+                + "section/aisle/rack/shelf model where only one item can be stored in a location. <br>" 
+                + "The location module is used to record what stock and how much is stored in each location. <br>" 
+                + "<br><h2>How to use</h2><br>" 
+                + "1) Select Help and then use the Create options to create new sample data<br>"
+                + "2) Select Stock Item Find or Add module to maintain the list of stock items including price<br>" 
+                + "3) Select the Inventory Location Find or add module to maintain the locations and the stock contained in each<br>");
     }
 
     /**
@@ -27,15 +38,25 @@ public class FrmReadMe extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblText = new javax.swing.JLabel();
+
+        setTitle("Read Me");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(lblText, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblText, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();
@@ -43,5 +64,6 @@ public class FrmReadMe extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblText;
     // End of variables declaration//GEN-END:variables
 }
