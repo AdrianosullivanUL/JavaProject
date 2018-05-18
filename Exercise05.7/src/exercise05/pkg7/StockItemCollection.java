@@ -14,23 +14,26 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author 501834813
  */
 public class StockItemCollection {
+
     private List<StockItem> stockStore;
     private int currentEntryIndex = -1;
-    
- public StockItemCollection() throws ApplicationException {
+
+    public StockItemCollection() throws ApplicationException {
         try {
             loadStockCollection();
         } catch (ApplicationException ex) {
             throw ex;
         }
     }
- public void loadStockCollection()
+
+    public void loadStockCollection()
             throws ApplicationException {
         try {
             FileInputStream fileInputStream = new FileInputStream("stockStore.dat");
@@ -51,9 +54,8 @@ public class StockItemCollection {
 
         }
     }
- 
- 
-   void saveStockItem(int updatedStockItemId)throws ApplicationException {
+
+    void saveStockItem(int updatedStockItemId) throws ApplicationException {
         try {
             if (updatedStockItemId != 0) {
                 validateUpdates(updatedStockItemId);
@@ -71,20 +73,20 @@ public class StockItemCollection {
 
         }
     }
-   private void validateUpdates(int updateStockItemId)
+
+    private void validateUpdates(int updateStockItemId)
             throws ApplicationException {
-        
+
         StockItem stockItem = null;
-        for (StockItem findStockItem : stockStore)
-        {
-            if (findStockItem.getStockItemId() == updateStockItemId)
-            {
+        for (StockItem findStockItem : stockStore) {
+            if (findStockItem.getStockItemId() == updateStockItemId) {
                 stockItem = findStockItem;
                 break;
             }
         }
-        if (stockItem == null)
+        if (stockItem == null) {
             throw new ApplicationException("Problem validating updates, cannot find Stock Item Id " + updateStockItemId);
+        }
 
         for (StockItem existingStockItem : stockStore) {
             if (existingStockItem.getStockItemId() != stockItem.getStockItemId()
@@ -92,10 +94,11 @@ public class StockItemCollection {
                 throw new ApplicationException("Cannot update this entry, Stock Item already exists");
             }
         }
-        if (stockItem.getUnitPrice()< 0) {
+        if (stockItem.getUnitPrice() < 0) {
             throw new ApplicationException("Nothing in this world is Free");
         }
     }
+
     void deleteStockItem(int stockItemId) throws ApplicationException {
         boolean deleted = true;
         for (int i = 0; i <= stockStore.size() - 1; i++) {
@@ -108,6 +111,7 @@ public class StockItemCollection {
             }
         }
     }
+
     private boolean checkForDuplicateStock(StockItem existing, StockItem updated) {
         boolean result = false;
         if (existing.getPartNumber() == updated.getPartNumber()) {
@@ -115,8 +119,8 @@ public class StockItemCollection {
         }
         return result;
     }
-    
- int getNextID() {
+
+    int getNextID() {
         int returnId = 0;
         if (stockStore != null && stockStore.size() > 0) {
             StockItem stockItem = stockStore.get(stockStore.size() - 1);
@@ -125,25 +129,34 @@ public class StockItemCollection {
             returnId = 1;
         }
         return returnId;
-        
+
     }
- void addStockItem(StockItem stockItem) {
+
+    void addStockItem(StockItem stockItem) {
         stockStore.add(stockItem);
     }
- StockItem getCurrentStockItem() {
-        if (currentEntryIndex > -1 && currentEntryIndex <= stockStore.size() -1)
+
+    StockItem getCurrentStockItem() {
+        if (currentEntryIndex > -1 && currentEntryIndex <= stockStore.size() - 1) {
             return stockStore.get(currentEntryIndex);
-        else
-        {
+        } else {
             return null;
         }
     }
- 
- void moveToHeadLocation() {
+
+    void moveToHeadLocation() {
         currentEntryIndex = -1;
- }
- 
- boolean moveToNextStockItem() {
+    }
+
+    void moveToTailLocation() {
+        currentEntryIndex = stockStore.size(); // force index beyond last entry
+    }
+
+    int size() {
+        return stockStore.size();
+    }
+
+    boolean moveToNextStockItem() {
         boolean returnValue = true;
 
         if (stockStore != null && currentEntryIndex < (stockStore.size() - 1)) {
@@ -164,26 +177,30 @@ public class StockItemCollection {
         }
         return returnValue;
     }
-  
-    
-    void BubbleSort(){
+
+    void BubbleSort() {
         StockItem temp;
-        if (stockStore.size()>1) // check if the number of orders is larger than 1
-        {
-            for (int x=0; x<stockStore.size(); x++) // bubble sort outer loop
+        try {
+            int storeSize = stockStore.size();
+            if (stockStore.size() > 1) // check if the number of orders is larger than 1
             {
-                for (int i=0; i <= stockStore.size()-i; i++) {
-                    if (stockStore.get(i).getPartNumber() > stockStore.get(i+1).getPartNumber())
-                      {
-                        temp = stockStore.get(i);
-                        stockStore.set(i,stockStore.get(i+1) );
-                        stockStore.set(i+1, temp);
+                for (int x = 0; x < storeSize; x++) // bubble sort outer loop
+                {
+                    System.out.println("x " + x);
+                    for (int i = 0; i < (storeSize - 1); i++) {
+                        System.out.println("bubble check i " + i + " " + stockStore.get(i).getPartNumber() + " ? " + stockStore.get(i + 1).getPartNumber());
+                        if (stockStore.get(i).getPartNumber() > stockStore.get(i + 1).getPartNumber()) {
+                            temp = stockStore.get(i);
+                            stockStore.set(i, stockStore.get(i + 1));
+                            stockStore.set(i + 1, temp);
+                        }
+                        else
+                            i = i;
                     }
                 }
             }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
         }
-
     }
 }
-
-
