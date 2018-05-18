@@ -159,6 +159,7 @@ public class FrmStockItemFind extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSortActionPerformed
 
     /**
+     * Method to perform Edit Action linked to Edit Button on Form
      *
      * @param evt
      */
@@ -168,14 +169,13 @@ public class FrmStockItemFind extends javax.swing.JInternalFrame {
             int selectedStockItemId = 0;
             try {
                 int row = tblStockItem.getSelectedRow();
-                
                 String selectedId = tblStockItem.getModel().getValueAt(row, 4).toString();
                 selectedStockItemId = Integer.parseInt(selectedId);
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "You must select a row first", "Problem", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please Select a Row", "Problem", JOptionPane.ERROR_MESSAGE);
                 return;
             } catch (ArrayIndexOutOfBoundsException ex) {
-                JOptionPane.showMessageDialog(null, "You must select a row first", "Problem", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Please Select a Row", "Problem", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             int row = tblStockItem.getSelectedRow();
