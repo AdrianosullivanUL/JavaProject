@@ -226,12 +226,12 @@ public class InventoryLocationCollection {
                 throw new ApplicationException("Cannot update this entry, location already exists elsewhere");
             }
         }
-        if (inventoryLocation.getQuantity() < 0) {
-            throw new ApplicationException("Quantity cannot be negative");
-        }
-        if (inventoryLocation.getStockItemId() == 0 && inventoryLocation.getQuantity() > 0) {
-            throw new ApplicationException("You cannot have a stock without selecting a stock item");
-        }
+        //if (inventoryLocation.getQuantity() < 0) {
+        //    throw new ApplicationException("Quantity cannot be negative");
+        //}
+        //if (inventoryLocation.getStockItemId() == 0 && inventoryLocation.getQuantity() > 0) {
+        //    throw new ApplicationException("You cannot have a stock without selecting a stock item");
+        //}
     }
     /**
      * Delete an inventory item

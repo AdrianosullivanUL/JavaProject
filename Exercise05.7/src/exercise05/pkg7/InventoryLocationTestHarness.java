@@ -72,11 +72,32 @@ class InventoryLocationTestHarness {
             // Update a row
             System.out.println("Test #4 - Try to set a quantity with no part");
             InventoryLocation inventoryLocation = GetLocation(9990);
+            try
+            {
             inventoryLocation.setQuantity(1);
-            UpdateLocationTest(false, "Update qty with no part", inventoryLocation.getInventoryLocationId());
+            }
+            catch (ApplicationException ex)
+            {
+                System.out.println("  Pass: Test Description Try to set negative quantity");
+            }
+            
+            // Add a stock row 
+            System.out.println("Test #5 - Add a stock with quantity row");
+            AddNewLocationTest(true, "Add location with stock row", new InventoryLocation(9996, 6, 10, 15, 0,1,1));
+            
+            // Add a negative stock row 
+            System.out.println("Test #6 - Add a negative quantity row");
+            try
+            {
+            AddNewLocationTest(false, "Add location with negative quantity row", new InventoryLocation(9994, 5, 10, 15, 0,1,-1));
+                    }
+            catch (ApplicationException ex)
+            {
+                System.out.println("  Pass: Test Description Try to set negative quantity");
+            }
 
             // Delete all test rows
-            System.out.println("Test #5 - Delete 5 test rows");
+            System.out.println("Test #7 - Delete 5 test rows");
             DeleteLocationTest(true, "Delete row ", 9990);
             DeleteLocationTest(true, "Delete row ", 9991);
             DeleteLocationTest(true, "Delete row ", 9992);
@@ -87,7 +108,7 @@ class InventoryLocationTestHarness {
             }
 
         } catch (ApplicationException ex) {
-            System.out.println("Application Exception " + ex.getMessage());
+            System.out.println("TEST HARNESS FAILURE: " + ex.getMessage());
         }
     }
 
@@ -96,15 +117,15 @@ class InventoryLocationTestHarness {
         try {
             inventoryCollection.addInventoryLocation(inventoryLocation);
             if (ExpectPassOutcome == true) {
-                System.out.println("Pass: Test Description " + testDescription + " Added:" + inventoryLocation.toString());
+                System.out.println("  Pass: Test Description " + testDescription + " Added:" + inventoryLocation.toString());
             } else {
                 System.out.println("**TEST FAIL: Test Description " + testDescription + " Added:" + inventoryLocation.toString());
             }
         } catch (ApplicationException ex) {
             if (ExpectPassOutcome == false) {
-                System.out.println("Pass: Application Exception " + ex.getMessage() + " : " + inventoryLocation.toString());
+                System.out.println("  Pass: Application Exception " + ex.getMessage() + " : " + inventoryLocation.toString());
             } else {
-                System.out.println("APPLICATION FAIL " + ex.getMessage());
+                System.out.println("TEST HARNESS FAIL " + ex.getMessage());
             }
         }
     }
@@ -113,13 +134,13 @@ class InventoryLocationTestHarness {
         try {
             inventoryCollection.deleteInventoryLocation(inventoryLocationId);
             if (ExpectPassOutcome == true) {
-                System.out.println("Pass: Test Description " + testDescription + " Deleted Id: " + inventoryLocationId);
+                System.out.println("  Pass: Test Description " + testDescription + " Deleted Id: " + inventoryLocationId);
             } else {
                 System.out.println("**TEST FAIL: Test Description " + testDescription + " Deleted Id: " + inventoryLocationId);
             }
         } catch (ApplicationException ex) {
             if (ExpectPassOutcome == false) {
-                System.out.println("Pass: Application Exception " + ex.getMessage() + " Id: " + inventoryLocationId);
+                System.out.println("  Pass: Application Exception " + ex.getMessage() + " Id: " + inventoryLocationId);
             } else {
                 System.out.println("APPLICATION FAIL " + ex.getMessage());
             }
@@ -132,14 +153,14 @@ class InventoryLocationTestHarness {
 
             inventoryCollection.saveInventoryCollection(inventoryLocationId);
             if (ExpectPassOutcome == true) {
-                System.out.println("Pass: Test Description " + testDescription + " Result Id:" + inventoryLocationId);
+                System.out.println("  Pass: Test Description " + testDescription + " Result Id:" + inventoryLocationId);
             } else {
                 System.out.println("**TEST FAIL: Test Description " + testDescription + " Result Id:" + inventoryLocationId);
             }
 
         } catch (ApplicationException ex) {
             if (ExpectPassOutcome == false) {
-                System.out.println("Pass: Application Exception " + ex.getMessage() + " Id:" + inventoryLocationId);
+                System.out.println("  Pass: Application Exception " + ex.getMessage() + " Id:" + inventoryLocationId);
             } else {
                 System.out.println("**APPLICATION FAIL " + ex.getMessage());
             }
