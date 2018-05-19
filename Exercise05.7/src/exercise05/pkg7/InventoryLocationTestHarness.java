@@ -22,12 +22,13 @@ package exercise05.pkg7;
 
 /**
  * Execute test plan for the Inventory Location Collection
- * @author Adrian O'Sullivan Student ID 16230124 
- * 
+ *
+ * @author Adrian O'Sullivan Student ID 16230124
+ *
  */
 class InventoryLocationTestHarness {
 
-    InventoryLocationCollection inventoryCollection
+    InventoryLocationCollection inventoryCollection;
 
     /*    
     private int inventoryLocationId;
@@ -38,15 +39,15 @@ class InventoryLocationTestHarness {
     private int stockItemId;
     private int quantity;
      */
-public static void main(String args[])
-      {
-          InventoryLocationTestHarness inventoryLocationTestHarness = new InventoryLocationTestHarness();
-          inventoryLocationTestHarness.ExecuteTests();
+    public static void main(String args[]) {
+        InventoryLocationTestHarness inventoryLocationTestHarness = new InventoryLocationTestHarness();
+        inventoryLocationTestHarness.ExecuteTests();
     }
+
     private void ExecuteTests() {
         try {
+            inventoryCollection = new InventoryLocationCollection();
 
-            
             int inventoryCount = inventoryCollection.size();
 
             // add 5 valid rows
@@ -61,15 +62,15 @@ public static void main(String args[])
 
             // Add a duplicate row
             AddNewLocationTest(false, "Add a duplicate row", new InventoryLocation(9994, 5, 10, 15, 0));
-            
+
             // delete a row that doesnt exist
             DeleteLocationTest(false, "Delete row that doesnt exist ", 9995);
-            
+
             // Update a row
             InventoryLocation inventoryLocation = GetLocation(9990);
             inventoryLocation.setQuantity(1);
             UpdateLocationTest(false, "Update qty with no part", inventoryLocation.getInventoryLocationId());
-     
+
             // Delete all test rows
             DeleteLocationTest(true, "Delete row ", 9990);
             DeleteLocationTest(true, "Delete row ", 9991);
@@ -89,54 +90,49 @@ public static void main(String args[])
 
         try {
             inventoryCollection.addInventoryLocation(inventoryLocation);
+            System.out.println("Pass: Test Description " + testDescription + " Added:" + inventoryLocation.toString());
         } catch (ApplicationException ex) {
             if (ExpectPassOutcome) {
-                System.out.println("**TEST FAIL: Application Exception " + ex.getMessage());
-            } else {
-                System.out.println("Pass: Test Description " + testDescription + " Result:" + ex.getMessage());
+                System.out.println("**TEST FAIL: Application Exception " + ex.getMessage() + " : " + inventoryLocation.toString());
             }
         }
 
     }
 
-    private void DeleteLocationTest(boolean ExpectPassOutcome, String testDescription, int inventoryLocationId) throws ApplicationException{
+    private void DeleteLocationTest(boolean ExpectPassOutcome, String testDescription, int inventoryLocationId) throws ApplicationException {
         try {
             inventoryCollection.deleteInventoryLocation(inventoryLocationId);
-
+            System.out.println("Pass: Test Description " + testDescription + " Deleted Id: " + inventoryLocationId);
         } catch (ApplicationException ex) {
             if (ExpectPassOutcome) {
-                System.out.println("**TEST FAIL: Application Exception " + ex.getMessage());
-            } else {
-                System.out.println("Pass: Test Description " + testDescription + " Result:" + ex.getMessage());
+                System.out.println("**TEST FAIL: Application Exception " + ex.getMessage() + " Id: " + inventoryLocationId);
             }
         }
     }
 
-        private void UpdateLocationTest(boolean ExpectPassOutcome, String testDescription, int inventoryLocationId) {
+    private void UpdateLocationTest(boolean ExpectPassOutcome, String testDescription, int inventoryLocationId) {
         try {
-            
+
             inventoryCollection.saveInventoryCollection(inventoryLocationId);
-            
+            System.out.println("Pass: Test Description " + testDescription + " Result Id:" + inventoryLocationId);
 
         } catch (ApplicationException ex) {
             if (ExpectPassOutcome) {
-                System.out.println("**TEST FAIL: Application Exception " + ex.getMessage());
-            } else {
-                System.out.println("Pass: Test Description " + testDescription + " Result:" + ex.getMessage());
+                System.out.println("**TEST FAIL: Application Exception " + ex.getMessage() + " Id:" + inventoryLocationId);
             }
         }
     }
-    
-    private InventoryLocation GetLocation(int InventoryLocationId) throws ApplicationException{
+
+    private InventoryLocation GetLocation(int InventoryLocationId) throws ApplicationException {
         InventoryLocation inventoryLocation = null;
 
-        inventoryCollection.moveToHeadLocation();
-        while (inventoryCollection.moveToNextInventoryLocation()) {
-            if (Integer.compare(InventoryLocationId, inventoryCollection.getCurrentInventoryLocation().getInventoryLocationId()) == 0) {
-                inventoryLocation = inventoryCollection.getCurrentInventoryLocation();
-                break;
+            inventoryCollection.moveToHeadLocation();
+            while (inventoryCollection.moveToNextInventoryLocation()) {
+                if (Integer.compare(InventoryLocationId, inventoryCollection.getCurrentInventoryLocation().getInventoryLocationId()) == 0) {
+                    inventoryLocation = inventoryCollection.getCurrentInventoryLocation();
+                    break;
+                }
             }
-        }
-        return inventoryLocation;
+            return inventoryLocation;
     }
 }
