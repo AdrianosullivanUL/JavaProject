@@ -47,12 +47,12 @@ public class StockItem implements Serializable {
      * @param Description - Stock Item Description
      * @param UnitPrice - Unit Price
      */
-    public StockItem(int StockItemId, int PartNunber, String Name, String Description, double UnitPrice) {
-        this.StockItemId = StockItemId;
-        this.PartNumber = PartNunber;
-        this.Name = Name;
-        this.Description = Description;
-        this.UnitPrice = UnitPrice;
+    public StockItem(int StockItemId, int PartNunber, String Name, String Description, double UnitPrice) throws ApplicationException{
+        setStockItemId(StockItemId);
+        setPartNumber(PartNunber);
+        setName(Name);
+        setDescription(Description);
+        setUnitPrice(UnitPrice);
     }
 
     /**

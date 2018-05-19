@@ -194,9 +194,6 @@ public class InventoryLocationCollection {
                 throw new ApplicationException("Cannot add this entry, location already exists");
             }
         }
-        if (inventoryLocation.getQuantity() < 0) {
-            throw new ApplicationException("Quantity cannot be negative");
-        }
         inventoryStore.add(inventoryLocation);
     }
 
@@ -226,12 +223,6 @@ public class InventoryLocationCollection {
                 throw new ApplicationException("Cannot update this entry, location already exists elsewhere");
             }
         }
-        //if (inventoryLocation.getQuantity() < 0) {
-        //    throw new ApplicationException("Quantity cannot be negative");
-        //}
-        //if (inventoryLocation.getStockItemId() == 0 && inventoryLocation.getQuantity() > 0) {
-        //    throw new ApplicationException("You cannot have a stock without selecting a stock item");
-        //}
     }
     /**
      * Delete an inventory item
@@ -247,7 +238,7 @@ public class InventoryLocationCollection {
                 return;
             }
         }
-        throw new ApplicationException("Entry not deleted");
+        throw new ApplicationException("Entry not found and therefore was not deleted");
     }
 
 /**

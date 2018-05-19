@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Form to allow users to ADD to a StockItem to StockItemCollection
+ *
  * @author Mary Cronin 0510661
  */
 public class FrmStockItemEdit extends javax.swing.JInternalFrame {
@@ -34,7 +35,7 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmStockItemEdit
-     * 
+     *
      */
     public FrmStockItemEdit(int stockItemId) {
         initComponents();
@@ -50,8 +51,12 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
 
         // Decide on Add or Edit form presentation, 0 is add
         if (stockItemId == 0) {
-            this.title = "Add new Stock Imen";
-            editStockItem = new StockItem(0, 0, " ", " ", 0.0);
+            this.title = "Add new Stock Item";
+            try {
+                editStockItem = new StockItem(0, 0, " ", " ", 0.0);
+            } catch (ApplicationException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
             this.title = "Edit Stock Item  Id: " + stockItemId;
             while (stockItemCollection.moveToNextStockItem()) {
@@ -186,7 +191,8 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
 
     /**
      * Method to Save stock item entered in form
-     * @param evt 
+     *
+     * @param evt
      */
     private void BtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSaveActionPerformed
         try {
@@ -199,7 +205,7 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
             editStockItem.setName(stockName);
             editStockItem.setDescription(description);
             editStockItem.setUnitPrice(unitPrice);
-                   // If adding a new entry, put it into the collection
+            // If adding a new entry, put it into the collection
             if (stockItemId == 0) {
                 editStockItem.setStockItemId(stockItemCollection.getNextID());
                 stockItemCollection.addStockItem(editStockItem);

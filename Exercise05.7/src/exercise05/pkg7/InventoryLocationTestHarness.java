@@ -46,12 +46,12 @@ class InventoryLocationTestHarness {
 
     private void ExecuteTests() {
 
-        TestInventorLocationClass();
-        TestInventorLocationCollectionClass();
+        TestInventoryLocationClass();
+        TestInventoryLocationCollectionClass();
 
     }
 
-    private void TestInventorLocationClass() {
+    private void TestInventoryLocationClass() {
         InventoryLocation inventoryLocation;
         System.out.println("Inventory Class Testing");
         System.out.println("_______________________");
@@ -129,7 +129,7 @@ class InventoryLocationTestHarness {
 
     }
 
-    private void TestInventorLocationCollectionClass() {
+    private void TestInventoryLocationCollectionClass() {
         try {
             inventoryCollection = new InventoryLocationCollection();
             int inventoryCount = inventoryCollection.size();
