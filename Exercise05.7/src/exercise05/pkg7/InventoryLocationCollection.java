@@ -60,7 +60,6 @@ See InventoryLocation Test harness class
 
 
  */
-
 package exercise05.pkg7;
 
 import java.io.FileInputStream;
@@ -75,20 +74,22 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Class to persist a store or warehouse location/stock tracker, persistence is  
- * achieved though a simple serialised store in a locally stored file. 
- * Note: This is a single user solution.
+ * Class to persist a store or warehouse location/stock tracker, persistence is
+ * achieved though a simple serialised store in a locally stored file. Note:
+ * This is a single user solution.
  *
- * @author Adrian O'Sullivan Student ID 16230124 
+ * @author Adrian O'Sullivan Student ID 16230124
  */
 public class InventoryLocationCollection {
 
     private List<InventoryLocation> inventoryStore;
     private int currentEntryIndex = -1;
-/**
- * Constructor which loads the collection from file 
- * @throws ApplicationException 
- */
+
+    /**
+     * Constructor which loads the collection from file
+     *
+     * @throws ApplicationException
+     */
     public InventoryLocationCollection() throws ApplicationException {
         try {
             loadInventoryCollection();
@@ -96,10 +97,14 @@ public class InventoryLocationCollection {
             throw ex;
         }
     }
-/**
- * Load the inventory list from file and create a new list if it doesn't already exist
- * @throws ApplicationException to handle issues with accessing the file storage
- */
+
+    /**
+     * Load the inventory list from file and create a new list if it doesn't
+     * already exist
+     *
+     * @throws ApplicationException to handle issues with accessing the file
+     * storage
+     */
     public void loadInventoryCollection()
             throws ApplicationException {
         try {
@@ -121,11 +126,15 @@ public class InventoryLocationCollection {
 
         }
     }
-/**
- * Save any changes made to the file store
- * @param updatedInventoryLocationId WHen an inventory has been updated, this id is provided to support validation
- * @throws ApplicationException to handle issues with file access and also validation errors
- */
+
+    /**
+     * Save any changes made to the file store
+     *
+     * @param updatedInventoryLocationId WHen an inventory has been updated,
+     * this id is provided to support validation
+     * @throws ApplicationException to handle issues with file access and also
+     * validation errors
+     */
     void saveInventoryCollection(int updatedInventoryLocationId)
             throws ApplicationException {
         try {
@@ -145,10 +154,12 @@ public class InventoryLocationCollection {
 
         }
     }
-/**
- * Assign the next available identifier to the caller
- * @return the last saved id + 1
- */
+
+    /**
+     * Assign the next available identifier to the caller
+     *
+     * @return the last saved id + 1
+     */
     int getNextID() {
         int returnId = 0;
         if (inventoryStore != null && inventoryStore.size() > 0) {
@@ -159,18 +170,23 @@ public class InventoryLocationCollection {
         }
         return returnId;
     }
-/**
- * Get the number of locations stored
- * @return collection size
- */
+
+    /**
+     * Get the number of locations stored
+     *
+     * @return collection size
+     */
     int size() {
         return inventoryStore.size();
     }
-/**
- * Add a new inventory location
- * @param inventoryLocation pre-populated location
- * @throws ApplicationException to handle any issues with adding the new location
- */
+
+    /**
+     * Add a new inventory location
+     *
+     * @param inventoryLocation pre-populated location
+     * @throws ApplicationException to handle any issues with adding the new
+     * location
+     */
     void addInventoryLocation(InventoryLocation inventoryLocation)
             throws ApplicationException {
         for (InventoryLocation existingInventoryLocation : inventoryStore) {
@@ -183,11 +199,13 @@ public class InventoryLocationCollection {
         }
         inventoryStore.add(inventoryLocation);
     }
-/**
- * Validate changes made to the location entry
- * @param updateInventoryLocationId the identifier of the updated entry
- * @throws ApplicationException to handle issues with the update
- */
+
+    /**
+     * Validate changes made to the location entry
+     *
+     * @param updateInventoryLocationId the identifier of the updated entry
+     * @throws ApplicationException to handle issues with the update
+     */
     private void validateUpdates(int updateInventoryLocationId)
             throws ApplicationException {
 
@@ -215,47 +233,55 @@ public class InventoryLocationCollection {
             throw new ApplicationException("You cannot have a stock without selecting a stock item");
         }
     }
-/**
- * Delete an inventory item
- * @param inventoryLocationId The identifier of the location to delete
- * @throws ApplicationException issus with doing the delete
- */
+    /**
+     * Delete an inventory item
+     *
+     * @param inventoryLocationId The identifier of the location to delete
+     * @throws ApplicationException issus with doing the delete
+     */
     void deleteInventoryLocation(int inventoryLocationId) throws ApplicationException {
-        boolean deleted = true;
         for (int i = 0; i <= inventoryStore.size() - 1; i++) {
-            if (Integer.compare(inventoryLocationId, inventoryStore.get(i).getInventoryLocationId()) == 0) {
+            //if (Integer.compare(inventoryLocationId, inventoryStore.get(i).getInventoryLocationId()) == 0) {
+            if (inventoryStore.get(i).getInventoryLocationId() == inventoryLocationId ) {
                 inventoryStore.remove(i);
-                deleted = true;
-            }
-            if (deleted == false) {
-                throw new ApplicationException("Entry not deleted");
+                return;
             }
         }
+        throw new ApplicationException("Entry not deleted");
     }
+
 /**
- * return the current inventory item that the current inventory index is pointing to
+ * return the current inventory item that the current inventory index is
+ * pointing to
+ *
  * @return the current inventory item
  */
-    public InventoryLocation getCurrentInventoryLocation() {
+public InventoryLocation getCurrentInventoryLocation() {
         InventoryLocation inventoryLocation = null;
         if (currentEntryIndex > -1 && currentEntryIndex <= inventoryStore.size() - 1) {
             inventoryLocation = inventoryStore.get(currentEntryIndex);
         }
         return inventoryLocation;
     }
-/**
- * Move to the position at the head of the list, this positions the indexer to support iterating through the list
- */
+
+    /**
+     * Move to the position at the head of the list, this positions the indexer
+     * to support iterating through the list
+     */
     public void moveToHeadLocation() {
         currentEntryIndex = -1;
     }
-        public void moveToTailLocation() {
+
+    public void moveToTailLocation() {
         currentEntryIndex = inventoryStore.size(); // Note: forced to be 1 greater than the index location
     }
-/**
- * Move to the next inventory location, supports iterating through each item in the list
- * @return true if the next location exists, false if the end of the list 
- */
+
+    /**
+     * Move to the next inventory location, supports iterating through each item
+     * in the list
+     *
+     * @return true if the next location exists, false if the end of the list
+     */
     public boolean moveToNextInventoryLocation() {
         boolean returnValue = true;
 
@@ -266,10 +292,14 @@ public class InventoryLocationCollection {
         }
         return returnValue;
     }
-/**
- * Move to the previous inventory location, supports iterating through each item in the list
- * @return true if the previous location exists, false if the end of the list
- */
+
+    /**
+     * Move to the previous inventory location, supports iterating through each
+     * item in the list
+     *
+     * @return true if the previous location exists, false if the end of the
+     * list
+     */
     boolean moveToPreviousInventoryLocation() {
         boolean returnValue = true;
 
@@ -280,12 +310,15 @@ public class InventoryLocationCollection {
         }
         return returnValue;
     }
-/**
- * Check and see if the location add/edit will result in a duplicated location
- * @param existing the existing location
- * @param updated the location being updated
- * @return true if the result will cause duplication, false if not
- */
+
+    /**
+     * Check and see if the location add/edit will result in a duplicated
+     * location
+     *
+     * @param existing the existing location
+     * @param updated the location being updated
+     * @return true if the result will cause duplication, false if not
+     */
     private boolean checkForDuplicateLocation(InventoryLocation existing, InventoryLocation updated) {
         boolean result = false;
         if (existing.getSection() == updated.getSection()
@@ -296,10 +329,12 @@ public class InventoryLocationCollection {
         }
         return result;
     }
-/**
- * Sort the list by a pre-defined key
- * @param sortKey which attribute to sort by
- */
+
+    /**
+     * Sort the list by a pre-defined key
+     *
+     * @param sortKey which attribute to sort by
+     */
     public void sortBy(String sortKey) {
         if (sortKey == "Section") {
             Collections.sort(inventoryStore, new InventoryLocationSectionComparator());
@@ -309,25 +344,29 @@ public class InventoryLocationCollection {
             Collections.sort(inventoryStore, new InventoryLocationIdComparator());
             moveToHeadLocation();
 
-        }
+        
+
+}
     }
-/**
- * Define a comparator to support sorting by Section
- */
+
+    /**
+     * Define a comparator to support sorting by Section
+     */
     private class InventoryLocationSectionComparator implements Comparator<InventoryLocation> {
 
-        public int compare(InventoryLocation self, InventoryLocation other) {
+    public int compare(InventoryLocation self, InventoryLocation other) {
 
-            return Integer.valueOf(self.getSection()).compareTo(other.getSection());
-        }
+        return Integer.valueOf(self.getSection()).compareTo(other.getSection());
     }
+}
+
 /**
  * Define a comparator to sort by entry sequence (id)
  */
-    private class InventoryLocationIdComparator implements Comparator<InventoryLocation> {
+private class InventoryLocationIdComparator implements Comparator<InventoryLocation> {
 
-        public int compare(InventoryLocation self, InventoryLocation other) {
-            return Integer.valueOf(self.getInventoryLocationId()).compareTo(other.getInventoryLocationId());
-        }
+    public int compare(InventoryLocation self, InventoryLocation other) {
+        return Integer.valueOf(self.getInventoryLocationId()).compareTo(other.getInventoryLocationId());
     }
+}
 }
