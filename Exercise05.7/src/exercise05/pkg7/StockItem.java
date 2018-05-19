@@ -1,7 +1,22 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Formal Specification
+---------------------------------
+1 Task Formulation
+
+2 Specification
+   Input: N/A, Output: N/A
+
+3 Problem Solving
+
+4 Top Down Construction
+
+5 Bottom-Up Verification
+
+6 Coding
+See coding in this class
+
+7 Testing
+
  */
 package exercise05.pkg7;
 
@@ -13,7 +28,7 @@ import java.io.Serializable;
  * Number- this is used for sorting PartName, Part Description, Unit Price
  *
  *
- * @author Mary Cronin
+ * @author Mary Cronin 0510661
  */
 public class StockItem implements Serializable {
 

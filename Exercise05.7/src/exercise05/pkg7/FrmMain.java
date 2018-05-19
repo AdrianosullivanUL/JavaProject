@@ -1,7 +1,22 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Formal Specification
+---------------------------------
+1 Task Formulation
+
+2 Specification
+   Input: N/A, Output: N/A
+
+3 Problem Solving
+
+4 Top Down Construction
+
+5 Bottom-Up Verification
+
+6 Coding
+See coding in this class
+
+7 Testing
+
  */
 package exercise05.pkg7;
 
@@ -10,7 +25,7 @@ import javax.swing.JOptionPane;
 /**
  * Multi Document Interface Container form for this application
  *
- * @author Adrian O'Sullivan Student ID 16230124 Last Modified 17/05/2017
+ * @author Adrian O'Sullivan Student ID 16230124 
  */
 public class FrmMain extends javax.swing.JFrame {
 
@@ -152,19 +167,19 @@ public class FrmMain extends javax.swing.JFrame {
      * @param evt event action
      */
     private void mnuInventoryLocationFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInventoryLocationFindActionPerformed
+        CloseReadMe();
         // check and see if any other forms are open
         int frmCount = jDesktopPane1.getComponentCount();
-        if (frmCount > 0) 
-        {
+        if (frmCount > 0) {
             JOptionPane.showMessageDialog(null, "This application supports only one active form, you must close all open forms first", "Problem", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         FindInventoryLocation();
     }//GEN-LAST:event_mnuInventoryLocationFindActionPerformed
-   /**
-    * Present the Find Inventory Location screen
-    */
+    /**
+     * Present the Find Inventory Location screen
+     */
     public void FindInventoryLocation() {
         if (frmFindInventoryLocation == null || frmFindInventoryLocation.isClosed()) {
             frmFindInventoryLocation = new FrmInventoryLocationFind();
@@ -174,6 +189,7 @@ public class FrmMain extends javax.swing.JFrame {
         frmFindInventoryLocation.setVisible(true);
         frmFindInventoryLocation.setClosable(true);
     }
+
     public void FindStockItem() {
         if (frmFindStockItem == null || frmFindStockItem.isClosed()) {
             frmFindStockItem = new FrmStockItemFind();
@@ -190,10 +206,10 @@ public class FrmMain extends javax.swing.JFrame {
      * @param evt event action
      */
     private void mnuInventoryLocationAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuInventoryLocationAddActionPerformed
+        CloseReadMe();
         // check and see if any other forms are open
         int frmCount = jDesktopPane1.getComponentCount();
-        if (frmCount > 0) 
-        {
+        if (frmCount > 0) {
             JOptionPane.showMessageDialog(null, "This application supports only one active form, you must close all open forms first", "Problem", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -223,15 +239,14 @@ public class FrmMain extends javax.swing.JFrame {
      * @param evt event action
      */
     private void mnuStockItemAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuStockItemAddActionPerformed
+        CloseReadMe();
         // check and see if any other forms are open
         int frmCount = jDesktopPane1.getComponentCount();
-        if (frmCount > 0) 
-        {
+        if (frmCount > 0) {
             JOptionPane.showMessageDialog(null, "This application supports only one active form, you must close all open forms first", "Problem", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        
         if (frmStockItemEdit == null || frmStockItemEdit.isClosed()) {
             frmStockItemEdit = new FrmStockItemEdit(0);
             jDesktopPane1.add(frmStockItemEdit);
@@ -245,9 +260,9 @@ public class FrmMain extends javax.swing.JFrame {
      * @param evt event action
      */
     private void mnuStockItemFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuStockItemFindActionPerformed
+        CloseReadMe();
         int frmCount = jDesktopPane1.getComponentCount();
-        if (frmCount > 0) 
-        {
+        if (frmCount > 0) {
             JOptionPane.showMessageDialog(null, "This application supports only one active form, you must close all open forms first", "Problem", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -267,13 +282,15 @@ public class FrmMain extends javax.swing.JFrame {
     private void mnuCreateSampleStockDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCreateSampleStockDataActionPerformed
         StockItemCreateSampleData stockItemTestData = new StockItemCreateSampleData();
     }//GEN-LAST:event_mnuCreateSampleStockDataActionPerformed
-/**
- * Present process request for read me form
- * @param evt event action
- */
+    /**
+     * Present process request for read me form
+     *
+     * @param evt event action
+     */
     private void mnuReadMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuReadMeActionPerformed
         PresentReadMe();
     }
+
     /**
      * Present the read me form
      */
@@ -283,12 +300,18 @@ public class FrmMain extends javax.swing.JFrame {
             jDesktopPane1.add(frmReadMe);
         }
         frmReadMe.setVisible(true);
-        frmReadMe.setClosable(true); 
-        
+        frmReadMe.setClosable(true);
+    }
+
+    private void CloseReadMe() {
+        if (frmReadMe != null && frmReadMe.isClosed() == false) {
+            frmReadMe.dispose();
+        }
     }//GEN-LAST:event_mnuReadMeActionPerformed
     /**
      * Present the Edit Inventory Location edit form
-     * @param inventoryLocationId 
+     *
+     * @param inventoryLocationId
      */
     void EditInventoryLocation(int inventoryLocationId) {
         // Close the Find form

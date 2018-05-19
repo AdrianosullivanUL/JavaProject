@@ -1,7 +1,22 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Formal Specification
+---------------------------------
+1 Task Formulation
+
+2 Specification
+   Input: N/A, Output: N/A
+
+3 Problem Solving
+
+4 Top Down Construction
+
+5 Bottom-Up Verification
+
+6 Coding
+See coding in this class
+
+7 Testing
+
  */
 package exercise05.pkg7;
 
@@ -10,14 +25,14 @@ import javax.swing.JOptionPane;
 /**
  * Class StockItem CreateSampleData used enter data into StockItemCollection
  *
- * @author Mary Cronin
+ * @author Mary Cronin 0510661
  */
 public class StockItemCreateSampleData {
 
     private StockItemCollection stockCollection; //creates an object of type StockItemCollection
 
     /**
-     * Loading testdata into stockCollection, using a Try Catch block to handle
+     * Loading test data into stockCollection, using a Try Catch block to handle
      * exception
      */
     public StockItemCreateSampleData() {

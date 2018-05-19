@@ -1,14 +1,29 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Formal Specification
+---------------------------------
+1 Task Formulation
+
+2 Specification
+   Input: N/A, Output: N/A
+
+3 Problem Solving
+
+4 Top Down Construction
+
+5 Bottom-Up Verification
+
+6 Coding
+See coding in this class
+
+7 Testing
+
  */
 package exercise05.pkg7;
 
 /**
- *
- * @author Adrian
- */
+* Present an form with an explanation on how to use the application on startup
+* @author Adrian O'Sullivan Student ID 16230124 
+*/
 public class FrmReadMe extends javax.swing.JInternalFrame {
 
     /**
@@ -26,7 +41,14 @@ public class FrmReadMe extends javax.swing.JInternalFrame {
                 + "<br><h2>How to use</h2><br>" 
                 + "1) Select Help and then use the Create options to create new sample data<br>"
                 + "2) Select Stock Item Find or Add module to maintain the list of stock items including price<br>" 
-                + "3) Select the Inventory Location Find or add module to maintain the locations and the stock contained in each<br>");
+                + "3) Select the Inventory Location Find or add module to maintain the locations and the stock contained in each<br>"
+                + "<h2>Sorting</h2>"
+                + "We have implemented two different Sort solutions:<br>"
+                + "   1) The Stock Item Find screen implements a bubble sort to allow the user sort by Part number<br>"
+                + "   2) The Location Inventory Find screen uses the collections.sort function with comparitors to offer<bv>"
+                + "      the user an options for two different sort types.<br>"
+                );
+        
     }
 
     /**
@@ -47,16 +69,13 @@ public class FrmReadMe extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(lblText, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addComponent(lblText, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblText, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+            .addComponent(lblText, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
 
         pack();

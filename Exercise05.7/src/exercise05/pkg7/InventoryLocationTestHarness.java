@@ -1,13 +1,29 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Formal Specification
+---------------------------------
+1 Task Formulation
+
+2 Specification
+   Input: N/A, Output: N/A
+
+3 Problem Solving
+
+4 Top Down Construction
+
+5 Bottom-Up Verification
+
+6 Coding
+See coding in this class
+
+7 Testing
+
  */
 package exercise05.pkg7;
 
 /**
- *
- * @author 501958452
+ * Execute test plan for the Inventory Location Collection
+ * @author Adrian O'Sullivan Student ID 16230124 
+ * 
  */
 class InventoryLocationTestHarness {
 
@@ -22,7 +38,11 @@ class InventoryLocationTestHarness {
     private int stockItemId;
     private int quantity;
      */
-    InventoryLocationTestHarness() {
+    void main(String[] args)
+    {
+        ExecuteTests();
+    }
+    private void ExecuteTests() {
         try {
 
             inventoryCollection = new InventoryLocationCollection();
