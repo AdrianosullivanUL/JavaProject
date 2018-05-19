@@ -31,14 +31,14 @@ public class FrmReadMe extends javax.swing.JInternalFrame {
      */
     public FrmReadMe() {
         initComponents();
-        lblText.setText("<html><h1>Introduction</h1><br>" 
+        lblText.setText("<html><h1>Introduction</h1>" 
                 + "This application is designed to support stock control for a small warehouse or shop." 
                 + " <br>It is designed as a single user solution with data stored locally in files.<br>" 
                 + "The system has two main modules, a Stock Item module to manage the items that are being" 
                 + " controlled and an Inventory Location Module to manage the <br> locations in a simple " 
                 + "section/aisle/rack/shelf model where only one item can be stored in a location. <br>" 
                 + "The location module is used to record what stock and how much is stored in each location. <br>" 
-                + "<br><h2>How to use</h2><br>" 
+                + "<br><h2>How to use</h2>" 
                 + "1) Select Help and then use the Create options to create new sample data<br>"
                 + "2) Select Stock Item Find or Add module to maintain the list of stock items including price<br>" 
                 + "3) Select the Inventory Location Find or add module to maintain the locations and the stock contained in each<br>"
@@ -47,6 +47,10 @@ public class FrmReadMe extends javax.swing.JInternalFrame {
                 + "   1) The Stock Item Find screen implements a bubble sort to allow the user sort by Part number<br>"
                 + "   2) The Location Inventory Find screen uses the collections.sort function with comparitors to offer<bv>"
                 + "      the user an options for two different sort types.<br>"
+                + "<h2>Executing Test Plans</h2>"
+                + "You can execute the test plans for this application by running the following modules:<br>"
+                + "   1) InventoryLocationTestHarness<br>"
+                + "   2) StockItemTestHarness<br>"
                 );
         
     }
@@ -71,11 +75,11 @@ public class FrmReadMe extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lblText, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblText, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+            .addComponent(lblText, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
         );
 
         pack();

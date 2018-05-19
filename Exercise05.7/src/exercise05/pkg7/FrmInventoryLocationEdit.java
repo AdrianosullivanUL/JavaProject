@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
 /**
  * Form to allow user to add/edit an Inventory Location
  *
- * @author Adrian O'Sullivan Student ID 16230124 
+ * @author Adrian O'Sullivan Student ID 16230124
  */
 public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
 
@@ -55,7 +55,11 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
         // Decide on Add or Edit form presentation, 0 is add
         if (inventoryLocationId == 0) {
             this.title = "Add new Inventory Location";
-            editInventoryLocation = new InventoryLocation(0, 0, 0, 0, 0);
+            try {
+                editInventoryLocation = new InventoryLocation(0, 0, 0, 0, 0);
+            } catch (ApplicationException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
             // Get the entry to edit
             while (inventoryCollection.moveToNextInventoryLocation()) {
@@ -68,16 +72,18 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
         }
         PopulateFormFields();
     }
-/**
- * Populate the form fields with the Inventory Item being added/edited
- */
+
+    /**
+     * Populate the form fields with the Inventory Item being added/edited
+     */
     private void PopulateFormFields() {
         PopulateStockItemDropdownList();
         PoplulateInventoryLocationFields();
     }
-/**
- * Populate the stock item dropdown list
- */
+
+    /**
+     * Populate the stock item dropdown list
+     */
     private void PopulateStockItemDropdownList() {
         cmbStockItem.addItem("");
         stockCollection.moveToHeadLocation();
@@ -86,9 +92,10 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
             cmbStockItem.addItem(stockItem.getPartNumber() + " - " + stockItem.getName());
         }
     }
-/**
- * Populate the Inventory Location fields from the entry being edited
- */
+
+    /**
+     * Populate the Inventory Location fields from the entry being edited
+     */
     private void PoplulateInventoryLocationFields() {
         this.txtSection.setText(Integer.toString(editInventoryLocation.getSection()));
         this.txtAisle.setText(Integer.toString(editInventoryLocation.getAisle()));
@@ -253,9 +260,11 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 /**
- * Handle the save request, if successful this stores the change and presents the find screen
- * @param evt event action
- */
+     * Handle the save request, if successful this stores the change and
+     * presents the find screen
+     *
+     * @param evt event action
+     */
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         try {
             int section = Integer.parseInt(this.txtSection.getText());
@@ -295,10 +304,11 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
-/**
- * Handle cancel request,return to the find screen
- * @param evt event action
- */
+    /**
+     * Handle cancel request,return to the find screen
+     *
+     * @param evt event action
+     */
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // return to the Inventory Find screen
         FrmMain frmMain = (FrmMain) this.getTopLevelAncestor();
@@ -307,6 +317,7 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
     /**
      * Get the selected stock item id
+     *
      * @return selected stock item id
      */
     private int getSelectedStockItem() {

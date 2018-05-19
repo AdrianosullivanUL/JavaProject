@@ -69,7 +69,10 @@ public class StockItem implements Serializable {
      *
      * @param StockItemId
      */
-    public void setStockItemId(int StockItemId) {
+    public void setStockItemId(int StockItemId) throws ApplicationException {
+        if (StockItemId < 0) {
+            throw new ApplicationException("System does not support negative stock item Id numbers");
+        }
         this.StockItemId = StockItemId;
     }
 
@@ -87,7 +90,10 @@ public class StockItem implements Serializable {
      *
      * @param PartNumber
      */
-    public void setPartNumber(int PartNumber) {
+    public void setPartNumber(int PartNumber) throws ApplicationException {
+        if (PartNumber < 0) {
+            throw new ApplicationException("System does not support negative part numbers");
+        }
         this.PartNumber = PartNumber;
     }
 
@@ -105,7 +111,10 @@ public class StockItem implements Serializable {
      *
      * @param Name
      */
-    public void setName(String Name) {
+    public void setName(String Name) throws ApplicationException {
+        if (Name.length() <= 0) {
+            throw new ApplicationException("You must give the stock item a name");
+        }
         this.Name = Name;
     }
 
@@ -141,7 +150,10 @@ public class StockItem implements Serializable {
      *
      * @param UnitPrice
      */
-    public void setUnitPrice(double UnitPrice) {
+    public void setUnitPrice(double UnitPrice) throws ApplicationException {
+        if (PartNumber < 0) {
+            throw new ApplicationException("Nothing in life is free, the price must be positive");
+        }
         this.UnitPrice = UnitPrice;
     }
 

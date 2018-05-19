@@ -45,10 +45,97 @@ class InventoryLocationTestHarness {
     }
 
     private void ExecuteTests() {
+
+        TestInventorLocationClass();
+        TestInventorLocationCollectionClass();
+
+    }
+
+    private void TestInventorLocationClass() {
+        InventoryLocation inventoryLocation;
+        System.out.println("Inventory Class Testing");
+        System.out.println("_______________________");
+        System.out.println("Test #1 - Add a location without stock item");
+        try {
+            inventoryLocation = new InventoryLocation(9996, 6, 10, 15, 0, 1, 1);
+        } catch (ApplicationException ex) {
+            System.out.println("  **TEST FAIL: " + ex.getMessage());
+        }
+        System.out.println("  Test Passed");
+
+        System.out.println("Test #2 - Add a location with stock item");
+        try {
+            inventoryLocation = new InventoryLocation(9996, 6, 10, 15, 0);
+        } catch (ApplicationException ex) {
+            System.out.println("  **TEST FAIL: " + ex.getMessage());
+        }
+                System.out.println("  Test Passed");
+
+        System.out.println("Test #3 - Add a location with negative Id");
+        try {
+            inventoryLocation = new InventoryLocation(-1, 6, 10, 15, 0, 1, 1);
+        } catch (ApplicationException ex) {
+            System.out.println("  Pass: " + ex.getMessage());
+        }
+
+        System.out.println("Test #4 - Add a location with negative section");
+        try {
+            inventoryLocation = new InventoryLocation(9996, -1, 10, 15, 0, 1, 1);
+        } catch (ApplicationException ex) {
+            System.out.println("  Pass: " + ex.getMessage());
+        }
+        System.out.println("Test #5 - Add a location with negative aisle");
+        try {
+            inventoryLocation = new InventoryLocation(9996, 6, -10, 15, 0, 1, 1);
+        } catch (ApplicationException ex) {
+            System.out.println("  Pass: " + ex.getMessage());
+        }
+
+        System.out.println("Test #6 - Add a location with negative rack");
+        try {
+            inventoryLocation = new InventoryLocation(9996, 6, 10, -15, 0, 1, 1);
+        } catch (ApplicationException ex) {
+            System.out.println("  Pass: " + ex.getMessage());
+        }
+
+        System.out.println("Test #7 - Add a location with negative shelf");
+        try {
+            inventoryLocation = new InventoryLocation(9996, 6, 10, 15, -1, 1, 1);
+        } catch (ApplicationException ex) {
+            System.out.println("  Pass: " + ex.getMessage());
+        }
+
+        System.out.println("Test #8 - Add a location with negative stock item Id");
+        try {
+            inventoryLocation = new InventoryLocation(9996, 6, 10, 15, 0, -1, 1);
+        } catch (ApplicationException ex) {
+            System.out.println("  Pass: " + ex.getMessage());
+        }
+
+        System.out.println("Test #9 - Add a location with negative quantity");
+        try {
+            inventoryLocation = new InventoryLocation(9996, 6, 10, 15, 0, 1, -1);
+        } catch (ApplicationException ex) {
+            System.out.println("  Pass: " + ex.getMessage());
+        }
+        
+
+            System.out.println("Test #10 - Try to set a quantity with no part");
+            try {
+            inventoryLocation = new InventoryLocation(9996, 6, 10, 15, 0, 0, 1);
+            } catch (ApplicationException ex) {
+                System.out.println("  Pass: Test Description Try to set negative quantity");
+            }        
+
+    }
+
+    private void TestInventorLocationCollectionClass() {
         try {
             inventoryCollection = new InventoryLocationCollection();
-
             int inventoryCount = inventoryCollection.size();
+            System.out.println(" ");
+        System.out.println("Inventory Collection Class Testing");
+        System.out.println("__________________________________");            
 
             // add 5 valid rows
             System.out.println("Test #1 - Add 5 valid rows");
@@ -69,30 +156,15 @@ class InventoryLocationTestHarness {
             System.out.println("Test #3 - Try to delete a rown that does not exist");
             DeleteLocationTest(false, "Delete row that doesnt exist ", 9995);
 
-            // Update a row
-            System.out.println("Test #4 - Try to set a quantity with no part");
-            InventoryLocation inventoryLocation = GetLocation(9990);
-            try
-            {
-            inventoryLocation.setQuantity(1);
-            }
-            catch (ApplicationException ex)
-            {
-                System.out.println("  Pass: Test Description Try to set negative quantity");
-            }
-            
             // Add a stock row 
             System.out.println("Test #5 - Add a stock with quantity row");
-            AddNewLocationTest(true, "Add location with stock row", new InventoryLocation(9996, 6, 10, 15, 0,1,1));
-            
+            AddNewLocationTest(true, "Add location with stock row", new InventoryLocation(9996, 6, 10, 15, 0, 1, 1));
+
             // Add a negative stock row 
             System.out.println("Test #6 - Add a negative quantity row");
-            try
-            {
-            AddNewLocationTest(false, "Add location with negative quantity row", new InventoryLocation(9994, 5, 10, 15, 0,1,-1));
-                    }
-            catch (ApplicationException ex)
-            {
+            try {
+                AddNewLocationTest(false, "Add location with negative quantity row", new InventoryLocation(9994, 5, 10, 15, 0, 1, -1));
+            } catch (ApplicationException ex) {
                 System.out.println("  Pass: Test Description Try to set negative quantity");
             }
 
@@ -103,8 +175,9 @@ class InventoryLocationTestHarness {
             DeleteLocationTest(true, "Delete row ", 9992);
             DeleteLocationTest(true, "Delete row ", 9993);
             DeleteLocationTest(true, "Delete row ", 9994);
-            if (Integer.compare(inventoryCount, inventoryCollection.size()) != 0) {
-                System.out.println("**TEST FAIL: delete 5 rows, count of rows does not match those added");
+            DeleteLocationTest(true, "Delete row ", 9996);
+            if (Integer.compare(inventoryCollection.size(), inventoryCount) != 0) {
+                System.out.println("**TEST FAIL: delete 5 rows, count of rows does not match those added (" + inventoryCollection.size() + " Vs " + inventoryCount + ")");
             }
 
         } catch (ApplicationException ex) {
