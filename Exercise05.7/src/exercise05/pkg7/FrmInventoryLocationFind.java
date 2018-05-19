@@ -126,11 +126,6 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblInventoryLocation.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblInventoryLocationMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(tblInventoryLocation);
 
         btnEditSelectedLocation.setText("Edit Selected Location");
@@ -216,17 +211,12 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEditSelectedLocationActionPerformed
 
     private void cmbSortItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSortItemStateChanged
-        // TODO add your handling code here:
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             String sortColumn = cmbSort.getSelectedItem().toString();
             inventoryCollection.sortBy(sortColumn);
             PopulateTable();
         }
     }//GEN-LAST:event_cmbSortItemStateChanged
-
-    private void tblInventoryLocationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblInventoryLocationMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblInventoryLocationMouseClicked
 
     private void btnDeleteSelectedLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteSelectedLocationActionPerformed
         int selectedInventoryLocationId = 0;

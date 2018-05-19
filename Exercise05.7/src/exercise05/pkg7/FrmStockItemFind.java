@@ -167,7 +167,6 @@ public class FrmStockItemFind extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortActionPerformed
-        // TODO add your handling code here:
         stockCollection.BubbleSort();
         PopulateTable();
 
@@ -179,7 +178,6 @@ public class FrmStockItemFind extends javax.swing.JInternalFrame {
      * @param evt
      */
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        // TODO add your handling code here:
         {
             int selectedStockItemId = 0;
             try {

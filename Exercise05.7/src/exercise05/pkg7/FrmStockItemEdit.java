@@ -189,7 +189,6 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
      * @param evt 
      */
     private void BtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSaveActionPerformed
-        // TODO add your handling code here:
         try {
             int partNumber = Integer.parseInt(this.txtPartNumber.getText());
             String stockName = this.txtStockName.getText();

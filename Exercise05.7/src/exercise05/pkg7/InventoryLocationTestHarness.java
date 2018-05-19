@@ -27,7 +27,7 @@ package exercise05.pkg7;
  */
 class InventoryLocationTestHarness {
 
-    InventoryLocationCollection inventoryCollection;
+    InventoryLocationCollection inventoryCollection
 
     /*    
     private int inventoryLocationId;
@@ -38,14 +38,15 @@ class InventoryLocationTestHarness {
     private int stockItemId;
     private int quantity;
      */
-    void main(String[] args)
-    {
-        ExecuteTests();
+public static void main(String args[])
+      {
+          InventoryLocationTestHarness inventoryLocationTestHarness = new InventoryLocationTestHarness();
+          inventoryLocationTestHarness.ExecuteTests();
     }
     private void ExecuteTests() {
         try {
 
-            inventoryCollection = new InventoryLocationCollection();
+            
             int inventoryCount = inventoryCollection.size();
 
             // add 5 valid rows
@@ -84,7 +85,7 @@ class InventoryLocationTestHarness {
         }
     }
 
-    private void AddNewLocationTest(boolean ExpectPassOutcome, String testDescription, InventoryLocation inventoryLocation) {
+    private void AddNewLocationTest(boolean ExpectPassOutcome, String testDescription, InventoryLocation inventoryLocation) throws ApplicationException {
 
         try {
             inventoryCollection.addInventoryLocation(inventoryLocation);
@@ -98,7 +99,7 @@ class InventoryLocationTestHarness {
 
     }
 
-    private void DeleteLocationTest(boolean ExpectPassOutcome, String testDescription, int inventoryLocationId) {
+    private void DeleteLocationTest(boolean ExpectPassOutcome, String testDescription, int inventoryLocationId) throws ApplicationException{
         try {
             inventoryCollection.deleteInventoryLocation(inventoryLocationId);
 
@@ -126,7 +127,7 @@ class InventoryLocationTestHarness {
         }
     }
     
-    private InventoryLocation GetLocation(int InventoryLocationId) {
+    private InventoryLocation GetLocation(int InventoryLocationId) throws ApplicationException{
         InventoryLocation inventoryLocation = null;
 
         inventoryCollection.moveToHeadLocation();

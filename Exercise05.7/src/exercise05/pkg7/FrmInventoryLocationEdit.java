@@ -159,11 +159,6 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
         txtAisle.setText("jTextField2");
         txtAisle.setMinimumSize(new java.awt.Dimension(100, 25));
         txtAisle.setPreferredSize(new java.awt.Dimension(100, 25));
-        txtAisle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAisleActionPerformed(evt);
-            }
-        });
 
         txtRack.setText("jTextField3");
         txtRack.setMinimumSize(new java.awt.Dimension(100, 25));
@@ -257,10 +252,6 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtAisleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAisleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAisleActionPerformed
 /**
  * Handle the save request, if successful this stores the change and presents the find screen
  * @param evt event action
