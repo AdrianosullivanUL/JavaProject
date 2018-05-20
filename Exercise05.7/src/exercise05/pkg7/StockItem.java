@@ -1,22 +1,88 @@
 /*
 Formal Specification
 ---------------------------------
-1 Task Formulation
+1 What an ADT should do: Creates a Stock Item and Provide methods 
+to retrieve values of attributes (accessors) and to modify (mutators)
+Specifications
+StockItem():initialise the variables of the object stock Item
+pre : None
+post :Stock item created
 
-2 Specification
-   Input: N/A, Output: N/A
+getStockItemId() provide access to the value of variable  StockID
+pre :None
+post : Access to StockID
 
-3 Problem Solving
+setStockItemId(int StockItemId) -mutator for StockID, assign values to the variables 
+stockId of object stockItem.
+pre: StockItemiD > 0
+post: value is assigned to StockId
 
-4 Top Down Construction
+getPartNumber() provide access to the value of variable PartNumber
+pre :None
+post : Access to getPartNumber
 
-5 Bottom-Up Verification
+setPartNumber(int PartNumber) -mutator for PartNumber, assign values to the variables 
+PartNumber of object stockItem.
+pre: PartNumber > 0
+post: value is assigned to PartNumber
 
-6 Coding
-See coding in this class
+getName() provide access to the value of variable Name
+pre :None
+post : Access to Name
 
-7 Testing
+setName(String Name) -mutator for Name, assign values to the variables 
+Name of object stockItem.
+pre: Name is not null
+post: value is assigned to Name
 
+getDescription() provide access to the value of variable Description
+pre :None
+post : Access to Description
+
+setDescription(String Description) -mutator for Description, assign values to the variable
+Description of object stockItem.
+pre: Description is not null
+post: value is assigned to Description
+
+getUnitPrice() provide access to the value of variable UnitPrice
+pre :None
+post : Access to UnitPrice
+
+setUnitPrice(double UnitPrice) -mutator for UnitPrice, assign values to the variable
+UnitPrice of object stockItem.
+pre: nitPrice > 0.0
+post: value is assigned to UnitPrice
+
+toString(): Creates a string representation of a StockItem
+Pre:  object is a valid stockItem
+Post:The stockItem object remains unchanged.
+
+2. User’s View of Services
+    public StockItem(int StockItemId, int PartNunber, String Name, String Description, double UnitPrice) throws ApplicationException{
+    public int getStockItemId() 
+    public void setStockItemId(int StockItemId) 
+    public int getPartNumber() 
+    public void setPartNumber(int PartNumber) 
+    public String getName() 
+    public void setName(String Name) 
+    public String getDescription() 
+    public void setDescription(String Description)
+    public double getUnitPrice() 
+    public void setUnitPrice(double UnitPrice) 
+    public String toString() 
+
+3. Internal Data Representation
+    Access  type    Variable
+    private int     StockItemId
+    private int     PartNumber
+    private String  Name
+    private String  Description
+    private double  UnitPrice
+
+4. Remaining/Auxiliary Definitions
+    None
+
+5. Coding
  */
 package exercise05.pkg7;
 

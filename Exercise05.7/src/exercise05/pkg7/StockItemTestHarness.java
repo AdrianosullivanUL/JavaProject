@@ -121,6 +121,7 @@ class StockItemTestHarness {
             System.out.println("Test #3 - Try to delete a row that does not exist");
             System.out.println("___________________________________________________");
             DeleteStockItemTest(true, "Delete row that doesnt exist ", 3);
+            DeleteStockItemTest(false, "Delete row that doesnt exist ", 7);
 
             // Add a negative stock row 
             System.out.println("_____________________________________");
