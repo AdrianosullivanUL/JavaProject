@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
 /**
  * Multi Document Interface Container form for this application
  *
- * @author Adrian O'Sullivan Student ID 16230124 
+ * @author Adrian O'Sullivan Student ID 16230124
  */
 public class FrmMain extends javax.swing.JFrame {
 
@@ -190,6 +190,9 @@ public class FrmMain extends javax.swing.JFrame {
         frmFindInventoryLocation.setClosable(true);
     }
 
+    /**
+     * Present the Find Stock Item screen
+     */
     public void FindStockItem() {
         if (frmFindStockItem == null || frmFindStockItem.isClosed()) {
             frmFindStockItem = new FrmStockItemFind();
@@ -303,6 +306,9 @@ public class FrmMain extends javax.swing.JFrame {
         frmReadMe.setClosable(true);
     }
 
+    /**
+     * Close the readme form if it's open
+     */
     private void CloseReadMe() {
         if (frmReadMe != null && frmReadMe.isClosed() == false) {
             frmReadMe.dispose();

@@ -68,6 +68,7 @@ public class FrmReadMe extends javax.swing.JInternalFrame {
                 + "You can execute the test plans for this application by running the following modules:<br>"
                 + "   1) InventoryLocationTestHarness<br>"
                 + "   2) StockItemTestHarness<br>"
+                + "   2) GeneralTestHarness<br>"
                 );
         
     }

@@ -25,7 +25,7 @@ Variable Types
   Message String
 
 7 Testing
-
+See GeneralTestHarness class for test cases
 
  */
 package exercise05.pkg7;

@@ -34,15 +34,16 @@ attribute, do not allow unless a stock item is populated
 
 5 Bottom-Up Verification
 Create new Stock Item
-Location 1, Aisle 1, Shelf 1, Rack 1, Expected Result: Valid entry
-Location 0, Aisle 0, Shelf 0, Rack 0, Stock Item Id 0, Quantity 0 Expected Result: Valid entry
-Location -1, Aisle 0, Shelf 0, Rack 0, Stock Item Id 0, Quantity 0 Expected Result: Invalid entry
-Location 0, Aisle -1, Shelf 0, Rack 0, Stock Item Id 0, Quantity 0 Expected Result: Invalid entry
-Location 0, Aisle 0, Shelf -1, Rack 0, Stock Item Id 0, Quantity 0 Expected Result: Invalid entry
-Location 0, Aisle 0, Shelf 0, Rack -1, Stock Item Id 0, Quantity 0 Expected Result: Invalid entry
-Location 0, Aisle 0, Shelf 0, Rack 0, Stock Item Id -1, Quantity 0 Expected Result: Invalid entry
-Location 0, Aisle 0, Shelf 0, Rack 0, Stock Item Id 0, Quantity -1 Expected Result: Invalid entry
-Location 0, Aisle 0, Shelf 0, Rack 0, Stock Item Id 0, Quantity 1 Expected Result: Invalid entry
+Location 1, Section 0, Aisle 1, Shelf 1, Rack 1, Expected Result: Valid entry
+Location 0, Section 0,Aisle 0, Shelf 0, Rack 0, Stock Item Id 0, Quantity 0 Expected Result: Valid entry
+Location -1, Section 0,Aisle 0, Shelf 0, Rack 0, Stock Item Id 0, Quantity 0 Expected Result: Invalid entry
+Location 0, Section -1,Aisle 0, Shelf 0, Rack 0, Stock Item Id 0, Quantity 0 Expected Result: Invalid entry
+Location 0, Section 0,Aisle -1, Shelf 0, Rack 0, Stock Item Id 0, Quantity 0 Expected Result: Invalid entry
+Location 0, Section 0,Aisle 0, Shelf -1, Rack 0, Stock Item Id 0, Quantity 0 Expected Result: Invalid entry
+Location 0, Section 0,Aisle 0, Shelf 0, Rack -1, Stock Item Id 0, Quantity 0 Expected Result: Invalid entry
+Location 0, Section 0,Aisle 0, Shelf 0, Rack 0, Stock Item Id -1, Quantity 0 Expected Result: Invalid entry
+Location 0, Section 0,Aisle 0, Shelf 0, Rack 0, Stock Item Id 0, Quantity -1 Expected Result: Invalid entry
+Location 0, Section 0,Aisle 0, Shelf 0, Rack 0, Stock Item Id 0, Quantity 1 Expected Result: Invalid entry
 
 
 6 Coding
