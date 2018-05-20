@@ -12,8 +12,9 @@ package exercise05.pkg7;
  *
  */
 class StockItemTestHarness {
+
     StockItemCollection stockCollection;
-    
+
     public static void main(String args[]) {
         StockItemTestHarness stockItemTestHarness = new StockItemTestHarness();
         stockItemTestHarness.ExecuteTests();
@@ -28,11 +29,12 @@ class StockItemTestHarness {
 
     /**
      * Method to test incorrect entries into the variables within a StockITme
-     * negative StockID, negative PartNumber, Blank StockName
-     * Blank Description and No Unit Price, Check for exceptions
+     * negative StockID, negative PartNumber, Blank StockName Blank Description
+     * and No Unit Price, Check for exceptions
      */
     private void TestStockItemClass() {
         StockItem stockItem;
+        System.out.println("_______________________");
         System.out.println("Inventory Class Testing");
         System.out.println("_______________________");
         System.out.println("Test #1 - Add a stock item");
@@ -42,52 +44,59 @@ class StockItemTestHarness {
             System.out.println("  **TEST FAIL: " + ex.getMessage());
         }
         System.out.println("  Test Passed");
-
+        System.out.println("__________________________________");
         System.out.println("Test #2 - Negative Stock Item Id");
+        System.out.println("__________________________________");
         try {
             stockItem = new StockItem(-1, 99999, "Test Name", "Test Desc", 1.00);
         } catch (ApplicationException ex) {
             System.out.println("  Pass: " + ex.getMessage());
         }
-
+        System.out.println("__________________________________");
         System.out.println("Test #3 - Negative Part Number Id");
+        System.out.println("__________________________________");
         try {
             stockItem = new StockItem(9990, -1, "Test Name", "Test Desc", 1.00);
         } catch (ApplicationException ex) {
             System.out.println("  Pass: " + ex.getMessage());
         }
-        
+        System.out.println("___________________________");
         System.out.println("Test #4 - Blank stock name");
+        System.out.println("___________________________");
         try {
             stockItem = new StockItem(9990, 9998, "", "Test Desc", 1.00);
         } catch (ApplicationException ex) {
             System.out.println("  Pass: " + ex.getMessage());
-        } 
+        }
+        System.out.println("____________________________");
         System.out.println("Test #5 - Blank description");
+        System.out.println("____________________________");
         try {
             stockItem = new StockItem(9990, 9998, "Test Name", "", 1.00);
         } catch (ApplicationException ex) {
             System.out.println("  Pass: " + ex.getMessage());
-        }  
-        
+        }
+        System.out.println("______________________________");
         System.out.println("Test #6 - Negative unit price");
+        System.out.println("______________________________");
         try {
-            stockItem = new StockItem(9990, 9998, "Test Name", "Test Desc",-1.0);
+            stockItem = new StockItem(9990, 9998, "Test Name", "Test Desc", -1.0);
         } catch (ApplicationException ex) {
             System.out.println("  Pass: " + ex.getMessage());
-        }        
+        }
     }
-/**
- * Method to test methods with Stock Item Collection
- */
+
+    /**
+     * Method to test methods with Stock Item Collection
+     */
     private void TestStockItemCollectionClass() {
-   
-     try {
+
+        try {
             stockCollection = new StockItemCollection();
             int stockCount = stockCollection.size();
             System.out.println(" ");
-        System.out.println("Stock Collection Class Testing");
-        System.out.println("__________________________________");            
+            System.out.println("Stock Collection Class Testing");
+            System.out.println("__________________________________");
 
             // add 5 valid rows
             System.out.println("Test #1 - Add 5 valid rows");
@@ -96,36 +105,42 @@ class StockItemTestHarness {
             AddNewStockItemTest(true, "Add valid record", new StockItem(3, 2, "Test2", "C", 3));
             AddNewStockItemTest(true, "Add valid record", new StockItem(4, 1, "Test1", "D", 2));
             AddNewStockItemTest(true, "Add valid record", new StockItem(5, 2, "Test2", "E", 3));
-            
+
             if (Integer.compare(stockCount + 5, stockCollection.size()) != 0) {
                 System.out.println("**TEST FAIL: add of 5 rows, count of rows does not match those added");
             }
 
             // Add a duplicate row
+            System.out.println("______________________________");
             System.out.println("Test #2 - Add a duplicated row");
+            System.out.println("______________________________");
             AddNewStockItemTest(false, "Add a duplicate part number", new StockItem(1, 1, "Test", "A", 1));
 
             // delete a row that doesnt exist
-            System.out.println("Test #3 - Try to delete a rown that does not exist");
-            DeleteStockItemTest(false, "Delete row that doesnt exist ", 5);
+            System.out.println("___________________________________________________");
+            System.out.println("Test #3 - Try to delete a row that does not exist");
+            System.out.println("___________________________________________________");
+            DeleteStockItemTest(true, "Delete row that doesnt exist ", 3);
 
             // Add a negative stock row 
+            System.out.println("_____________________________________");
             System.out.println("Test #6 - Add a negative quantity row");
+            System.out.println("_____________________________________");
             try {
                 AddNewStockItemTest(false, "Add location with negative quantity row", new StockItem(1, 1, "Test", "A", -1));
             } catch (ApplicationException ex) {
                 System.out.println("  Pass: Test Description Try to set negative quantity");
             }
-
             // Delete all test rows
+            System.out.println("_____________________________");
             System.out.println("Test #7 - Delete 5 test rows");
+            System.out.println("_____________________________");
             DeleteStockItemTest(true, "Delete row ", 1);
             DeleteStockItemTest(true, "Delete row ", 2);
             DeleteStockItemTest(true, "Delete row ", 3);
             DeleteStockItemTest(true, "Delete row ", 4);
             DeleteStockItemTest(true, "Delete row ", 5);
 
- 
             if (Integer.compare(stockCollection.size(), stockCount) != 0) {
                 System.out.println("**TEST FAIL: delete 5 rows, count of rows does not match those added (" + stockCollection.size() + " Vs " + stockCount + ")");
             }
@@ -142,7 +157,7 @@ class StockItemTestHarness {
             if (ExpectPassOutcome == true) {
                 System.out.println("  Pass: Test Description " + testDescription + " Added:" + stockItem.toString());
             } else {
-                System.out.println("**TEST FAIL: Test Description " + testDescription + " Added:" + stockItem.toString());
+                System.out.println("**TEST FAIL: Test Description " + testDescription + "< Not Add > :\n" + stockItem.toString());
             }
         } catch (ApplicationException ex) {
             if (ExpectPassOutcome == false) {
