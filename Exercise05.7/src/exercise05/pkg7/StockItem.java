@@ -159,5 +159,13 @@ public class StockItem implements Serializable {
         }
         this.UnitPrice = UnitPrice;
     }
+    public String toString() {
+        return "Stock id " + StockItemId
+                + " Part Number " + PartNumber
+                + " Stock Name " + Name
+                + " Stock Description" + Description
+                + " Unit Price " + UnitPrice;
+             
+    }
 
 }

@@ -27,8 +27,9 @@ class StockItemTestHarness {
     }
 
     /**
-     * Method to test Adding,negative StockID,negative PartNumber, Blank StockName
-     * Blank Description and No Unit Price
+     * Method to test incorrect entries into the variables within a StockITme
+     * negative StockID, negative PartNumber, Blank StockName
+     * Blank Description and No Unit Price, Check for exceptions
      */
     private void TestStockItemClass() {
         StockItem stockItem;
@@ -76,7 +77,9 @@ class StockItemTestHarness {
             System.out.println("  Pass: " + ex.getMessage());
         }        
     }
-
+/**
+ * Method to test methods with Stock Item Collection
+ */
     private void TestStockItemCollectionClass() {
    
      try {
