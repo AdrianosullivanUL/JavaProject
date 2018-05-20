@@ -80,42 +80,47 @@ class StockItemTestHarness {
     private void TestStockItemCollectionClass() {
    
      try {
-            StockItemCollection stockCollection = new StockItemCollection();
+            stockCollection = new StockItemCollection();
             int stockCount = stockCollection.size();
             System.out.println(" ");
         System.out.println("Stock Collection Class Testing");
         System.out.println("__________________________________");            
 
             // add 5 valid rows
-            System.out.println("Test #1 - Add 3 valid rows");
-            AddNewStockItemTest(true, "Add valid record", new StockItem(9990, 99990, "Test", "A", 1));
-            AddNewStockItemTest(true, "Add valid record", new StockItem(9991, 99991, "Test1", "B", 2));
-            AddNewStockItemTest(true, "Add valid record", new StockItem(9992, 99992, "Test2", "C", 3));
+            System.out.println("Test #1 - Add 5 valid rows");
+            AddNewStockItemTest(true, "Add valid record", new StockItem(1, 1, "Test", "A", 1));
+            AddNewStockItemTest(true, "Add valid record", new StockItem(2, 1, "Test1", "B", 2));
+            AddNewStockItemTest(true, "Add valid record", new StockItem(3, 2, "Test2", "C", 3));
+            AddNewStockItemTest(true, "Add valid record", new StockItem(4, 1, "Test1", "D", 2));
+            AddNewStockItemTest(true, "Add valid record", new StockItem(5, 2, "Test2", "E", 3));
+            
             if (Integer.compare(stockCount + 5, stockCollection.size()) != 0) {
                 System.out.println("**TEST FAIL: add of 5 rows, count of rows does not match those added");
             }
 
             // Add a duplicate row
             System.out.println("Test #2 - Add a duplicated row");
-            AddNewStockItemTest(false, "Add a duplicate part number", new StockItem(9993, 99990, "Test", "A", 1));
+            AddNewStockItemTest(false, "Add a duplicate part number", new StockItem(1, 1, "Test", "A", 1));
 
             // delete a row that doesnt exist
             System.out.println("Test #3 - Try to delete a rown that does not exist");
-            DeleteStockItemTest(false, "Delete row that doesnt exist ", 9995);
+            DeleteStockItemTest(false, "Delete row that doesnt exist ", 5);
 
             // Add a negative stock row 
             System.out.println("Test #6 - Add a negative quantity row");
             try {
-                AddNewStockItemTest(false, "Add location with negative quantity row", new StockItem(9993, 99993, "Test", "A", -1));
+                AddNewStockItemTest(false, "Add location with negative quantity row", new StockItem(1, 1, "Test", "A", -1));
             } catch (ApplicationException ex) {
                 System.out.println("  Pass: Test Description Try to set negative quantity");
             }
 
             // Delete all test rows
             System.out.println("Test #7 - Delete 5 test rows");
-            DeleteStockItemTest(true, "Delete row ", 9990);
-            DeleteStockItemTest(true, "Delete row ", 9991);
-            DeleteStockItemTest(true, "Delete row ", 9992);
+            DeleteStockItemTest(true, "Delete row ", 1);
+            DeleteStockItemTest(true, "Delete row ", 2);
+            DeleteStockItemTest(true, "Delete row ", 3);
+            DeleteStockItemTest(true, "Delete row ", 4);
+            DeleteStockItemTest(true, "Delete row ", 5);
 
  
             if (Integer.compare(stockCollection.size(), stockCount) != 0) {
