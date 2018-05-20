@@ -291,12 +291,34 @@ public class StockItemCollection {
     }
 
     /**
-     * Method for Bubblesort, sorting algorithm that repeatedly steps through tockStore 
-     * comparing each pair of adjacent stock PartNumbers and swaping them if they 
-     * are in the wrong order.
+     * 1)Name Of Sorting Algorithm :Bubblesort, 
+     * 2) Description of the operation of your selected algorithm-
+     * Sorting algorithm that repeatedly steps through stockStore comparing each pair 
+     * of adjacent stock PartNumbers and swaping them if they are in the wrong order.
+     * 3)pseudocode for your sorting algorithm
+     * BubbleSort()
+     * Create temp variable
+     *      exception try catch for valid list
+     *      Outer loop for x= 1 to size of stockStore - 1 
+     *         Inner Loop for i=0 to size of stockstore - 1
+     *            check if the partnumber of stockstore (i)  is greater than  partnumber of stockstore(i+1)
+     *                      swap by doing toe followint(
+     *                      make temp = partnumber of stockstore (i)
+     *                      make paetnumber of stockstore (i) = to partnumber of Stockstore(i+1)
+     *                      make partnumber of stockstore ((i+1) =  temp)
+     *              End if 
+     *          next i loop
+     *      next x loop
+     * 4) Efficiency of Sorting Algorithm in O notation
+     * In Bubble Sort, n-1 comparisons will be done in the 1st pass, 
+     * n-2 in 2nd pass, n-3 in 3rd pass and so on.
+     * The total number of comparisons will be= (n-1) + (n-2) + (n-3) + ..... + 3 + 2 + 1
+     * Sum = n(n-1)/2
+     * =O(n^2)
      * 
      */
-    public void BubbleSort() {
+    
+      public void BubbleSort() {
         StockItem temp;
         try {
             int storeSize = stockStore.size();
@@ -306,7 +328,7 @@ public class StockItemCollection {
                 {
                     System.out.println("x " + x);
                     for (int i = 0; i < (storeSize - 1); i++) {
-                        System.out.println("bubble check i " + i + " " + stockStore.get(i).getPartNumber() + " ? " + stockStore.get(i + 1).getPartNumber());
+                        //System.out.println("bubble check i " + i + " " + stockStore.get(i).getPartNumber() + " ? " + stockStore.get(i + 1).getPartNumber());
                         if (stockStore.get(i).getPartNumber() > stockStore.get(i + 1).getPartNumber()) {
                             temp = stockStore.get(i);
                             stockStore.set(i, stockStore.get(i + 1));
