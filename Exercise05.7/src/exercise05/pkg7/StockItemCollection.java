@@ -20,6 +20,8 @@ Method to retrieve the current Stock Item as the user traverses the list
    Input: N/A, Output Current Stock Item
 Method to traverse up and down through the list 
    Input: N/A, Output Move result (true/false)
+Method to Sort the list using a bubble sort function 
+(***NOTE: See method description for a detailed explanation of this method)
 
 3 Problem Solving
 Problem has been solved using a combination of techniques which include:
@@ -294,7 +296,7 @@ public class StockItemCollection {
      * 1)Name Of Sorting Algorithm :Bubblesort, 
      * 2) Description of the operation of your selected algorithm-
      * Sorting algorithm that repeatedly steps through stockStore comparing each pair 
-     * of adjacent stock PartNumbers and swaping them if they are in the wrong order.
+     * of adjacent stock PartNumbers and swapping them if they are in the wrong order.
      * 3)pseudocode for your sorting algorithm
      * BubbleSort()
      * Create temp variable
@@ -302,10 +304,10 @@ public class StockItemCollection {
      *      Outer loop for x= 1 to size of stockStore - 1 
      *         Inner Loop for i=0 to size of stockstore - 1
      *            check if the partnumber of stockstore (i)  is greater than  partnumber of stockstore(i+1)
-     *                      swap by doing toe followint(
-     *                      make temp = partnumber of stockstore (i)
-     *                      make paetnumber of stockstore (i) = to partnumber of Stockstore(i+1)
-     *                      make partnumber of stockstore ((i+1) =  temp)
+     *                      swap by doing toe following(
+     *                         make temp = stockstore (i)
+     *                         make stockstore (i) = Stockstore(i+1)
+     *                         make stockstore ((i+1) =  temp)
      *              End if 
      *          next i loop
      *      next x loop
@@ -317,7 +319,6 @@ public class StockItemCollection {
      * =O(n^2)
      * 
      */
-    
       public void BubbleSort() {
         StockItem temp;
         try {
