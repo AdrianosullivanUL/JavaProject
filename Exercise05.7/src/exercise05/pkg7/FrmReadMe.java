@@ -2,20 +2,37 @@
 Formal Specification
 ---------------------------------
 1 Task Formulation
+Present useful information to the user on how to use & test this application 
 
 2 Specification
-   Input: N/A, Output: N/A
+   Input: N/A 
+   Output: HTML formatted text giving instructions on how to use
+           the application
 
 3 Problem Solving
+Present a swing form with instructions on how to use the application
 
 4 Top Down Construction
+Create HTML formatted text to present and then present it
 
 5 Bottom-Up Verification
+All text populated should be readable by the user with headings for the 
+following sections: Introduction, How To Use, Sorting & Test Execution
 
 6 Coding
-See coding in this class
+Language is Java 
+
+Variable Types
+  Swing label with HTML formatted text
 
 7 Testing
+ - Following sections are visible:
+      Introduction, How To Use, Sorting & Test Execution
+   result = OK
+ - All Text is present and readable, result = OK
+ - No spelling mistakes, result = OK
+ - Text Content makes sense and is easy to understand and follow, result = OK
+
 
  */
 package exercise05.pkg7;
@@ -35,13 +52,13 @@ public class FrmReadMe extends javax.swing.JInternalFrame {
                 + "This application is designed to support stock control for a small warehouse or shop." 
                 + " <br>It is designed as a single user solution with data stored locally in files.<br>" 
                 + "The system has two main modules, a Stock Item module to manage the items that are being" 
-                + " controlled and an Inventory Location Module to manage the <br> locations in a simple " 
+                + " controlled and an Inventory Location Module to manage the locations in a simple " 
                 + "section/aisle/rack/shelf model where only one item can be stored in a location. <br>" 
                 + "The location module is used to record what stock and how much is stored in each location. <br>" 
                 + "<br><h2>How to use</h2>" 
                 + "1) Select Help and then use the Create options to create new sample data<br>"
                 + "2) Select Stock Item Find or Add module to maintain the list of stock items including price<br>" 
-                + "3) Select the Inventory Location Find or add module to maintain the locations and the stock contained in each<br>"
+                + "3) Select the Inventory Location Find or Add module to maintain the locations and the stock contained in each<br>"
                 + "<h2>Sorting</h2>"
                 + "We have implemented two different Sort solutions:<br>"
                 + "   1) The Stock Item Find screen implements a bubble sort to allow the user sort by Part number<br>"
