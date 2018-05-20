@@ -6,9 +6,10 @@
 package exercise05.pkg7;
 
 /**
- * Execute Testing for the Stock Item Collection
+ * Class StockItemTast Harness to execute Testing for the Stock Item Collection
  *
  * @author Mary Cronin 0510661
+ *
  */
 class StockItemTestHarness {
     StockItemCollection stockCollection;
@@ -25,6 +26,10 @@ class StockItemTestHarness {
 
     }
 
+    /**
+     * Method to test Adding,negative StockID,negative PartNumber, Blank StockName
+     * Blank Description and No Unit Price
+     */
     private void TestStockItemClass() {
         StockItem stockItem;
         System.out.println("Inventory Class Testing");
@@ -56,11 +61,17 @@ class StockItemTestHarness {
             stockItem = new StockItem(9990, 9998, "", "Test Desc", 1.00);
         } catch (ApplicationException ex) {
             System.out.println("  Pass: " + ex.getMessage());
+        } 
+        System.out.println("Test #5 - Blank description");
+        try {
+            stockItem = new StockItem(9990, 9998, "Test Name", "", 1.00);
+        } catch (ApplicationException ex) {
+            System.out.println("  Pass: " + ex.getMessage());
         }  
         
-        System.out.println("Test #5 - Negative unit price");
+        System.out.println("Test #6 - Negative unit price");
         try {
-            stockItem = new StockItem(9990, 9998, "", "Test Desc", -1.00);
+            stockItem = new StockItem(9990, 9998, "Test Name", "Test Desc",-1.0);
         } catch (ApplicationException ex) {
             System.out.println("  Pass: " + ex.getMessage());
         }        

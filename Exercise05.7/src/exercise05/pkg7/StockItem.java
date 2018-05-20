@@ -132,7 +132,10 @@ public class StockItem implements Serializable {
      *
      * @param Description
      */
-    public void setDescription(String Description) {
+    public void setDescription(String Description)throws ApplicationException {
+        if (Description.length() <= 0) {
+            throw new ApplicationException("You must give the stock item a Description");
+        }
         this.Description = Description;
     }
 
@@ -151,7 +154,7 @@ public class StockItem implements Serializable {
      * @param UnitPrice
      */
     public void setUnitPrice(double UnitPrice) throws ApplicationException {
-        if (PartNumber < 0) {
+        if (UnitPrice < 0.00) {
             throw new ApplicationException("Nothing in life is free, the price must be positive");
         }
         this.UnitPrice = UnitPrice;
