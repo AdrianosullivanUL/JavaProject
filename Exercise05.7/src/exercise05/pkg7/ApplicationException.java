@@ -2,20 +2,30 @@
 Formal Specification
 ---------------------------------
 1 Task Formulation
+Implement an exception handler for the application
 
 2 Specification
-   Input: N/A, Output: N/A
+   Input: message describing the error, Output: N/A
 
 3 Problem Solving
+Use a customised constructor to extend the java exception class and handle 
+the events thrown by the applicaiton
 
 4 Top Down Construction
+Receive the message thrown and pass this to the Exception class message
+
 
 5 Bottom-Up Verification
+Pass a message to the constructor, result is message stored
 
 6 Coding
-See coding in this class
+Language is Java 
+
+Variable Types
+  Message String
 
 7 Testing
+
 
  */
 package exercise05.pkg7;
