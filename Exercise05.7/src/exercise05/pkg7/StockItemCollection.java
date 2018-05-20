@@ -1,25 +1,87 @@
 /*
 Formal Specification
 ---------------------------------
-1 Task Formulation
+1 What the ADT will do
 Implement a class that can store a collection of Stock Items and persist
 these to a file on the computers disk. This will include methods to traverse the 
 list, add, delete, update and sort entries along with a save method to persist
 the data to a disk file.
 
-2 Specification
-Constructor which retrieves the list from a file store
-   Input: N/A, Output: N/A
-Method to allow user save changes made to the list
-   Input: Updated Stock Item Identifier, Output: N/A
-Method to allow user to delete a stock item
-   Input: Stock Item Identifier to Delete, Output: N/A
-Method to allow user get the next Stock Item ID available
-   Input: N/A, Output Next available ID
-Method to retrieve the current Stock Item as the user traverses the list
-   Input: N/A, Output Current Stock Item
-Method to traverse up and down through the list 
-   Input: N/A, Output Move result (true/false)
+Specification
+
+StockItemCollection() - Constructor which retrieves the list from a file store
+pre: N/A,
+post: create object StockItemCollection
+
+saveStockItem(int updatedStockItemId)- save changes made to the Stock Item Collection
+pre :StockItemId exists
+post: updated object is saved
+
+validateUpdates(int updateStockItemId)- check stockItem has an existing StockItemId
+pre: stockItemId exists
+post:No change to object
+
+deleteStockItem(int stockItemId)- delete a stock item
+pre: Object is a valid stockItem
+post: Object deleted
+
+getNextID()-get the next Stock Item ID available
+pre: object is valid, next stockItemId Exists
+post:Output Next StockItemId, no change to object
+
+getCurrentStockItem()Returns current value of counter
+pre: valid object
+post: StockItem remains unchanged
+
+moveToTailLocation() move to tail of list
+pre: valid object
+post: no change to object,index is set to sise of list 
+
+moveToHeadLocation()
+pre: valid object
+post: no change to object,index is set-1
+
+moveToNextStockItem()-moveToPreviousStockItem()
+pre: Valid object
+post: no change to object return true if moved to next is successful
+
+moveToPreviousStockItem()-  move back on the list toprevious item
+pre: Valid object
+post: no change to object return true if moved back is successful
+
+bubb;esort() sort items in list by PartNumber
+pre:valid object
+post: sorted list
+
+2. User’s View of Services
+
+public StockItemCollection() 
+   public void loadStockCollection()
+   public void saveStockItem(int updatedStockItemId) throws ApplicationException 
+   public void deleteStockItem(int stockItemId) throws ApplicationException 
+   public int getNextID() 
+   public void addStockItem(StockItem stockItem) 
+   public StockItem getCurrentStockItem() 
+   public void moveToHeadLocation() 
+   public void moveToTailLocation() 
+   public int size() 
+   public boolean moveToNextStockItem() 
+   public boolean moveToPreviousStockItem() 
+   public void BubbleSort()
+
+3. Internal Data Representation
+    Access      Type                Name
+    private     List<StockItem>     stockStore; 
+    private     int                 currentEntryIndex = -1; 
+
+4. Remaining/Auxiliary Definitions
+    None
+
+5. Coding
+
+
+
+
 Method to Sort the list using a bubble sort function 
 (***NOTE: See method description for a detailed explanation of this method)
 
@@ -304,7 +366,7 @@ public class StockItemCollection {
      *      Outer loop for x= 1 to size of stockStore - 1 
      *         Inner Loop for i=0 to size of stockstore - 1
      *            check if the partnumber of stockstore (i)  is greater than  partnumber of stockstore(i+1)
-     *                      swap by doing toe following(
+     *                      swap by doing the following(
      *                         make temp = stockstore (i)
      *                         make stockstore (i) = Stockstore(i+1)
      *                         make stockstore ((i+1) =  temp)
