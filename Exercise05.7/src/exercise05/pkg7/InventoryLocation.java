@@ -2,20 +2,62 @@
 Formal Specification
 ---------------------------------
 1 Task Formulation
+Create a class that can store information that represents an inventory
+location in a store or warehouse. Each location will store stock if a single 
+stock item which is represented in this module by the Stock Item class
 
 2 Specification
-   Input: N/A, Output: N/A
+Depending on the request, one of the following will be input or output: 
+   Section, Aisle, Rack,Shelf, Stock Item ID & Quantity
+Each of the above will support storing positive integers
+
+Stock Item Id will be a link to the matching Stock Item Class entry for this 
+location if populated
+
+The user will be able to create a location with or without stock, a quantity will
+not be possible without stock however. Negative values will not be supported
 
 3 Problem Solving
+Standard class implementation with setters and getters to store the location
+attributes. Validation will prevent the user from inputing invalid values
 
 4 Top Down Construction
+When creating the class:
+     1) receive a set of parameters to allow the creation of a location either 
+     with or without a stock item
+     2) Populate each attribute of the class, validate each entry and report 
+     errors if found
+
+Allow user to change the value of each attribute of the class, when changes are 
+made, these also need to be validated for negative values. For the quantity 
+attribute, do not allow unless a stock item is populated
 
 5 Bottom-Up Verification
+Create new Stock Item
+Location 1, Aisle 1, Shelf 1, Rack 1, Expected Result: Valid entry
+Location 0, Aisle 0, Shelf 0, Rack 0, Stock Item Id 0, Quantity 0 Expected Result: Valid entry
+Location -1, Aisle 0, Shelf 0, Rack 0, Stock Item Id 0, Quantity 0 Expected Result: Invalid entry
+Location 0, Aisle -1, Shelf 0, Rack 0, Stock Item Id 0, Quantity 0 Expected Result: Invalid entry
+Location 0, Aisle 0, Shelf -1, Rack 0, Stock Item Id 0, Quantity 0 Expected Result: Invalid entry
+Location 0, Aisle 0, Shelf 0, Rack -1, Stock Item Id 0, Quantity 0 Expected Result: Invalid entry
+Location 0, Aisle 0, Shelf 0, Rack 0, Stock Item Id -1, Quantity 0 Expected Result: Invalid entry
+Location 0, Aisle 0, Shelf 0, Rack 0, Stock Item Id 0, Quantity -1 Expected Result: Invalid entry
+Location 0, Aisle 0, Shelf 0, Rack 0, Stock Item Id 0, Quantity 1 Expected Result: Invalid entry
+
 
 6 Coding
-See coding in this class
+Language is Java 
+
+Variable Types
+  Location int
+  Aisle int 
+  Shelf int
+  Rack int
+  Stock Item ID int
+  Quantity int
 
 7 Testing
+See StockItemTestHarness class for test cases
 
  */
 package exercise05.pkg7;
