@@ -1,6 +1,6 @@
 /*
 ADT Formal Specification
-========================
+======================== 
 1 What the ADT will do
 ----------------------
 Implement a class that can store a collection of Inventory Items and persist
