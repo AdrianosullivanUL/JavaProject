@@ -22,15 +22,69 @@ InventoryLocation(int inventoryLocationId, int section, int aisle, int rack,
 pre: N/A,
 post: valid inventory location a stock item
 
+getInventoryLocationId() - Get the location id
+pre: N/A,
+post: No change to object, value returned to user 
+
+getSection() - get the section
+pre: N/A,
+post: No change to object, value returned to user 
+
+getAisle() - get the aisle
+pre: N/A,
+post: No change to object, value returned to user 
+  
+getShelf() - get the shelf
+pre: N/A,
+post: No change to object, value returned to user 
+
+getRack() - get the rack
+pre: N/A,
+post: No change to object, value returned to user 
+
+getStockItemId() - get the stock item id
+pre: N/A,
+post: No change to object, value returned to user 
+
+getQuantity int() - get the quantity
+pre: N/A,
+post: No change to object, value returned to user 
+
+setInventoryLocationId (int inventoryLocationId) - set the inventory location id
+pre: N/A,
+post: Inventory Location Id changed  
+
+setAisle (int  aisle) - set the aisle
+pre: N/A,
+post: aisle changed
+
+setShelf (int shelf) - set the shelf
+pre: N/A,
+post: shelf changed
+
+setRack (int rack) - set the rack
+pre: N/A,
+post: rack changed
+
+setStockItemId (int stockItemId) - set the stock item id 
+pre: N/A,
+post: stock item id changed
+
+setQuantity (int quantity) - set the quantity
+pre: N/A,
+post: quantity changed
+
 
 User’s View of Services
   public int getLocation() 
+  public int getSection()
   public int getAisle()  
   public int getShelf()
   public int getRack() 
   public int getStockItemId()
   public int getQuantity int()
-  public void setLocation (int location)
+  public void setInventoryLocationId (int inventoryLocationId)
+  public void setSection (int section)
   public void setAisle (int  aisle)
   public void setShelf (int shelf)
   public void setRack (int rack)
@@ -41,6 +95,7 @@ User’s View of Services
 3. Internal Data Representation
     Access      Type                Name
     private     int                 inventoryLocationId 
+    private     int                 section
     private     int                 aisle  
     private     int                 shelf 
     private     int                 rack 
@@ -53,8 +108,8 @@ User’s View of Services
 5. Coding
 See code in this file
 
-Formal Specification
-====================
+Class Formal Specification
+==========================
 1 Task Formulation
 Create a class that can store information that represents an inventory
 location in a store or warehouse. Each location will store stock if a single 
