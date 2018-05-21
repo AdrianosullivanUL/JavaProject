@@ -1,6 +1,6 @@
 /*
-Formal Specification
----------------------------------
+ADT Formal Specification
+========================
 1 What an ADT should do: Creates a Stock Item and Provide methods 
 to retrieve values of attributes (accessors) and to modify (mutators)
 Specifications

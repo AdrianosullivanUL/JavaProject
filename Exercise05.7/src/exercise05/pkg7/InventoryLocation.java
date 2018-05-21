@@ -10,58 +10,32 @@ the data to a disk file.
 
 2 Specification
 ---------------
-InventoryLocationCollection() - Constructor which retrieves the list from a file store
+InventoryLocation(int inventoryLocationId, int section, int aisle, int rack, 
+                         int shelf)
+ - Constructor which creates a new location with no stock item
 pre: N/A,
-post: create object InventoryCollection
+post: valid inventory location without a stock item
 
-saveInventoryLocation(int updatedInventoryLocationId)- save changes made to the 
-Inventory Location Collection
-pre :InventoryItemId is zero or exists
-post: Collection is persisted to disk
+InventoryLocation(int inventoryLocationId, int section, int aisle, int rack, 
+                         int shelf, int stockItemId, int quantity)
+ - Constructor which creates a new location with a stock item
+pre: N/A,
+post: valid inventory location a stock item
 
-deleteInventoryLocation(int InventoryLocationId)- delete an InventoryLocation
-pre: InventoryLocation exists
-post: InventoryLocation deleted
-
-getNextID()-get the next InventoryLocation ID available
-pre: InventoryCollection Exists
-post:Output Next InventoryLocationId, no change to object
-
-getCurrentStockItem()Returns current value of the InventoryLocation collection
-pre: valid InventoryLocation collection
-post: InventoryLocation collection remains unchanged
-
-moveToTailLocation() move to tail of collection
-pre: valid InventoryLocation collection
-post: no change to object,index is set to size of list 
-
-moveToHeadLocation()
-pre: valid InventoryLocation collection
-post: no change to object,index is set-1
-
-moveToNextInventoryLocation()
-pre: Valid InventoryLocation collection
-post: no change to InventoryLocation collection, 
-return true if moved to next is successful
-
-moveToPreviousInventoryLocation()-  move to previous item
-pre: Valid InventoryLocation collection
-post: no change to InventoryLocation collection.
-return true if moved back is successful
 
 User’s View of Services
-  public int getLocation() int
-  public int getAisle int 
-  public int getShelf int
-  public int getRack int
-  public int getStock Item ID int
-  public int getQuantity int
-  setLocation int
-  setAisle int 
-  setShelf int
-  setRack int
-  setStock Item ID int
-  setQuantity int
+  public int getLocation() 
+  public int getAisle()  
+  public int getShelf()
+  public int getRack() 
+  public int getStockItemId()
+  public int getQuantity int()
+  public void setLocation (int location)
+  public void setAisle (int  aisle)
+  public void setShelf (int shelf)
+  public void setRack (int rack)
+  public void setStock Item ID (int stockItemId)
+  public void setQuantity (int quantity)
   
 
 3. Internal Data Representation
@@ -130,11 +104,11 @@ Location 0, Section 0,Aisle 0, Shelf 0, Rack 0, Stock Item Id 0, Quantity 1 Expe
 Language is Java 
 
 Variable Types
-  Location int
+  inventoryLocationId int
   Aisle int 
   Shelf int
   Rack int
-  Stock Item ID int
+  StockItemID int
   Quantity int
 
 7 Testing
