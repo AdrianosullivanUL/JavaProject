@@ -1,6 +1,81 @@
 /*
+ADT Formal Specification
+========================
+1 What the ADT will do
+----------------------
+Implement a class that can store a collection of Inventory Items and persist
+these to a file on the computers disk. This will include methods to traverse the 
+list, add, delete, update and sort entries along with a save method to persist
+the data to a disk file.
+
+2 Specification
+---------------
+InventoryLocationCollection() - Constructor which retrieves the list from a file store
+pre: N/A,
+post: create object InventoryCollection
+
+saveInventoryLocation(int updatedInventoryLocationId)- save changes made to the 
+Inventory Location Collection
+pre :InventoryItemId is zero or exists
+post: Collection is persisted to disk
+
+deleteInventoryLocation(int InventoryLocationId)- delete an InventoryLocation
+pre: InventoryLocation exists
+post: InventoryLocation deleted
+
+getNextID()-get the next InventoryLocation ID available
+pre: InventoryCollection Exists
+post:Output Next InventoryLocationId, no change to object
+
+getCurrentStockItem()Returns current value of the InventoryLocation collection
+pre: valid InventoryLocation collection
+post: InventoryLocation collection remains unchanged
+
+moveToTailLocation() move to tail of collection
+pre: valid InventoryLocation collection
+post: no change to object,index is set to size of list 
+
+moveToHeadLocation()
+pre: valid InventoryLocation collection
+post: no change to object,index is set-1
+
+moveToNextInventoryLocation()
+pre: Valid InventoryLocation collection
+post: no change to InventoryLocation collection, 
+return true if moved to next is successful
+
+moveToPreviousInventoryLocation()-  move to previous item
+pre: Valid InventoryLocation collection
+post: no change to InventoryLocation collection.
+return true if moved back is successful
+
+2. User’s View of Services
+
+public StockItemCollection() 
+   public void loadInventoryLocationCollection()
+   public void saveInventoryLocation(int updatedInventoryLocationId) throws ApplicationException 
+   public void deleteInventoryLocation(int InventoryLocationId) throws ApplicationException 
+   public int getNextID() 
+   public void addInventoryLocationItem(InventoryLocation inventoryLocation) 
+   public InventoryLocation getCurrentInventoryLocation() 
+   public void moveToHeadLocation() 
+   public void moveToTailLocation() 
+   public int size() 
+   public boolean moveToNextInventoryLocation() 
+   public boolean moveToPrevInventoryLocation() 
+
+3. Internal Data Representation
+    Access      Type                Name
+    private     List<StockItem>     inventoryStore; 
+    private     int                 currentEntryIndex = -1; 
+
+4. Remaining/Auxiliary Definitions
+    None
+
+5. Coding
+
 Formal Specification
----------------------------------
+====================
 1 Task Formulation
 Implement a class that can store a collection of Inventory Locations and persist
 these to a file on the computers disk. This will include methods to traverse the 
@@ -135,7 +210,7 @@ public class InventoryLocationCollection {
      * @throws ApplicationException to handle issues with file access and also
      * validation errors
      */
-    void saveInventoryCollection(int updatedInventoryLocationId)
+    public void saveInventoryCollection(int updatedInventoryLocationId)
             throws ApplicationException {
         try {
             if (updatedInventoryLocationId != 0) {
@@ -160,7 +235,7 @@ public class InventoryLocationCollection {
      *
      * @return the last saved id + 1
      */
-    int getNextID() {
+    public int getNextID() {
         int returnId = 0;
         if (inventoryStore != null && inventoryStore.size() > 0) {
             InventoryLocation inventoryLocation = inventoryStore.get(inventoryStore.size() - 1);
@@ -176,7 +251,7 @@ public class InventoryLocationCollection {
      *
      * @return collection size
      */
-    int size() {
+    public int size() {
         return inventoryStore.size();
     }
 
@@ -187,7 +262,7 @@ public class InventoryLocationCollection {
      * @throws ApplicationException to handle any issues with adding the new
      * location
      */
-    void addInventoryLocation(InventoryLocation inventoryLocation)
+    public void addInventoryLocation(InventoryLocation inventoryLocation)
             throws ApplicationException {
         for (InventoryLocation existingInventoryLocation : inventoryStore) {
             if (checkForDuplicateLocation(existingInventoryLocation, inventoryLocation)) {
@@ -231,7 +306,7 @@ public class InventoryLocationCollection {
      * @param inventoryLocationId The identifier of the location to delete
      * @throws ApplicationException issus with doing the delete
      */
-    void deleteInventoryLocation(int inventoryLocationId) throws ApplicationException {
+    public void deleteInventoryLocation(int inventoryLocationId) throws ApplicationException {
         for (int i = 0; i <= inventoryStore.size() - 1; i++) {
             //if (Integer.compare(inventoryLocationId, inventoryStore.get(i).getInventoryLocationId()) == 0) {
             if (inventoryStore.get(i).getInventoryLocationId() == inventoryLocationId) {
@@ -292,7 +367,7 @@ public class InventoryLocationCollection {
      * @return true if the previous location exists, false if the end of the
      * list
      */
-    boolean moveToPreviousInventoryLocation() {
+    public boolean moveToPreviousInventoryLocation() {
         boolean returnValue = true;
 
         if (inventoryStore != null && currentEntryIndex > 0) {
