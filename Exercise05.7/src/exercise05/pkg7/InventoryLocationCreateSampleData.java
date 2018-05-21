@@ -8,30 +8,31 @@ import javax.swing.JOptionPane;
 /**
  * Create a set of sample locations and store on file
  *
- * @author Adrian O'Sullivan Student ID 16230124 
+ * @author Adrian O'Sullivan Student ID 16230124
  */
-public class InventoryLocationCreateSampleData {
+class InventoryLocationCreateSampleData {
 
     private InventoryLocationCollection inventoryCollection;
-
-    public InventoryLocationCreateSampleData() {
+/**
+ * Create Sample inventory locations for the application
+ */
+    InventoryLocationCreateSampleData() {
         try {
             inventoryCollection = new InventoryLocationCollection();
             inventoryCollection.loadInventoryCollection();
-            
+
             // Delete all existing entries
             inventoryCollection.moveToTailLocation();
-            while (inventoryCollection.moveToPreviousInventoryLocation())
-            {
+            while (inventoryCollection.moveToPreviousInventoryLocation()) {
                 inventoryCollection.deleteInventoryLocation(inventoryCollection.getCurrentInventoryLocation().getInventoryLocationId());
             }
-            
+
             // Load a new set of sample entries
-            inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 5, 1, 1, 21,1,5));
+            inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 5, 1, 1, 21, 1, 5));
             inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 1, 2, 2, 22));
             inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 1, 3, 2, 23));
             inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 2, 1, 3, 24));
-            inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 2, 2, 4, 25,2,3));
+            inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 2, 2, 4, 25, 2, 3));
             inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 2, 3, 5, 26));
             inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 3, 1, 6, 27));
             inventoryCollection.addInventoryLocation(new InventoryLocation(inventoryCollection.getNextID(), 3, 2, 7, 28));

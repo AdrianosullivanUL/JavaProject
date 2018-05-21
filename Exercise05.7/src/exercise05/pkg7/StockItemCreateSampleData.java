@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
  *
  * @author Mary Cronin 0510661
  */
-public class StockItemCreateSampleData {
+class StockItemCreateSampleData {
 
     private StockItemCollection stockCollection; //creates an object of type StockItemCollection
 
@@ -35,7 +35,7 @@ public class StockItemCreateSampleData {
      * Loading test data into stockCollection, using a Try Catch block to handle
      * exception
      */
-    public StockItemCreateSampleData() {
+    StockItemCreateSampleData() {
         try {
             stockCollection = new StockItemCollection();
             stockCollection.loadStockCollection();
