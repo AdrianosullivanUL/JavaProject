@@ -112,6 +112,7 @@ public class StockItem implements Serializable {
      * @param Name - Stock Item Name
      * @param Description - Stock Item Description
      * @param UnitPrice - Unit Price
+          * @throws ApplicationException 
      */
     public StockItem(int StockItemId, int PartNunber, String Name, String Description, double UnitPrice) throws ApplicationException{
         setStockItemId(StockItemId);
@@ -134,6 +135,7 @@ public class StockItem implements Serializable {
      * Mutator for StockId
      *
      * @param StockItemId
+          * @throws ApplicationException 
      */
     public void setStockItemId(int StockItemId) throws ApplicationException {
         if (StockItemId < 0) {
@@ -155,6 +157,7 @@ public class StockItem implements Serializable {
      * Mutator for PartNumber
      *
      * @param PartNumber
+     * @throws ApplicationException 
      */
     public void setPartNumber(int PartNumber) throws ApplicationException {
         if (PartNumber < 0) {
@@ -176,6 +179,7 @@ public class StockItem implements Serializable {
      * Mutator for Name
      *
      * @param Name
+     * @throws ApplicationException  
      */
     public void setName(String Name) throws ApplicationException {
         if (Name.length() <= 0) {
@@ -197,6 +201,7 @@ public class StockItem implements Serializable {
      * Mutator for Description
      *
      * @param Description
+     * @throws ApplicationException  
      */
     public void setDescription(String Description)throws ApplicationException {
         if (Description.length() <= 0) {
@@ -218,6 +223,7 @@ public class StockItem implements Serializable {
      * Mutator for UnitPrice
      *
      * @param UnitPrice
+     * @throws ApplicationException  
      */
     public void setUnitPrice(double UnitPrice) throws ApplicationException {
         if (UnitPrice < 0.00) {

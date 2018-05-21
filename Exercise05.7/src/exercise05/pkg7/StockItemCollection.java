@@ -285,6 +285,7 @@ public class StockItemCollection {
     /**
      * Assign return value to stockItem for adding
      * @param stockItem StockItem 
+     * @throws ApplicationException  
      */
     public void addStockItem(StockItem stockItem) throws ApplicationException {
         stockStore.add(stockItem);

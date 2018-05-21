@@ -91,6 +91,7 @@ class InventoryLocation implements Serializable {
      * @param aisle The aisle identifier
      * @param rack The rack identifier
      * @param shelf The shelf identifier
+     * @throws ApplicationException 
      */
     public InventoryLocation(int inventoryLocationId, int section, int aisle, int rack, int shelf) throws ApplicationException {
         /* Note: 
@@ -118,6 +119,7 @@ class InventoryLocation implements Serializable {
      * @param stockItemId The identifier for the stock item located in this
      * shelf
      * @param quantity
+          * @throws ApplicationException 
      */
     public InventoryLocation(int inventoryLocationId, int section, int aisle, int rack, int shelf, int stockItemId, int quantity) throws ApplicationException {
         setInventoryLocationId(inventoryLocationId);
