@@ -155,7 +155,7 @@ import java.util.List;
  * achieved though a simple serialised store in a locally stored file. Note:
  * This is a single user solution.
  *
- * @author Adrian O'Sullivan Student ID 16230124
+ * @author Mary Cronin 0510661,  Adrian O'Sullivan 16230124
  */
 public class InventoryLocationCollection {
 
@@ -165,7 +165,8 @@ public class InventoryLocationCollection {
     /**
      * Constructor which loads the collection from file
      *
-     * @throws ApplicationException
+     * @throws ApplicationException to handle issues with accessing the file
+     * storage
      */
     public InventoryLocationCollection() throws ApplicationException {
         try {

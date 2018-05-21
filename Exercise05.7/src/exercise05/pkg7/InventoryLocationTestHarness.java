@@ -6,7 +6,7 @@ package exercise05.pkg7;
 /**
  * Execute test plan for the Inventory Location Collection
  *
- * @author Adrian O'Sullivan Student ID 16230124
+ * @author Mary Cronin 0510661,  Adrian O'Sullivan 16230124
  *
  */
 class InventoryLocationTestHarness {

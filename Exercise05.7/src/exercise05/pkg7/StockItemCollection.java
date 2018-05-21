@@ -140,7 +140,7 @@ import javax.swing.JOptionPane;
  * Class for StockItemCollection array based container called stockStore for
  * StockItems
  *
- * @author Mary Cronin 0510661
+ * @author Mary Cronin 0510661,  Adrian O'Sullivan 16230124
  */
 public class StockItemCollection {
 
@@ -151,7 +151,7 @@ public class StockItemCollection {
      * Constructor for StockItemCollection which uses LoadStockCollection method
      * or throws exception
      *
-     * @throws ApplicationException
+     * @throws ApplicationException to handle unsuccessful loads
      */
     public StockItemCollection() throws ApplicationException {
         try {
@@ -218,7 +218,7 @@ public class StockItemCollection {
      * Validate changes made to each stock item with the stockStore
      *
      * @param updateStockItemId Id of stockItem to be updated
-     * @throws ApplicationException
+     * @throws ApplicationException problems with the updated stock item
      */
     private void validateUpdates(int updateStockItemId)
             throws ApplicationException {
@@ -269,7 +269,7 @@ public class StockItemCollection {
      *
      * @param existing data holder for existing PN
      * @param updated data holder for new PN
-     * @return
+     * @return true if duplicate found
      */
     private boolean checkForDuplicateStock(StockItem existing, StockItem updated) {
         boolean result = false;

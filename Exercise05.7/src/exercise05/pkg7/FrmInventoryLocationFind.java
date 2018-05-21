@@ -72,7 +72,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  * Form to allow user to find all Inventory Locations
  *
- * @author Adrian O'Sullivan Student ID 16230124
+ * @author Mary Cronin 0510661,  Adrian O'Sullivan 16230124
  */
 public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
 

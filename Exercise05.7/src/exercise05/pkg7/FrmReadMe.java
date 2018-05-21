@@ -40,7 +40,7 @@ package exercise05.pkg7;
 /**
  * Present a form with an explanation on how to use the application on startup
  *
- * @author Adrian O'Sullivan Student ID 16230124
+ * @author Mary Cronin 0510661,  Adrian O'Sullivan 16230124
  */
 public class FrmReadMe extends javax.swing.JInternalFrame {
 

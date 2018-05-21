@@ -6,7 +6,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  * Class for Form to allow user to find all Stock Items
  *
- * @author Mary Cronin 0510661
+ * @author Mary Cronin 0510661,  Adrian O'Sullivan 16230124
  */
 public class FrmStockItemFind extends javax.swing.JInternalFrame {
 

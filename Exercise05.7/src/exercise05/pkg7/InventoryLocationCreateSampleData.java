@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 /**
  * Create a set of sample locations and store on file
  *
- * @author Adrian O'Sullivan Student ID 16230124
+ * @author Mary Cronin 0510661,  Adrian O'Sullivan 16230124
  */
 class InventoryLocationCreateSampleData {
 

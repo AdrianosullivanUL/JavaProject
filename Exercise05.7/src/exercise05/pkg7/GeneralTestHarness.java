@@ -8,7 +8,7 @@ package exercise05.pkg7;
 /**
  * General test harness for the application
  *
- * @author Adrian O'Sullivan Student ID 16230124
+ * @author Mary Cronin 0510661,  Adrian O'Sullivan 16230124
  */
 public class GeneralTestHarness {
 

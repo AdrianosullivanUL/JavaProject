@@ -94,7 +94,7 @@ import java.io.Serializable;
  * Number- this is used for sorting PartName, Part Description, Unit Price
  *
  *
- * @author Mary Cronin 0510661
+ * @author Mary Cronin 0510661,  Adrian O'Sullivan 16230124
  */
 public class StockItem implements Serializable {
 
@@ -112,7 +112,7 @@ public class StockItem implements Serializable {
      * @param Name Stock Item Name
      * @param Description Stock Item Description
      * @param UnitPrice Unit Price
-     * @throws ApplicationException
+     * @throws ApplicationException invalid stock item
      */
     public StockItem(int StockItemId, int PartNunber, String Name, String Description, double UnitPrice) throws ApplicationException {
         setStockItemId(StockItemId);

@@ -180,7 +180,7 @@ import java.io.Serializable;
  * Section/Aisle/Rack/Shelf which is suitable for bar coding using for instance
  * 3 of 9 Note: System does not support more than one stock item per shelf
  *
- * @author Adrian O'Sullivan Student ID 16230124
+ * @author Mary Cronin 0510661,  Adrian O'Sullivan 16230124
  */
 public class InventoryLocation implements Serializable {
 

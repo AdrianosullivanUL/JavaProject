@@ -8,7 +8,7 @@ package exercise05.pkg7;
 /**
  * Class StockItemTast Harness to execute Testing for the Stock Item Collection
  *
- * @author Mary Cronin 0510661
+ * @author Mary Cronin 0510661,  Adrian O'Sullivan 16230124
  *
  */
 class StockItemTestHarness {

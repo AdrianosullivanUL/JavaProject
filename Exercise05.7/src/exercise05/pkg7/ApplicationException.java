@@ -33,7 +33,7 @@ package exercise05.pkg7;
 /**
  * Class to support exceptions for this application
  *
- * @author Adrian O'Sullivan Student ID 16230124
+ * @author Mary Cronin 0510661,  Adrian O'Sullivan 16230124
  */
 public class ApplicationException extends Exception {
 

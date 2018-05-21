@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 /**
  * Class StockItem CreateSampleData used to enter data into StockItemCollection
  *
- * @author Mary Cronin 0510661
+ * @author Mary Cronin 0510661,  Adrian O'Sullivan 16230124
  */
 class StockItemCreateSampleData {
 

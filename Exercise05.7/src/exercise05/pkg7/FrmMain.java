@@ -75,7 +75,7 @@ import javax.swing.JOptionPane;
 /**
  * Multi Document Interface Container form for this application
  *
- * @author Adrian O'Sullivan Student ID 16230124
+ * @author Mary Cronin 0510661,  Adrian O'Sullivan 16230124
  */
 public class FrmMain extends javax.swing.JFrame {
 
@@ -367,7 +367,7 @@ public class FrmMain extends javax.swing.JFrame {
     /**
      * Present the Edit Inventory Location edit form
      *
-     * @param inventoryLocationId
+     * @param inventoryLocationId The id of the location to edit
      */
     void EditInventoryLocation(int inventoryLocationId) {
         // Close the Find form
@@ -386,7 +386,7 @@ public class FrmMain extends javax.swing.JFrame {
     /**
      * Present the edit stock item screen
      *
-     * @param stockItemId
+     * @param stockItemId The id of the item to edit
      */
     void EditStockItem(int stockItemId) {
         // Close the Find form

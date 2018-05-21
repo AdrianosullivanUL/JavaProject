@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 /**
  * Form to allow users to Add or Edit a StockItem in a StockItemCollection
  *
- * @author Mary Cronin 0510661
+ * @author Mary Cronin 0510661,  Adrian O'Sullivan 16230124
  */
 public class FrmStockItemEdit extends javax.swing.JInternalFrame {
 
