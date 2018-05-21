@@ -112,7 +112,7 @@ public class StockItem implements Serializable {
      * @param Name - Stock Item Name
      * @param Description - Stock Item Description
      * @param UnitPrice - Unit Price
-          * @throws ApplicationException 
+     * @throws ApplicationException 
      */
     public StockItem(int StockItemId, int PartNunber, String Name, String Description, double UnitPrice) throws ApplicationException{
         setStockItemId(StockItemId);
@@ -179,7 +179,7 @@ public class StockItem implements Serializable {
      * Mutator for Name
      *
      * @param Name
-     * @throws ApplicationException  
+     * @throws ApplicationException if Name is null  
      */
     public void setName(String Name) throws ApplicationException {
         if (Name.length() <= 0) {
@@ -191,7 +191,7 @@ public class StockItem implements Serializable {
     /**
      * Accessor for Description
      *
-     * @return
+     * @return Description
      */
     public String getDescription() {
         return Description;
@@ -232,6 +232,10 @@ public class StockItem implements Serializable {
         this.UnitPrice = UnitPrice;
     }
     @Override
+    /**
+     * To String Method to create a string representation of a StockItem
+     * @return -string representation of a StockItem
+     */
     public String toString() {
         return "\nStock id " + StockItemId + ",\n"
                 + "Part Number " + PartNumber+ ",\n"

@@ -1,14 +1,14 @@
 /*
 Formal Specification
 ---------------------------------
-1 What the ADT will do
+1 What the ADT will do?
 Implement a class that can store a collection of Stock Items and persist
 these to a file on the computers disk. This will include methods to traverse the 
 list, add, delete, update and sort entries along with a save method to persist
 the data to a disk file.
 
 Specification
-
+--------------
 StockItemCollection() - Constructor which retrieves the list from a file store
 pre: N/A,
 post: create object StockItemCollection
@@ -49,7 +49,7 @@ moveToPreviousStockItem()-  move back on the list toprevious item
 pre: Valid object
 post: no change to object return true if moved back is successful
 
-bubb;esort() sort items in list by PartNumber
+bubblesort() sort items in list by PartNumber
 pre:valid object
 post: sorted list
 
@@ -71,28 +71,32 @@ public StockItemCollection()
 
 3. Internal Data Representation
     Access      Type                Name
+    ---------------------------------------------
     private     List<StockItem>     stockStore; 
     private     int                 currentEntryIndex = -1; 
 
 4. Remaining/Auxiliary Definitions
-    None
+    Access      Type                Name
+    ---------------------------------------------
+    private     void                validateUpdates
+    private     boolean             checkForDuplicateStock
+    public      void                deleteStockItem
+    
 
 5. Coding
 
 
+Formal Specification
+====================
 
-
-Method to Sort the list using a bubble sort function 
-(***NOTE: See method description for a detailed explanation of this method)
-
-3 Problem Solving
+Problem Solving
 Problem has been solved using a combination of techniques which include:
    a) A class to represent each Stock Item   
    b) An array list to store a collection of Stock Items
    c) Logic to stream the collection to a file store
    d) A bubble sort algorithm to sort the list
 
-4 Top Down Construction
+Top Down Construction
 Constructor which retrieves the list from a file store
    Open the file and stream its content to an internal buffer
    Convert the internal butter to the collection list
@@ -113,9 +117,9 @@ Method to retrieve the current Stock Item as the user traverses the list
 Method to traverse up and down through the list 
    
 
-5 Bottom-Up Verification
-6 Coding
-7 Testing
+Bottom-Up Verification
+Coding
+Testing
 
 
  */
