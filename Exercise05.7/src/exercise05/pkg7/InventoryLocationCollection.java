@@ -49,9 +49,9 @@ pre: Valid InventoryLocation collection
 post: no change to InventoryLocation collection.
 return true if moved back is successful
 
-2. User’s View of Services
+User’s View of Services
 
-public StockItemCollection() 
+   public StockItemCollection() 
    public void loadInventoryLocationCollection()
    public void saveInventoryLocation(int updatedInventoryLocationId) throws ApplicationException 
    public void deleteInventoryLocation(int InventoryLocationId) throws ApplicationException 
@@ -70,9 +70,11 @@ public StockItemCollection()
     private     int                 currentEntryIndex = -1; 
 
 4. Remaining/Auxiliary Definitions
-    None
+    validateUpdates(updateInventoryLocataionId)
+    InventoryLocationSectionComparator
 
 5. Coding
+See code in this file
 
 Formal Specification
 ====================

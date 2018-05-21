@@ -1,6 +1,86 @@
 /*
+ADT Formal Specification
+========================
+1 What the ADT will do
+----------------------
+Implement a class that can store a collection of Inventory Items and persist
+these to a file on the computers disk. This will include methods to traverse the 
+list, add, delete, update and sort entries along with a save method to persist
+the data to a disk file.
+
+2 Specification
+---------------
+InventoryLocationCollection() - Constructor which retrieves the list from a file store
+pre: N/A,
+post: create object InventoryCollection
+
+saveInventoryLocation(int updatedInventoryLocationId)- save changes made to the 
+Inventory Location Collection
+pre :InventoryItemId is zero or exists
+post: Collection is persisted to disk
+
+deleteInventoryLocation(int InventoryLocationId)- delete an InventoryLocation
+pre: InventoryLocation exists
+post: InventoryLocation deleted
+
+getNextID()-get the next InventoryLocation ID available
+pre: InventoryCollection Exists
+post:Output Next InventoryLocationId, no change to object
+
+getCurrentStockItem()Returns current value of the InventoryLocation collection
+pre: valid InventoryLocation collection
+post: InventoryLocation collection remains unchanged
+
+moveToTailLocation() move to tail of collection
+pre: valid InventoryLocation collection
+post: no change to object,index is set to size of list 
+
+moveToHeadLocation()
+pre: valid InventoryLocation collection
+post: no change to object,index is set-1
+
+moveToNextInventoryLocation()
+pre: Valid InventoryLocation collection
+post: no change to InventoryLocation collection, 
+return true if moved to next is successful
+
+moveToPreviousInventoryLocation()-  move to previous item
+pre: Valid InventoryLocation collection
+post: no change to InventoryLocation collection.
+return true if moved back is successful
+
+User’s View of Services
+  public int getLocation() int
+  public int getAisle int 
+  public int getShelf int
+  public int getRack int
+  public int getStock Item ID int
+  public int getQuantity int
+  setLocation int
+  setAisle int 
+  setShelf int
+  setRack int
+  setStock Item ID int
+  setQuantity int
+  
+
+3. Internal Data Representation
+    Access      Type                Name
+    private     int                 inventoryLocationId 
+    private     int                 aisle  
+    private     int                 shelf 
+    private     int                 rack 
+    private     int                 stockItemId
+    private     int                 quantity 
+
+4. Remaining/Auxiliary Definitions
+    N/A
+
+5. Coding
+See code in this file
+
 Formal Specification
----------------------------------
+====================
 1 Task Formulation
 Create a class that can store information that represents an inventory
 location in a store or warehouse. Each location will store stock if a single 
