@@ -2,20 +2,70 @@
 Formal Specification
 ---------------------------------
 1 Task Formulation
+Present an MDI (multi document interface) container screen with menu options
+to support navigation the the various child screens and also present a read me
+child screen at startup
 
 2 Specification
-   Input: N/A, Output: N/A
+Program launched
+   Input: N/A, Output: Container/Menu screen presented along with ReadMe
+
+Stock Item Find menu option clicked
+   Input: Menu option selected, Output: Stock Item Find child screen 
+
+Stock Item Add menu option clicked
+   Input: Menu option selected, Output: Stock Item Edit child screen in add mode 
+
+Inventory Location Find menu option clicked
+   Input: Menu option selected, Output: Inventory Location Find child screen 
+
+Inventory Location Add menu option clicked
+   Input: Menu option selected, Output: Inventory Location Edit child screen in add mode
 
 3 Problem Solving
+Screen implemented using Java Swing Menu Bar and also Desktop Pane
 
 4 Top Down Construction
+When the application is started, present the Main form, also present by default
+a read me child screen to explain how the applicaition works and can be tested
 
 5 Bottom-Up Verification
+Run the applicaiton, main screen is presented with menu options for the following:
+ - Find and Add Stock Items
+ - Find and Add Inventory Locations
+ - Help options to create sample data and present read me
+ Result = screen presented
 
 6 Coding
-See coding in this class
+Language is Java 
+
+Variable Types
+  Menu menubar
+  container pane desktop pane
 
 7 Testing
+Launch the screen, this should present a menu with the following options: 
+ - Find Stock Items
+ - Add Stock Items
+ - Find Inventory Locations
+ - Add Inventory Location
+ - Help 
+   create sample Inventory Location data 
+   create sample Stock Item data 
+   Read me
+ Result = screen presented as expected
+
+Read me should be presented at start, result is screen presented as expected
+
+Selecting any of the find/edit buttons results in the matching screen being
+presented, result = selected screens presented
+
+Selecting the create sample data results in sample data being created and
+a confirmation received, result = sample data selection working as expected
+
+Selecting a second Find/Add screen while one is already opens results in an 
+error message stating that this is not allows, result = error message presented
+as expected
 
  */
 package exercise05.pkg7;

@@ -36,7 +36,10 @@ package exercise05.pkg7;
  * @author Adrian O'Sullivan Student ID 16230124 
  */
 public class ApplicationException extends Exception {
-
+/**
+ * Create a new application exception
+ * @param message to present to the users
+ */
     public ApplicationException(String message) {
         super(message);
     }

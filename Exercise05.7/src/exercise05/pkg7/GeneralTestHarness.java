@@ -7,18 +7,22 @@
 package exercise05.pkg7;
 
 /**
- * [Class Title Here]
+ * General test harness for the application
  * @author Adrian O'Sullivan
  * Student ID 16230124
- * Last Modified [dd/mm/yyyy]
  */
 public class     GeneralTestHarness {
-
+/**
+ * Entry point for the general test harness execution
+ * @param args 
+ */
     public static void main(String args[]) {
         GeneralTestHarness generalTestHarness = new GeneralTestHarness();
         generalTestHarness.ExecuteTests();
     }
-
+/**
+ * Execute the tests required
+ */
     private void ExecuteTests()  {
         // Test the Application Exception handler
         System.out.println("");

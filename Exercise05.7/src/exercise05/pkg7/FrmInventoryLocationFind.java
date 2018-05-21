@@ -2,21 +2,63 @@
 Formal Specification
 ---------------------------------
 1 Task Formulation
+Present a list of inventory locations and allow user to edit/delete/sort this list
 
 2 Specification
-   Input: N/A, Output: N/A
+   Input: N/A, Output: Table containing all inventory locations
 
 3 Problem Solving
+Java Swing Internal Frame presented with table view plus buttons and dropdown list
 
 4 Top Down Construction
+Open the InventoryLocation and Stock Item Collections
+Step through each inventory collection and for each entry
+           Get the matching Part Number and Name from the Stock Collection 
+           Add a row to the table to present the location information
+
+If the user presses the Delete button, present a confirmation message and delete the entry
+if the answer is positive
+
+If the user presses the Edit button, present the edit screen and close this screen
+
+If the user changes the selection on the sort combo box, sort the list as per 
+the selection
 
 5 Bottom-Up Verification
+open screen when no locations exist: result is empty list presented
+
+open screen when locations exist: result is list presented
+
+Click on delete: result is selected entry deleted
+Click on edit: result is selected entry presented for edit
 
 6 Coding
-See coding in this class
+Language is Java 
+
+Variable Types
+  InevntoryList table
+  Edit button
+  Delete button
+  Sort combo box
 
 7 Testing
+Delete inventoryStore.dat and open file, Result = Empty list of inventory locations
+presented
 
+Run the Create Inventory Location Sample Data option from the Help menu, 
+result = 12 entries displayed, one has a stock item presented along with a quantity
+
+Click on the delete and edit buttons with no table entry selected, result =
+Message preseted that you must select first
+
+Click on the delete button after selecting an entry, result = prompt presented
+asking you to confirm, if no say no then nothing happens, if you say yes then 
+the entry is deleted
+
+Click on the edit button after selecting an entry, result = the Edit screen is 
+presented to allow you make changes and the find screen is closed
+
+Close the Find screen, result = find screen closed
  */
 package exercise05.pkg7;
 
@@ -172,15 +214,15 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(cmbSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeleteSelectedLocation)
                     .addComponent(btnEditSelectedLocation))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
