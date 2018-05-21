@@ -138,7 +138,7 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
     }
 
     /**
-     * Populate the stock item dropdown list
+     * Populate the stock item combo box list
      */
     private void PopulateStockItemDropdownList() {
         cmbStockItem.addItem("");

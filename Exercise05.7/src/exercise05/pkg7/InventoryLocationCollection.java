@@ -224,6 +224,7 @@ public class InventoryLocationCollection {
             }
         }
     }
+
     /**
      * Delete an inventory item
      *
@@ -233,7 +234,7 @@ public class InventoryLocationCollection {
     void deleteInventoryLocation(int inventoryLocationId) throws ApplicationException {
         for (int i = 0; i <= inventoryStore.size() - 1; i++) {
             //if (Integer.compare(inventoryLocationId, inventoryStore.get(i).getInventoryLocationId()) == 0) {
-            if (inventoryStore.get(i).getInventoryLocationId() == inventoryLocationId ) {
+            if (inventoryStore.get(i).getInventoryLocationId() == inventoryLocationId) {
                 inventoryStore.remove(i);
                 return;
             }
@@ -241,13 +242,13 @@ public class InventoryLocationCollection {
         throw new ApplicationException("Entry not found and therefore was not deleted");
     }
 
-/**
- * return the current inventory item that the current inventory index is
- * pointing to
- *
- * @return the current inventory item
- */
-public InventoryLocation getCurrentInventoryLocation() {
+    /**
+     * return the current inventory item that the current inventory index is
+     * pointing to
+     *
+     * @return the current inventory item
+     */
+    public InventoryLocation getCurrentInventoryLocation() {
         InventoryLocation inventoryLocation = null;
         if (currentEntryIndex > -1 && currentEntryIndex <= inventoryStore.size() - 1) {
             inventoryLocation = inventoryStore.get(currentEntryIndex);
@@ -335,9 +336,7 @@ public InventoryLocation getCurrentInventoryLocation() {
             Collections.sort(inventoryStore, new InventoryLocationIdComparator());
             moveToHeadLocation();
 
-        
-
-}
+        }
     }
 
     /**
@@ -345,19 +344,19 @@ public InventoryLocation getCurrentInventoryLocation() {
      */
     private class InventoryLocationSectionComparator implements Comparator<InventoryLocation> {
 
-    public int compare(InventoryLocation self, InventoryLocation other) {
+        public int compare(InventoryLocation self, InventoryLocation other) {
 
-        return Integer.valueOf(self.getSection()).compareTo(other.getSection());
+            return Integer.valueOf(self.getSection()).compareTo(other.getSection());
+        }
     }
-}
 
-/**
- * Define a comparator to sort by entry sequence (id)
- */
-private class InventoryLocationIdComparator implements Comparator<InventoryLocation> {
+    /**
+     * Define a comparator to sort by entry sequence (id)
+     */
+    private class InventoryLocationIdComparator implements Comparator<InventoryLocation> {
 
-    public int compare(InventoryLocation self, InventoryLocation other) {
-        return Integer.valueOf(self.getInventoryLocationId()).compareTo(other.getInventoryLocationId());
+        public int compare(InventoryLocation self, InventoryLocation other) {
+            return Integer.valueOf(self.getInventoryLocationId()).compareTo(other.getInventoryLocationId());
+        }
     }
-}
 }

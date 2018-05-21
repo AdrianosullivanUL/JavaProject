@@ -12,28 +12,26 @@ package exercise05.pkg7;
 class InventoryLocationTestHarness {
 
     InventoryLocationCollection inventoryCollection;
-
-    /*    
-    private int inventoryLocationId;
-    private int section;
-    private int aisle;
-    private int rack;
-    private int shelf;
-    private int stockItemId;
-    private int quantity;
-     */
+/**
+ * Entry point for executing this test harness
+ * @param args not used
+ */
     public static void main(String args[]) {
         InventoryLocationTestHarness inventoryLocationTestHarness = new InventoryLocationTestHarness();
         inventoryLocationTestHarness.ExecuteTests();
     }
-
+/**
+ * Execute tests for the Inventory Location class and also the matching collection class
+ */
     private void ExecuteTests() {
 
         TestInventoryLocationClass();
         TestInventoryLocationCollectionClass();
 
     }
-
+/**
+ * Execute a set of tests against the Inventory Location Class
+ */
     private void TestInventoryLocationClass() {
         InventoryLocation inventoryLocation;
         System.out.println("Inventory Class Testing");
@@ -52,7 +50,7 @@ class InventoryLocationTestHarness {
         } catch (ApplicationException ex) {
             System.out.println("  **TEST FAIL: " + ex.getMessage());
         }
-                System.out.println("  Test Passed");
+        System.out.println("  Test Passed");
 
         System.out.println("Test #3 - Add a location with negative Id");
         try {
@@ -101,24 +99,25 @@ class InventoryLocationTestHarness {
         } catch (ApplicationException ex) {
             System.out.println("  Pass: " + ex.getMessage());
         }
-        
 
-            System.out.println("Test #10 - Try to set a quantity with no part");
-            try {
+        System.out.println("Test #10 - Try to set a quantity with no part");
+        try {
             inventoryLocation = new InventoryLocation(9996, 6, 10, 15, 0, 0, 1);
-            } catch (ApplicationException ex) {
-                System.out.println("  Pass: Test Description Try to set negative quantity");
-            }        
+        } catch (ApplicationException ex) {
+            System.out.println("  Pass: Test Description Try to set negative quantity");
+        }
 
     }
-
+/**
+ * Execute a set of tests against the Inventory Location Collection Class
+ */
     private void TestInventoryLocationCollectionClass() {
         try {
             inventoryCollection = new InventoryLocationCollection();
             int inventoryCount = inventoryCollection.size();
             System.out.println(" ");
-        System.out.println("Inventory Collection Class Testing");
-        System.out.println("__________________________________");            
+            System.out.println("Inventory Collection Class Testing");
+            System.out.println("__________________________________");
 
             // add 5 valid rows
             System.out.println("Test #1 - Add 5 valid rows");
@@ -167,8 +166,13 @@ class InventoryLocationTestHarness {
             System.out.println("TEST HARNESS FAILURE: " + ex.getMessage());
         }
     }
-
-    private void AddNewLocationTest(boolean ExpectPassOutcome, String testDescription, InventoryLocation inventoryLocation) throws ApplicationException {
+/**
+ * Create a new location and report the result
+ * @param ExpectPassOutcome will the test produce a pass result
+ * @param testDescription What is being tested
+ * @param inventoryLocation The inventory location to create
+ */
+    private void AddNewLocationTest(boolean ExpectPassOutcome, String testDescription, InventoryLocation inventoryLocation)  {
 
         try {
             inventoryCollection.addInventoryLocation(inventoryLocation);
@@ -185,8 +189,13 @@ class InventoryLocationTestHarness {
             }
         }
     }
-
-    private void DeleteLocationTest(boolean ExpectPassOutcome, String testDescription, int inventoryLocationId) throws ApplicationException {
+/**
+ * Delete a location and report the result
+ * @param ExpectPassOutcome Will the test result in a pass
+ * @param testDescription What is being tested
+ * @param inventoryLocationId What location id to delete
+ */
+    private void DeleteLocationTest(boolean ExpectPassOutcome, String testDescription, int inventoryLocationId) {
         try {
             inventoryCollection.deleteInventoryLocation(inventoryLocationId);
             if (ExpectPassOutcome == true) {
@@ -203,7 +212,12 @@ class InventoryLocationTestHarness {
 
         }
     }
-
+/**
+ * Execute an Update to an inventory location
+ * @param ExpectPassOutcome Will the test result in a pass
+ * @param testDescription What is being tested
+ * @param inventoryLocationId What inventory location is being updated
+ */
     private void UpdateLocationTest(boolean ExpectPassOutcome, String testDescription, int inventoryLocationId) {
         try {
 
@@ -222,7 +236,12 @@ class InventoryLocationTestHarness {
             }
         }
     }
-
+/**
+ * Get an inventory location
+ * @param InventoryLocationId What location id to find
+ * @return An inventory Location
+ * @throws ApplicationException Handles issues with not finding, etc.
+ */
     private InventoryLocation GetLocation(int InventoryLocationId) throws ApplicationException {
         InventoryLocation inventoryLocation = null;
 

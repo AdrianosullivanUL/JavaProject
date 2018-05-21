@@ -91,7 +91,7 @@ class InventoryLocation implements Serializable {
      * @param aisle The aisle identifier
      * @param rack The rack identifier
      * @param shelf The shelf identifier
-     * @throws ApplicationException 
+     * @throws ApplicationException Returns message with validation errors
      */
     public InventoryLocation(int inventoryLocationId, int section, int aisle, int rack, int shelf) throws ApplicationException {
         /* Note: 
@@ -118,8 +118,8 @@ class InventoryLocation implements Serializable {
      * @param shelf The shelf identifier
      * @param stockItemId The identifier for the stock item located in this
      * shelf
-     * @param quantity
-          * @throws ApplicationException 
+     * @param quantity the amount of stock held in this location
+     * @throws ApplicationException  Returns message with validation errors
      */
     public InventoryLocation(int inventoryLocationId, int section, int aisle, int rack, int shelf, int stockItemId, int quantity) throws ApplicationException {
         setInventoryLocationId(inventoryLocationId);
@@ -280,7 +280,7 @@ class InventoryLocation implements Serializable {
      * Setter for the quantity
      *
      * @param quantity quantity stored in this location
-     * @throws ApplicationException if new value is negative
+     * @throws ApplicationException if value is negative or a stock item is not selected
      */
     public void setQuantity(int quantity) throws ApplicationException {
         if (quantity < 0) {
@@ -291,10 +291,12 @@ class InventoryLocation implements Serializable {
         }
         this.quantity = quantity;
     }
-/**
- * Convert the class into a string
- * @return String representation of the class
- */
+
+    /**
+     * Convert the class into a string
+     *
+     * @return String representation of the class
+     */
     public String toString() {
         return "id " + inventoryLocationId
                 + " section " + section

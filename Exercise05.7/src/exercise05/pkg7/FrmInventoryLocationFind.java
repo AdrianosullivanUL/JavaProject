@@ -94,7 +94,7 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
         }
     }
 /**
- * 
+ * Populate the table with inventory locations
  */
     private void PopulateTable() {
         DefaultTableModel model = (DefaultTableModel) tblInventoryLocation.getModel();
@@ -227,7 +227,10 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * handle the user clicking on the edit button
+ * @param evt event handler action
+ */
     private void btnEditSelectedLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditSelectedLocationActionPerformed
         int selectedInventoryLocationId = 0;
         try {
@@ -251,7 +254,10 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btnEditSelectedLocationActionPerformed
-
+/**
+ * Handle the user changing the selected sort 
+ * @param evt event handler action
+ */
     private void cmbSortItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSortItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             String sortColumn = cmbSort.getSelectedItem().toString();
@@ -259,7 +265,10 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
             PopulateTable();
         }
     }//GEN-LAST:event_cmbSortItemStateChanged
-
+/**
+ * Handle the user pressing the delete button
+ * @param evt event handler action
+ */
     private void btnDeleteSelectedLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteSelectedLocationActionPerformed
         int selectedInventoryLocationId = 0;
         try {
