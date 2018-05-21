@@ -107,7 +107,7 @@ public class StockItem implements Serializable {
     /**
      * StockItem Constructor
      *
-     * @param StockItemId- Unique identifier
+     * @param StockItemId- Unique identifier for StockItem
      * @param PartNunber - Stock Item Part Number(used for Bubble Sort)
      * @param Name - Stock Item Name
      * @param Description - Stock Item Description
@@ -123,19 +123,19 @@ public class StockItem implements Serializable {
     }
 
     /**
-     * Accessor for StockId
+     * Accessor for StockItemId
      *
-     * @return StockItem ID
+     * @return StockItemId
      */
     public int getStockItemId() {
         return StockItemId;
     }
 
     /**
-     * Mutator for StockId
+     * Mutator for StockitemId
      *
-     * @param StockItemId
-          * @throws ApplicationException 
+     * @param StockItemId unique identifier for stockItem, must be greater than 0 to be assigned
+     * @throws ApplicationException 
      */
     public void setStockItemId(int StockItemId) throws ApplicationException {
         if (StockItemId < 0) {
@@ -156,7 +156,7 @@ public class StockItem implements Serializable {
     /**
      * Mutator for PartNumber
      *
-     * @param PartNumber
+     * @param PartNumber- Entry must be greater than 0 before entry is assigned to PartNumber
      * @throws ApplicationException 
      */
     public void setPartNumber(int PartNumber) throws ApplicationException {
@@ -178,7 +178,7 @@ public class StockItem implements Serializable {
     /**
      * Mutator for Name
      *
-     * @param Name
+     * @param Name, not null before entry is assigned to Name
      * @throws ApplicationException if Name is null  
      */
     public void setName(String Name) throws ApplicationException {
@@ -200,7 +200,7 @@ public class StockItem implements Serializable {
     /**
      * Mutator for Description
      *
-     * @param Description
+     * @param Description - not null before entry is assigned to Description
      * @throws ApplicationException  
      */
     public void setDescription(String Description)throws ApplicationException {
@@ -222,7 +222,7 @@ public class StockItem implements Serializable {
     /**
      * Mutator for UnitPrice
      *
-     * @param UnitPrice
+     * @param UnitPrice - Entry must be greater than 0 before UnitPrice is assigned
      * @throws ApplicationException  
      */
     public void setUnitPrice(double UnitPrice) throws ApplicationException {
