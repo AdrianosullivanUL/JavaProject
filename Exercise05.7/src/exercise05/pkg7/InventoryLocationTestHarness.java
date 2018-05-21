@@ -12,26 +12,31 @@ package exercise05.pkg7;
 class InventoryLocationTestHarness {
 
     InventoryLocationCollection inventoryCollection;
-/**
- * Entry point for executing this test harness
- * @param args not used
- */
+
+    /**
+     * Entry point for executing this test harness
+     *
+     * @param args not used
+     */
     public static void main(String args[]) {
         InventoryLocationTestHarness inventoryLocationTestHarness = new InventoryLocationTestHarness();
         inventoryLocationTestHarness.ExecuteTests();
     }
-/**
- * Execute tests for the Inventory Location class and also the matching collection class
- */
+
+    /**
+     * Execute tests for the Inventory Location class and also the matching
+     * collection class
+     */
     private void ExecuteTests() {
 
         TestInventoryLocationClass();
         TestInventoryLocationCollectionClass();
 
     }
-/**
- * Execute a set of tests against the Inventory Location Class
- */
+
+    /**
+     * Execute a set of tests against the Inventory Location Class
+     */
     private void TestInventoryLocationClass() {
         InventoryLocation inventoryLocation;
         System.out.println("Inventory Class Testing");
@@ -108,9 +113,10 @@ class InventoryLocationTestHarness {
         }
 
     }
-/**
- * Execute a set of tests against the Inventory Location Collection Class
- */
+
+    /**
+     * Execute a set of tests against the Inventory Location Collection Class
+     */
     private void TestInventoryLocationCollectionClass() {
         try {
             inventoryCollection = new InventoryLocationCollection();
@@ -166,13 +172,15 @@ class InventoryLocationTestHarness {
             System.out.println("TEST HARNESS FAILURE: " + ex.getMessage());
         }
     }
-/**
- * Create a new location and report the result
- * @param ExpectPassOutcome will the test produce a pass result
- * @param testDescription What is being tested
- * @param inventoryLocation The inventory location to create
- */
-    private void AddNewLocationTest(boolean ExpectPassOutcome, String testDescription, InventoryLocation inventoryLocation)  {
+
+    /**
+     * Create a new location and report the result
+     *
+     * @param ExpectPassOutcome will the test produce a pass result
+     * @param testDescription What is being tested
+     * @param inventoryLocation The inventory location to create
+     */
+    private void AddNewLocationTest(boolean ExpectPassOutcome, String testDescription, InventoryLocation inventoryLocation) {
 
         try {
             inventoryCollection.addInventoryLocation(inventoryLocation);
@@ -189,12 +197,14 @@ class InventoryLocationTestHarness {
             }
         }
     }
-/**
- * Delete a location and report the result
- * @param ExpectPassOutcome Will the test result in a pass
- * @param testDescription What is being tested
- * @param inventoryLocationId What location id to delete
- */
+
+    /**
+     * Delete a location and report the result
+     *
+     * @param ExpectPassOutcome Will the test result in a pass
+     * @param testDescription What is being tested
+     * @param inventoryLocationId What location id to delete
+     */
     private void DeleteLocationTest(boolean ExpectPassOutcome, String testDescription, int inventoryLocationId) {
         try {
             inventoryCollection.deleteInventoryLocation(inventoryLocationId);
@@ -212,12 +222,14 @@ class InventoryLocationTestHarness {
 
         }
     }
-/**
- * Execute an Update to an inventory location
- * @param ExpectPassOutcome Will the test result in a pass
- * @param testDescription What is being tested
- * @param inventoryLocationId What inventory location is being updated
- */
+
+    /**
+     * Execute an Update to an inventory location
+     *
+     * @param ExpectPassOutcome Will the test result in a pass
+     * @param testDescription What is being tested
+     * @param inventoryLocationId What inventory location is being updated
+     */
     private void UpdateLocationTest(boolean ExpectPassOutcome, String testDescription, int inventoryLocationId) {
         try {
 
@@ -236,12 +248,14 @@ class InventoryLocationTestHarness {
             }
         }
     }
-/**
- * Get an inventory location
- * @param InventoryLocationId What location id to find
- * @return An inventory Location
- * @throws ApplicationException Handles issues with not finding, etc.
- */
+
+    /**
+     * Get an inventory location
+     *
+     * @param InventoryLocationId What location id to find
+     * @return An inventory Location
+     * @throws ApplicationException Handles issues with not finding, etc.
+     */
     private InventoryLocation GetLocation(int InventoryLocationId) throws ApplicationException {
         InventoryLocation inventoryLocation = null;
 

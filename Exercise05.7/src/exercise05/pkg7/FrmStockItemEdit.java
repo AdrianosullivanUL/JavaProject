@@ -1,30 +1,9 @@
-/*
-Formal Specification
----------------------------------
-1 Task Formulation
-
-
-2 Specification
-   Input: N/A, Output: N/A
-
-3 Problem Solving
-
-4 Top Down Construction
-
-5 Bottom-Up Verification
-
-6 Coding
-See coding in this class
-
-7 Testing
-
- */
 package exercise05.pkg7;
 
 import javax.swing.JOptionPane;
 
 /**
- * Form to allow users to ADD to a StockItem to StockItemCollection
+ * Form to allow users to Add or Edit a StockItem in a StockItemCollection
  *
  * @author Mary Cronin 0510661
  */
@@ -37,6 +16,7 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
     /**
      * Creates new form FrmStockItemEdit
      *
+     * @param stockItemId - Unique identifier for a stock Item
      */
     public FrmStockItemEdit(int stockItemId) {
         initComponents();
@@ -193,7 +173,7 @@ public class FrmStockItemEdit extends javax.swing.JInternalFrame {
     /**
      * Method to Save stock item entered in form
      *
-     * @param evt
+     * @param evt - Event Action
      */
     private void BtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSaveActionPerformed
         try {

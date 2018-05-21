@@ -13,9 +13,10 @@ import javax.swing.JOptionPane;
 class InventoryLocationCreateSampleData {
 
     private InventoryLocationCollection inventoryCollection;
-/**
- * Create Sample inventory locations for the application
- */
+
+    /**
+     * Create Sample inventory locations for the application
+     */
     InventoryLocationCreateSampleData() {
         try {
             inventoryCollection = new InventoryLocationCollection();

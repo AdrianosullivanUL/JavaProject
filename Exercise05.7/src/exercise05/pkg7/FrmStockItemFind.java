@@ -1,23 +1,3 @@
-/*
-Formal Specification
----------------------------------
-1 Task Formulation
-
-2 Specification
-   Input: N/A, Output: N/A
-
-3 Problem Solving
-
-4 Top Down Construction
-
-5 Bottom-Up Verification
-
-6 Coding
-See coding in this class
-
-7 Testing
-
- */
 package exercise05.pkg7;
 
 import javax.swing.JOptionPane;
@@ -166,6 +146,11 @@ public class FrmStockItemFind extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Handle sort event
+     *
+     * @param evt Event Action
+     */
     private void btnSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortActionPerformed
         stockCollection.BubbleSort();
         PopulateTable();
@@ -175,7 +160,7 @@ public class FrmStockItemFind extends javax.swing.JInternalFrame {
     /**
      * Method to perform Edit Action linked to Edit Button on Form
      *
-     * @param evt
+     * @param evt Event Action
      */
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         {
@@ -202,6 +187,11 @@ public class FrmStockItemFind extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnEditActionPerformed
 
+    /**
+     * Method to perform Delete Action linked to Delete Button on Form
+     *
+     * @param evt Event Action
+     */
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int response = JOptionPane.showConfirmDialog(null, "Are you sure you wish to delete this Stock Item?", "Confirm",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);

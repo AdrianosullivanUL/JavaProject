@@ -137,7 +137,9 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
- * Class for StockItemCollection array based container called stockStore for StockItems
+ * Class for StockItemCollection array based container called stockStore for
+ * StockItems
+ *
  * @author Mary Cronin 0510661
  */
 public class StockItemCollection {
@@ -146,8 +148,10 @@ public class StockItemCollection {
     private int currentEntryIndex = -1; //index initialised a position 1
 
     /**
-     * Constructor for StockItemCollection which uses LoadStockCollection method or throws exception
-     * @throws ApplicationException 
+     * Constructor for StockItemCollection which uses LoadStockCollection method
+     * or throws exception
+     *
+     * @throws ApplicationException
      */
     public StockItemCollection() throws ApplicationException {
         try {
@@ -158,7 +162,8 @@ public class StockItemCollection {
     }
 
     /**
-     * Load the Stock List from file 
+     * Load the Stock List from file
+     *
      * @throws ApplicationException to handle unsuccessful loads
      */
     public void loadStockCollection()
@@ -185,8 +190,10 @@ public class StockItemCollection {
 
     /**
      * Method to save changes made to stockCollection by updating stockStore.dat
-     * @param updatedStockItemId, stock Id is applied to all entries using validate method
-     * @throws ApplicationException to handle file not found and I/O exceptions 
+     *
+     * @param updatedStockItemId, stock Id is applied to all entries using
+     * validate method
+     * @throws ApplicationException to handle file not found and I/O exceptions
      */
     public void saveStockItem(int updatedStockItemId) throws ApplicationException {
         try {
@@ -209,8 +216,9 @@ public class StockItemCollection {
 
     /**
      * Validate changes made to each stock item with the stockStore
-     * @param updateStockItemId
-     * @throws ApplicationException 
+     *
+     * @param updateStockItemId Id of stockItem to be updated
+     * @throws ApplicationException
      */
     private void validateUpdates(int updateStockItemId)
             throws ApplicationException {
@@ -239,10 +247,10 @@ public class StockItemCollection {
 
     /**
      * Method to delete stock items within the stockStore
-     * @param stockItemId - selection identifier for stock item to be deleted
+     *
+     * @param stockItemId selection identifier for stock item to be deleted
      * @throws ApplicationException if delete is unsuccessful
      */
-    
     public void deleteStockItem(int stockItemId) throws ApplicationException {
         boolean deleted = true;
         for (int i = 0; i <= stockStore.size() - 1; i++) {
@@ -258,9 +266,10 @@ public class StockItemCollection {
 
     /**
      * Method to check for duplicate stock
+     *
      * @param existing data holder for existing PN
      * @param updated data holder for new PN
-     * @return 
+     * @return
      */
     private boolean checkForDuplicateStock(StockItem existing, StockItem updated) {
         boolean result = false;
@@ -272,6 +281,7 @@ public class StockItemCollection {
 
     /**
      * Method to return ID of stockItem from stock store
+     *
      * @return StockID
      */
     public int getNextID() {
@@ -288,8 +298,9 @@ public class StockItemCollection {
 
     /**
      * Assign return value to stockItem for adding
-     * @param stockItem StockItem 
-     * @throws ApplicationException  
+     *
+     * @param stockItem StockItem
+     * @throws ApplicationException for invalid stock Item
      */
     public void addStockItem(StockItem stockItem) throws ApplicationException {
         stockStore.add(stockItem);
@@ -297,6 +308,7 @@ public class StockItemCollection {
 
     /**
      * Method to Return current StockItem info
+     *
      * @return current stock Item
      */
     public StockItem getCurrentStockItem() {
@@ -323,6 +335,7 @@ public class StockItemCollection {
 
     /**
      * Method to return size of arraylist
+     *
      * @return Size of stockStore ArrayList
      */
     public int size() {
@@ -331,6 +344,7 @@ public class StockItemCollection {
 
     /**
      * Method to indicate movement to next stock item was a success
+     *
      * @return ReturnValue true if it moves, false if not
      */
     public boolean moveToNextStockItem() {
@@ -346,6 +360,7 @@ public class StockItemCollection {
 
     /**
      * Method to indicate movement to next stock item was a success
+     *
      * @return ReturnValue true if it moves, false if not
      */
     public boolean moveToPreviousStockItem() {
@@ -360,33 +375,23 @@ public class StockItemCollection {
     }
 
     /**
-     * 1)Name Of Sorting Algorithm :Bubblesort, 
-     * 2) Description of the operation of your selected algorithm-
-     * Sorting algorithm that repeatedly steps through stockStore comparing each pair 
-     * of adjacent stock PartNumbers and swapping them if they are in the wrong order.
-     * 3)pseudocode for your sorting algorithm
-     * BubbleSort()
-     * Create temp variable
-     *      exception try catch for valid list
-     *      Outer loop for x= 1 to size of stockStore - 1 
-     *         Inner Loop for i=0 to size of stockstore - 1
-     *            check if the partnumber of stockstore (i)  is greater than  partnumber of stockstore(i+1)
-     *                      swap by doing the following(
-     *                         make temp = stockstore (i)
-     *                         make stockstore (i) = Stockstore(i+1)
-     *                         make stockstore ((i+1) =  temp)
-     *              End if 
-     *          next i loop
-     *      next x loop
-     * 4) Efficiency of Sorting Algorithm in O notation
-     * In Bubble Sort, n-1 comparisons will be done in the 1st pass, 
-     * n-2 in 2nd pass, n-3 in 3rd pass and so on.
-     * The total number of comparisons will be= (n-1) + (n-2) + (n-3) + ..... + 3 + 2 + 1
-     * Sum = n(n-1)/2
-     * =O(n^2)
-     * 
+     * 1)Name Of Sorting Algorithm :Bubblesort, 2) Description of the operation
+     * of your selected algorithm- Sorting algorithm that repeatedly steps
+     * through stockStore comparing each pair of adjacent stock PartNumbers and
+     * swapping them if they are in the wrong order. 3)pseudocode for your
+     * sorting algorithm BubbleSort() Create temp variable exception try catch
+     * for valid list Outer loop for x= 1 to size of stockStore - 1 Inner Loop
+     * for i=0 to size of stockstore - 1 check if the partnumber of stockstore
+     * (i) is greater than partnumber of stockstore(i+1) swap by doing the
+     * following( make temp = stockstore (i) make stockstore (i) =
+     * Stockstore(i+1) make stockstore ((i+1) = temp) End if next i loop next x
+     * loop 4) Efficiency of Sorting Algorithm in O notation In Bubble Sort, n-1
+     * comparisons will be done in the 1st pass, n-2 in 2nd pass, n-3 in 3rd
+     * pass and so on. The total number of comparisons will be= (n-1) + (n-2) +
+     * (n-3) + ..... + 3 + 2 + 1 Sum = n(n-1)/2 =O(n^2)
+     *
      */
-      public void BubbleSort() {
+    public void BubbleSort() {
         StockItem temp;
         try {
             int storeSize = stockStore.size();
@@ -401,9 +406,9 @@ public class StockItemCollection {
                             temp = stockStore.get(i);
                             stockStore.set(i, stockStore.get(i + 1));
                             stockStore.set(i + 1, temp);
-                        }
-                        else
+                        } else {
                             i = i;
+                        }
                     }
                 }
             }

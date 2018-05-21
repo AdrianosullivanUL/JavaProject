@@ -72,7 +72,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  * Form to allow user to find all Inventory Locations
  *
- * @author Adrian O'Sullivan Student ID 16230124 
+ * @author Adrian O'Sullivan Student ID 16230124
  */
 public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
 
@@ -93,9 +93,10 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Problem", JOptionPane.ERROR_MESSAGE);
         }
     }
-/**
- * Populate the table with inventory locations
- */
+
+    /**
+     * Populate the table with inventory locations
+     */
     private void PopulateTable() {
         DefaultTableModel model = (DefaultTableModel) tblInventoryLocation.getModel();
         for (int i = model.getRowCount() - 1; i >= 0; i--) {
@@ -228,9 +229,10 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 /**
- * handle the user clicking on the edit button
- * @param evt event handler action
- */
+     * handle the user clicking on the edit button
+     *
+     * @param evt event handler action
+     */
     private void btnEditSelectedLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditSelectedLocationActionPerformed
         int selectedInventoryLocationId = 0;
         try {
@@ -254,10 +256,11 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btnEditSelectedLocationActionPerformed
-/**
- * Handle the user changing the selected sort 
- * @param evt event handler action
- */
+    /**
+     * Handle the user changing the selected sort
+     *
+     * @param evt event handler action
+     */
     private void cmbSortItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSortItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             String sortColumn = cmbSort.getSelectedItem().toString();
@@ -265,10 +268,11 @@ public class FrmInventoryLocationFind extends javax.swing.JInternalFrame {
             PopulateTable();
         }
     }//GEN-LAST:event_cmbSortItemStateChanged
-/**
- * Handle the user pressing the delete button
- * @param evt event handler action
- */
+    /**
+     * Handle the user pressing the delete button
+     *
+     * @param evt event handler action
+     */
     private void btnDeleteSelectedLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteSelectedLocationActionPerformed
         int selectedInventoryLocationId = 0;
         try {

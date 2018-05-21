@@ -38,9 +38,10 @@ Variable Types
 package exercise05.pkg7;
 
 /**
-* Present an form with an explanation on how to use the application on startup
-* @author Adrian O'Sullivan Student ID 16230124 
-*/
+ * Present a form with an explanation on how to use the application on startup
+ *
+ * @author Adrian O'Sullivan Student ID 16230124
+ */
 public class FrmReadMe extends javax.swing.JInternalFrame {
 
     /**
@@ -48,16 +49,16 @@ public class FrmReadMe extends javax.swing.JInternalFrame {
      */
     public FrmReadMe() {
         initComponents();
-        lblText.setText("<html><h1>Introduction</h1>" 
-                + "This application is designed to support stock control for a small warehouse or shop." 
-                + " <br>It is designed as a single user solution with data stored locally in files.<br>" 
-                + "The system has two main modules, a Stock Item module to manage the items that are being" 
-                + " controlled and an Inventory Location Module to manage the locations in a simple " 
-                + "section/aisle/rack/shelf model where only one item can be stored in a location. <br>" 
-                + "The location module is used to record what stock and how much is stored in each location. <br>" 
-                + "<br><h2>How to use</h2>" 
+        lblText.setText("<html><h1>Introduction</h1>"
+                + "This application is designed to support stock control for a small warehouse or shop."
+                + " <br>It is designed as a single user solution with data stored locally in files.<br>"
+                + "The system has two main modules, a Stock Item module to manage the items that are being"
+                + " controlled and an Inventory Location Module to manage the locations in a simple "
+                + "section/aisle/rack/shelf model where only one item can be stored in a location. <br>"
+                + "The location module is used to record what stock and how much is stored in each location. <br>"
+                + "<br><h2>How to use</h2>"
                 + "1) Select Help and then use the Create options to create new sample data<br>"
-                + "2) Select Stock Item Find or Add module to maintain the list of stock items including price<br>" 
+                + "2) Select Stock Item Find or Add module to maintain the list of stock items including price<br>"
                 + "3) Select the Inventory Location Find or Add module to maintain the locations and the stock contained in each<br>"
                 + "<h2>Sorting</h2>"
                 + "We have implemented two different Sort solutions:<br>"
@@ -69,8 +70,8 @@ public class FrmReadMe extends javax.swing.JInternalFrame {
                 + "   1) InventoryLocationTestHarness<br>"
                 + "   2) StockItemTestHarness<br>"
                 + "   2) GeneralTestHarness<br>"
-                );
-        
+        );
+
     }
 
     /**

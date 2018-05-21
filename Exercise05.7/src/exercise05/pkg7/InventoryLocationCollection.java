@@ -207,7 +207,7 @@ public class InventoryLocationCollection {
     /**
      * Save any changes made to the file store
      *
-     * @param updatedInventoryLocationId WHen an inventory has been updated,
+     * @param updatedInventoryLocationId When an inventory has been updated,
      * this id is provided to support validation
      * @throws ApplicationException to handle issues with file access and also
      * validation errors
@@ -341,6 +341,11 @@ public class InventoryLocationCollection {
         currentEntryIndex = -1;
     }
 
+    /**
+     *
+     * Move to the position at the tail of the list, this positions the indexer
+     * to support iterating back through the list
+     */
     public void moveToTailLocation() {
         currentEntryIndex = inventoryStore.size(); // Note: forced to be 1 greater than the index location
     }

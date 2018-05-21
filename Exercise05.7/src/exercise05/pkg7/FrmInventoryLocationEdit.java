@@ -93,6 +93,8 @@ public class FrmInventoryLocationEdit extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FrmInventoryLocationEdit
+     *
+     * @param inventoryLocationId - InventoryLocation unique identifier
      */
     public FrmInventoryLocationEdit(int inventoryLocationId) {
         initComponents();

@@ -107,14 +107,14 @@ public class StockItem implements Serializable {
     /**
      * StockItem Constructor
      *
-     * @param StockItemId- Unique identifier for StockItem
-     * @param PartNunber - Stock Item Part Number(used for Bubble Sort)
-     * @param Name - Stock Item Name
-     * @param Description - Stock Item Description
-     * @param UnitPrice - Unit Price
-     * @throws ApplicationException 
+     * @param StockItemId Unique identifier for StockItem
+     * @param PartNunber Stock Item Part Number(used for Bubble Sort)
+     * @param Name Stock Item Name
+     * @param Description Stock Item Description
+     * @param UnitPrice Unit Price
+     * @throws ApplicationException
      */
-    public StockItem(int StockItemId, int PartNunber, String Name, String Description, double UnitPrice) throws ApplicationException{
+    public StockItem(int StockItemId, int PartNunber, String Name, String Description, double UnitPrice) throws ApplicationException {
         setStockItemId(StockItemId);
         setPartNumber(PartNunber);
         setName(Name);
@@ -134,8 +134,9 @@ public class StockItem implements Serializable {
     /**
      * Mutator for StockitemId
      *
-     * @param StockItemId unique identifier for stockItem, must be greater than 0 to be assigned
-     * @throws ApplicationException 
+     * @param StockItemId unique identifier for stockItem, must be greater than
+     * 0 to be assigned
+     * @throws ApplicationException if stockItemId is negative
      */
     public void setStockItemId(int StockItemId) throws ApplicationException {
         if (StockItemId < 0) {
@@ -156,8 +157,9 @@ public class StockItem implements Serializable {
     /**
      * Mutator for PartNumber
      *
-     * @param PartNumber- Entry must be greater than 0 before entry is assigned to PartNumber
-     * @throws ApplicationException 
+     * @param PartNumber- Entry must be greater than 0 before entry is assigned
+     * to PartNumber
+     * @throws ApplicationException if PartNumber is negative
      */
     public void setPartNumber(int PartNumber) throws ApplicationException {
         if (PartNumber < 0) {
@@ -179,7 +181,7 @@ public class StockItem implements Serializable {
      * Mutator for Name
      *
      * @param Name, not null before entry is assigned to Name
-     * @throws ApplicationException if Name is null  
+     * @throws ApplicationException if Name is null
      */
     public void setName(String Name) throws ApplicationException {
         if (Name.length() <= 0) {
@@ -201,9 +203,9 @@ public class StockItem implements Serializable {
      * Mutator for Description
      *
      * @param Description - not null before entry is assigned to Description
-     * @throws ApplicationException  
+     * @throws ApplicationException if Description is null
      */
-    public void setDescription(String Description)throws ApplicationException {
+    public void setDescription(String Description) throws ApplicationException {
         if (Description.length() <= 0) {
             throw new ApplicationException("You must give the stock item a Description");
         }
@@ -222,8 +224,9 @@ public class StockItem implements Serializable {
     /**
      * Mutator for UnitPrice
      *
-     * @param UnitPrice - Entry must be greater than 0 before UnitPrice is assigned
-     * @throws ApplicationException  
+     * @param UnitPrice - Entry must be greater than 0 before UnitPrice is
+     * assigned
+     * @throws ApplicationException if UnitPrice is negative or Zero
      */
     public void setUnitPrice(double UnitPrice) throws ApplicationException {
         if (UnitPrice < 0.00) {
@@ -231,18 +234,20 @@ public class StockItem implements Serializable {
         }
         this.UnitPrice = UnitPrice;
     }
+
     @Override
     /**
      * To String Method to create a string representation of a StockItem
+     *
      * @return -string representation of a StockItem
      */
     public String toString() {
         return "\nStock id " + StockItemId + ",\n"
-                + "Part Number " + PartNumber+ ",\n"
+                + "Part Number " + PartNumber + ",\n"
                 + "Stock Name " + Name + ",\n"
-                + "Stock Description" + Description+ ",\n"
+                + "Stock Description" + Description + ",\n"
                 + "Unit Price " + UnitPrice;
-             
+
     }
 
 }
